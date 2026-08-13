@@ -1,10 +1,10 @@
 {
   "owner": {
-    "username": "is-a-dev",
+    "username": "banner",
     "email": "[email protected]"
   },
   "records": {
-    "CNAME": "is-a-dev-docs.pages.dev"
+    "CNAME": "blog.example.json"
   },
   "proxied": true
 }
