@@ -1,10 +1,5 @@
 {
-  "owner": {
-    "username": "banner",
-    "email": "[email protected]"
-  },
-  "records": {
-    "CNAME": "blog.example.json"
-  },
-  "proxied": true
+  "domain": "blog.example.github.io",
+  "type": "github-pages",
+  "https": true
 }
