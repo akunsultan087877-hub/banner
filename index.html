@@ -4,1587 +4,1145 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Premium Store</title>
-<meta name="theme-color" content="#0d0518">
-
 <!-- Google tag (gtag.js) - AW-18355823633 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18355823633"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-
-function gtag(){
-  dataLayer.push(arguments);
-}
-
-gtag('js', new Date());
-
-gtag('consent', 'default', {
-  ad_storage: 'denied',
-  ad_user_data: 'denied',
-  ad_personalization: 'denied',
-  analytics_storage: 'denied',
-  functionality_storage: 'granted',
-  security_storage: 'granted'
-});
-
-gtag('config', 'AW-18355823633');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18355823633');
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied'
+  });
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  -webkit-tap-highlight-color: transparent;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
 }
 
-html {
-  min-height: 100%;
-  background: #0d0518;
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+min-height:100dvh;
+overflow:hidden;
+background:#0d0518;
+padding:15px;
+position:relative;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  min-height: 100dvh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  background: #0d0518;
-  padding: 15px;
-  position: relative;
+/* ===== SPLASH SCREEN ===== */
+.splash{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0d0518;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:100;
+transition:opacity 0.8s ease,visibility 0.8s ease;
 }
 
-/* =========================================================
-   SPLASH SCREEN
-========================================================= */
-
-.splash {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: #0d0518;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-  transition:
-    opacity .8s ease,
-    visibility .8s ease;
+.splash.hide{
+opacity:0;
+visibility:hidden;
+pointer-events:none;
 }
 
-.splash.hide {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+.splash-text{
+color:#f0e6ff;
+font-size:32px;
+font-weight:800;
+letter-spacing:2px;
+background:linear-gradient(90deg,#c44dff,#e080ff,#b060ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+animation:splashText 1.5s ease-in-out infinite alternate;
 }
 
-.splash-text {
-  color: #f0e6ff;
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-align: center;
-
-  background: linear-gradient(
-    90deg,
-    #c44dff,
-    #e080ff,
-    #b060ff
-  );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-
-  animation:
-    splashText 1.5s ease-in-out infinite alternate;
+@keyframes splashText{
+0%{
+opacity:0.75;
+transform:scale(1);
+filter:drop-shadow(0 0 10px rgba(180,100,255,0.4));
+}
+100%{
+opacity:1;
+transform:scale(1.05);
+filter:drop-shadow(0 0 25px rgba(200,120,255,0.8));
+}
 }
 
-@keyframes splashText {
-  0% {
-    opacity: .75;
-    transform: scale(1);
-    filter:
-      drop-shadow(0 0 10px rgba(180,100,255,.4));
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1.05);
-    filter:
-      drop-shadow(0 0 25px rgba(200,120,255,.8));
-  }
+.splash-sub{
+margin-top:12px;
+color:rgba(220,200,255,0.75);
+font-size:14px;
+letter-spacing:3px;
+text-transform:uppercase;
+animation:splashSub 1.5s ease-in-out infinite alternate;
 }
 
-.splash-sub {
-  margin-top: 12px;
-  color: rgba(220,200,255,.75);
-  font-size: 14px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-align: center;
-
-  animation:
-    splashSub 1.5s ease-in-out infinite alternate;
+@keyframes splashSub{
+0%{
+opacity:0.5;
+}
+100%{
+opacity:1;
+}
 }
 
-@keyframes splashSub {
-  0% {
-    opacity: .5;
-  }
-
-  100% {
-    opacity: 1;
-  }
+/* ===== LATAR UNGU TUA ===== */
+.bg-animation{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-3;
+background:
+radial-gradient(circle at 20% 30%,rgba(120,40,180,0.4) 0%,transparent 45%),
+radial-gradient(circle at 80% 20%,rgba(160,60,220,0.3) 0%,transparent 40%),
+radial-gradient(circle at 70% 80%,rgba(90,20,140,0.35) 0%,transparent 45%),
+radial-gradient(circle at 30% 70%,rgba(140,50,200,0.25) 0%,transparent 40%),
+#0d0518;
+animation:bgPulse 8s ease-in-out infinite alternate;
 }
 
-/* =========================================================
-   BACKGROUND
-========================================================= */
-
-.bg-animation {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -3;
-
-  background:
-    radial-gradient(
-      circle at 20% 30%,
-      rgba(120,40,180,.4) 0%,
-      transparent 45%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(160,60,220,.3) 0%,
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 70% 80%,
-      rgba(90,20,140,.35) 0%,
-      transparent 45%
-    ),
-    radial-gradient(
-      circle at 30% 70%,
-      rgba(140,50,200,.25) 0%,
-      transparent 40%
-    ),
-    #0d0518;
-
-  animation:
-    bgPulse 8s ease-in-out infinite alternate;
+@keyframes bgPulse{
+0%{
+filter:hue-rotate(0deg) brightness(1);
+}
+100%{
+filter:hue-rotate(8deg) brightness(1.12);
+}
 }
 
-@keyframes bgPulse {
-  0% {
-    filter:
-      hue-rotate(0deg)
-      brightness(1);
-  }
-
-  100% {
-    filter:
-      hue-rotate(8deg)
-      brightness(1.12);
-  }
+/* Grid ungu */
+.web{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-2;
+background-image:
+linear-gradient(rgba(160,80,255,0.07) 1px,transparent 1px),
+linear-gradient(90deg,rgba(160,80,255,0.07) 1px,transparent 1px);
+background-size:55px 55px;
+animation:webMove 20s linear infinite;
+opacity:0.7;
 }
 
-/* =========================================================
-   GRID
-========================================================= */
-
-.web {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-
-  background-image:
-    linear-gradient(
-      rgba(160,80,255,.07) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(160,80,255,.07) 1px,
-      transparent 1px
-    );
-
-  background-size: 55px 55px;
-
-  animation:
-    webMove 20s linear infinite;
-
-  opacity: .7;
+@keyframes webMove{
+0%{
+background-position:0 0;
+}
+100%{
+background-position:55px 55px;
+}
 }
 
-@keyframes webMove {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 55px 55px;
-  }
+/* Cahaya ungu bergerak */
+.glow{
+position:fixed;
+width:300px;
+height:300px;
+border-radius:50%;
+filter:blur(80px);
+z-index:-1;
+opacity:0.5;
+animation:floatGlow 12s ease-in-out infinite;
 }
 
-/* =========================================================
-   GLOW
-========================================================= */
-
-.glow {
-  position: fixed;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  filter: blur(80px);
-  z-index: -1;
-  opacity: .5;
-
-  animation:
-    floatGlow 12s ease-in-out infinite;
+.glow.red{
+background:#9b30ff;
+top:8%;
+left:5%;
 }
 
-.glow.red {
-  background: #9b30ff;
-  top: 8%;
-  left: 5%;
+.glow.blue{
+background:#c44dff;
+bottom:8%;
+right:5%;
+animation-delay:4s;
 }
 
-.glow.blue {
-  background: #c44dff;
-  bottom: 8%;
-  right: 5%;
-  animation-delay: 4s;
+@keyframes floatGlow{
+0%,100%{
+transform:translate(0,0) scale(1);
+}
+50%{
+transform:translate(35px,28px) scale(1.2);
+}
 }
 
-@keyframes floatGlow {
-  0%, 100% {
-    transform:
-      translate(0,0)
-      scale(1);
-  }
-
-  50% {
-    transform:
-      translate(35px,28px)
-      scale(1.2);
-  }
+/* ===== EFEK PETIR LAYAR ===== */
+.lightning{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:2;
+opacity:0;
+background:transparent;
 }
 
-/* =========================================================
-   PETIR
-========================================================= */
-
-.lightning {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
-
-  opacity: 0;
-  background: transparent;
+.lightning.flash{
+animation:lightningFlash 0.4s ease-out;
 }
 
-.lightning.flash {
-  animation:
-    lightningFlash .4s ease-out;
+@keyframes lightningFlash{
+0%{
+opacity:0;
+background:rgba(220,180,255,0);
+}
+8%{
+opacity:1;
+background:rgba(240,220,255,0.45);
+}
+18%{
+opacity:0.2;
+background:rgba(200,160,255,0.12);
+}
+28%{
+opacity:0.95;
+background:rgba(255,240,255,0.5);
+}
+45%{
+opacity:0.15;
+background:rgba(200,160,255,0.08);
+}
+100%{
+opacity:0;
+background:transparent;
+}
 }
 
-@keyframes lightningFlash {
-  0% {
-    opacity: 0;
-    background: rgba(220,180,255,0);
-  }
-
-  8% {
-    opacity: 1;
-    background: rgba(240,220,255,.45);
-  }
-
-  18% {
-    opacity: .2;
-    background: rgba(200,160,255,.12);
-  }
-
-  28% {
-    opacity: .95;
-    background: rgba(255,240,255,.5);
-  }
-
-  45% {
-    opacity: .15;
-    background: rgba(200,160,255,.08);
-  }
-
-  100% {
-    opacity: 0;
-    background: transparent;
-  }
+/* Garis petir panjang */
+.bolt{
+position:fixed;
+pointer-events:none;
+z-index:3;
+opacity:0;
+filter:
+drop-shadow(0 0 6px #e8c0ff)
+drop-shadow(0 0 18px #c070ff)
+drop-shadow(0 0 35px #a040ff);
 }
 
-.bolt {
-  position: fixed;
-  pointer-events: none;
-  z-index: 3;
-  opacity: 0;
-
-  filter:
-    drop-shadow(0 0 6px #e8c0ff)
-    drop-shadow(0 0 18px #c070ff)
-    drop-shadow(0 0 35px #a040ff);
+.bolt.show{
+animation:boltAppear 0.45s ease-out forwards;
 }
 
-.bolt.show {
-  animation:
-    boltAppear .45s ease-out forwards;
+@keyframes boltAppear{
+0%{
+opacity:0;
+}
+12%{
+opacity:1;
+}
+75%{
+opacity:0.85;
+}
+100%{
+opacity:0;
+}
 }
 
-@keyframes boltAppear {
-  0% {
-    opacity: 0;
-  }
-
-  12% {
-    opacity: 1;
-  }
-
-  75% {
-    opacity: .85;
-  }
-
-  100% {
-    opacity: 0;
-  }
+/* ===== SALJU ===== */
+.snowflake{
+position:fixed;
+top:-20px;
+color:#f0e6ff;
+font-size:12px;
+opacity:0.7;
+pointer-events:none;
+z-index:0;
+user-select:none;
+animation:snowfall linear infinite;
+text-shadow:0 0 6px rgba(200,160,255,0.8);
 }
 
-/* =========================================================
-   SALJU
-========================================================= */
-
-.snowflake {
-  position: fixed;
-  top: -20px;
-  color: #f0e6ff;
-  font-size: 12px;
-  opacity: .7;
-  pointer-events: none;
-  z-index: 0;
-  user-select: none;
-
-  text-shadow:
-    0 0 6px rgba(200,160,255,.8);
-
-  animation:
-    snowfall linear infinite;
+@keyframes snowfall{
+0%{
+transform:translateY(-10vh) translateX(0) rotate(0deg);
+opacity:0;
+}
+10%{
+opacity:0.75;
+}
+90%{
+opacity:0.5;
+}
+100%{
+transform:translateY(110vh) translateX(var(--drift,20px)) rotate(360deg);
+opacity:0;
+}
 }
 
-@keyframes snowfall {
-  0% {
-    transform:
-      translateY(-10vh)
-      translateX(0)
-      rotate(0deg);
-    opacity: 0;
-  }
-
-  10% {
-    opacity: .75;
-  }
-
-  90% {
-    opacity: .5;
-  }
-
-  100% {
-    transform:
-      translateY(110vh)
-      translateX(var(--drift,20px))
-      rotate(360deg);
-    opacity: 0;
-  }
+/* ===== CONTAINER ===== */
+.container{
+width:100%;
+max-width:430px;
+padding:18px 6px 28px;
+text-align:center;
+position:relative;
+z-index:5;
 }
 
-/* =========================================================
-   CONTAINER
-========================================================= */
-
-.container {
-  width: 100%;
-  max-width: 430px;
-  padding: 18px 6px 28px;
-  text-align: center;
-  position: relative;
-  z-index: 5;
+/* ===== ANIMASI MASUK ===== */
+.enter-item{
+opacity:0;
+transition:
+opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+transform 0.7s cubic-bezier(0.22,1,0.36,1);
 }
 
-/* =========================================================
-   ANIMASI MASUK
-========================================================= */
-
-.enter-item {
-  opacity: 0;
-
-  transition:
-    opacity .7s cubic-bezier(.22,1,.36,1),
-    transform .7s cubic-bezier(.22,1,.36,1);
+.enter-item.from-left{
+transform:translateX(-80px) scale(0.9);
 }
 
-.enter-item.from-left {
-  transform:
-    translateX(-80px)
-    scale(.9);
+.enter-item.from-right{
+transform:translateX(80px) scale(0.9);
 }
 
-.enter-item.from-right {
-  transform:
-    translateX(80px)
-    scale(.9);
+.enter-item.from-top{
+transform:translateY(-60px) scale(0.9);
 }
 
-.enter-item.from-top {
-  transform:
-    translateY(-60px)
-    scale(.9);
+.enter-item.from-bottom{
+transform:translateY(60px) scale(0.9);
 }
 
-.enter-item.from-bottom {
-  transform:
-    translateY(60px)
-    scale(.9);
+.enter-item.from-scale{
+transform:scale(0.5);
 }
 
-.enter-item.from-scale {
-  transform:
-    scale(.5);
+.enter-item.show{
+opacity:1;
+transform:translate(0,0) scale(1);
 }
 
-.enter-item.show {
-  opacity: 1;
-  transform:
-    translate(0,0)
-    scale(1);
+/* ===== BADGE ===== */
+.brand-badge{
+display:inline-flex;
+align-items:center;
+gap:7px;
+padding:8px 14px;
+border:1px solid rgba(224,180,255,.28);
+border-radius:999px;
+color:#ead8ff;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+font-size:11px;
+font-weight:800;
+letter-spacing:2px;
+box-shadow:0 0 25px rgba(160,70,255,.15);
+margin-bottom:18px;
 }
 
-/* =========================================================
-   BADGE
-========================================================= */
-
-.brand-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-
-  padding: 8px 14px;
-
-  border:
-    1px solid rgba(224,180,255,.28);
-
-  border-radius: 999px;
-
-  color: #ead8ff;
-
-  background:
-    rgba(255,255,255,.06);
-
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2px;
-
-  box-shadow:
-    0 0 25px rgba(160,70,255,.15);
-
-  margin-bottom: 18px;
+/* ===== HERO ===== */
+.hero{
+position:relative;
+overflow:hidden;
+padding:22px 18px 24px;
+border:1px solid rgba(255,255,255,.11);
+border-radius:28px;
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.10),
+rgba(255,255,255,.035)
+);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+box-shadow:
+0 20px 60px rgba(0,0,0,.30),
+inset 0 1px rgba(255,255,255,.10);
+margin-bottom:18px;
 }
 
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-  position: relative;
-  overflow: hidden;
-
-  padding: 22px 18px 24px;
-
-  border:
-    1px solid rgba(255,255,255,.11);
-
-  border-radius: 28px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.10),
-      rgba(255,255,255,.035)
-    );
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.30),
-    inset 0 1px rgba(255,255,255,.10);
-
-  margin-bottom: 18px;
+.hero-orb{
+position:absolute;
+width:180px;
+height:180px;
+border-radius:50%;
+top:-95px;
+right:-70px;
+background:rgba(196,77,255,.25);
+filter:blur(15px);
 }
 
-.hero-orb {
-  position: absolute;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  top: -95px;
-  right: -70px;
-
-  background:
-    rgba(196,77,255,.25);
-
-  filter: blur(15px);
+/* ===== GIF TIDAK DIPOTONG ===== */
+.hero-gif{
+position:relative;
+width:100%;
+max-width:300px;
+height:auto;
+object-fit:contain;
+display:block;
+margin:0 auto 20px;
+border-radius:20px;
+border:1px solid rgba(220,160,255,.38);
+box-shadow:
+0 0 20px rgba(170,70,255,.38),
+0 0 45px rgba(120,40,200,.20);
+background:#140720;
 }
 
-/* =========================================================
-   GIF PERTAMA
-========================================================= */
-
-.hero-gif {
-  position: relative;
-
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-
-  object-fit: contain;
-  display: block;
-
-  margin: 0 auto 14px;
-
-  border:
-    1px solid rgba(220,160,255,.38);
-
-  border-radius: 20px;
-
-  box-shadow:
-    0 0 20px rgba(170,70,255,.38),
-    0 0 45px rgba(120,40,200,.20);
-
-  background: #140720;
+/* ===== HERO TEXT ===== */
+.hero-kicker{
+position:relative;
+color:#d9b6ff;
+font-size:10px;
+font-weight:800;
+letter-spacing:3px;
+margin-bottom:9px;
 }
 
-/* =========================================================
-   GIF KEDUA
-========================================================= */
-
-.hero-gif-second {
-  max-width: 300px;
-
-  margin:
-    0 auto 18px;
-
-  mix-blend-mode: screen;
-
-  background: transparent;
-
-  border: none;
-  border-radius: 0;
-
-  box-shadow: none;
-
-  filter:
-    drop-shadow(0 0 8px rgba(190,100,255,.45))
-    drop-shadow(0 0 20px rgba(150,60,255,.25));
-
-  transform: scale(.85);
+.hero h1{
+position:relative;
+margin:0;
+color:#fff;
+font-size:34px;
+line-height:1.05;
+font-weight:900;
+letter-spacing:-1px;
+text-shadow:0 5px 30px rgba(0,0,0,.25);
 }
 
-/* =========================================================
-   HERO TEXT
-========================================================= */
-
-.hero-kicker {
-  position: relative;
-
-  color: #d9b6ff;
-
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 3px;
-
-  margin-bottom: 9px;
+.hero h1 span{
+display:block;
+background:linear-gradient(90deg,#d77bff,#fff,#b765ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
 }
 
-.hero h1 {
-  position: relative;
-
-  margin: 0;
-
-  color: #fff;
-
-  font-size: 34px;
-  line-height: 1.05;
-
-  font-weight: 900;
-
-  letter-spacing: -1px;
-
-  text-shadow:
-    0 5px 30px rgba(0,0,0,.25);
+.hero p{
+position:relative;
+margin:14px auto 0;
+max-width:340px;
+color:rgba(239,228,255,.72);
+font-size:13px;
+line-height:1.65;
 }
 
-.hero h1 span {
-  display: block;
-
-  background:
-    linear-gradient(
-      90deg,
-      #d77bff,
-      #fff,
-      #b765ff
-    );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ===== MENU ===== */
+.menu-grid{
+display:grid;
+gap:11px;
 }
 
-.hero p {
-  position: relative;
-
-  margin: 14px auto 0;
-
-  max-width: 340px;
-
-  color:
-    rgba(239,228,255,.72);
-
-  font-size: 13px;
-  line-height: 1.65;
+.menu-card{
+display:flex;
+align-items:center;
+gap:13px;
+min-height:74px;
+padding:12px 13px;
+color:#fff;
+text-decoration:none;
+text-align:left;
+border:1px solid rgba(255,255,255,.10);
+border-radius:20px;
+background:
+linear-gradient(
+110deg,
+rgba(255,255,255,.10),
+rgba(255,255,255,.045)
+);
+backdrop-filter:blur(16px);
+-webkit-backdrop-filter:blur(16px);
+box-shadow:
+0 12px 35px rgba(0,0,0,.22),
+inset 0 1px rgba(255,255,255,.08);
+transition:
+transform .28s ease,
+border-color .28s ease,
+box-shadow .28s ease,
+background .28s ease;
+position:relative;
+overflow:hidden;
 }
 
-/* =========================================================
-   MENU
-========================================================= */
-
-.menu-grid {
-  display: grid;
-  gap: 11px;
+.menu-card::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+linear-gradient(
+100deg,
+transparent,
+rgba(255,255,255,.08),
+transparent
+);
+transform:translateX(-110%);
+transition:transform .65s ease;
 }
 
-.menu-card {
-  display: flex;
-  align-items: center;
-
-  gap: 13px;
-
-  min-height: 74px;
-
-  padding: 12px 13px;
-
-  color: #fff;
-  text-decoration: none;
-  text-align: left;
-
-  border:
-    1px solid rgba(255,255,255,.10);
-
-  border-radius: 20px;
-
-  background:
-    linear-gradient(
-      110deg,
-      rgba(255,255,255,.10),
-      rgba(255,255,255,.045)
-    );
-
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
-  box-shadow:
-    0 12px 35px rgba(0,0,0,.22),
-    inset 0 1px rgba(255,255,255,.08);
-
-  transition:
-    transform .28s ease,
-    border-color .28s ease,
-    box-shadow .28s ease,
-    background .28s ease;
-
-  position: relative;
-  overflow: hidden;
+.menu-card:hover{
+transform:translateY(-4px) scale(1.012);
+border-color:rgba(214,151,255,.40);
+background:
+linear-gradient(
+110deg,
+rgba(173,79,255,.18),
+rgba(255,255,255,.065)
+);
+box-shadow:
+0 16px 40px rgba(95,25,160,.30),
+0 0 24px rgba(190,90,255,.13);
 }
 
-.menu-card::before {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background:
-    linear-gradient(
-      100deg,
-      transparent,
-      rgba(255,255,255,.08),
-      transparent
-    );
-
-  transform:
-    translateX(-110%);
-
-  transition:
-    transform .65s ease;
-
-  pointer-events: none;
+.menu-card:hover::before{
+transform:translateX(110%);
 }
 
-.menu-card:hover {
-  transform:
-    translateY(-4px)
-    scale(1.012);
-
-  border-color:
-    rgba(214,151,255,.40);
-
-  background:
-    linear-gradient(
-      110deg,
-      rgba(173,79,255,.18),
-      rgba(255,255,255,.065)
-    );
-
-  box-shadow:
-    0 16px 40px rgba(95,25,160,.30),
-    0 0 24px rgba(190,90,255,.13);
+.card-icon{
+width:46px;
+height:46px;
+flex:0 0 46px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:15px;
+color:#fff;
+font-size:20px;
+background:
+linear-gradient(
+145deg,
+rgba(196,77,255,.95),
+rgba(103,35,190,.95)
+);
+box-shadow:
+0 7px 20px rgba(129,44,218,.32),
+inset 0 1px rgba(255,255,255,.22);
 }
 
-.menu-card:hover::before {
-  transform:
-    translateX(110%);
+.card-copy{
+min-width:0;
+flex:1;
 }
 
-.card-icon {
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 15px;
-
-  color: #fff;
-  font-size: 20px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(196,77,255,.95),
-      rgba(103,35,190,.95)
-    );
-
-  box-shadow:
-    0 7px 20px rgba(129,44,218,.32),
-    inset 0 1px rgba(255,255,255,.22);
+.card-copy strong{
+display:block;
+font-size:15px;
+font-weight:800;
+letter-spacing:.1px;
 }
 
-.card-copy {
-  min-width: 0;
-  flex: 1;
+.card-copy small{
+display:block;
+margin-top:4px;
+color:rgba(235,220,255,.60);
+font-size:11px;
 }
 
-.card-copy strong {
-  display: block;
-
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: .1px;
+.card-arrow{
+width:34px;
+height:34px;
+flex:0 0 34px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+color:#fff;
+background:rgba(255,255,255,.08);
+transition:.28s ease;
 }
 
-.card-copy small {
-  display: block;
-
-  margin-top: 4px;
-
-  color:
-    rgba(235,220,255,.60);
-
-  font-size: 11px;
+.menu-card:hover .card-arrow{
+transform:translateX(3px);
+background:rgba(255,255,255,.16);
 }
 
-.card-arrow {
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  color: #fff;
-
-  background:
-    rgba(255,255,255,.08);
-
-  transition:
-    .28s ease;
+/* ===== TRUST ===== */
+.trust-row{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:8px 14px;
+margin:17px 8px 0;
+color:rgba(231,215,255,.48);
+font-size:9px;
+letter-spacing:.2px;
 }
 
-.menu-card:hover .card-arrow {
-  transform:
-    translateX(3px);
-
-  background:
-    rgba(255,255,255,.16);
+.footer-note{
+margin-top:20px;
+color:rgba(230,210,255,.32);
+font-size:9px;
+letter-spacing:.8px;
 }
 
-/* =========================================================
-   TRUST
-========================================================= */
+/* ===== RESPONSIVE ===== */
+@media(max-width:380px){
 
-.trust-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  gap: 8px 14px;
-
-  margin: 17px 8px 0;
-
-  color:
-    rgba(231,215,255,.48);
-
-  font-size: 9px;
-  letter-spacing: .2px;
+.photo{
+width:140px;
+height:140px;
 }
 
-.footer-note {
-  margin-top: 20px;
-
-  color:
-    rgba(230,210,255,.32);
-
-  font-size: 9px;
-  letter-spacing: .8px;
+.hero{
+padding:20px 15px 22px;
 }
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 380px) {
-
-  body {
-    padding: 10px;
-  }
-
-  .container {
-    padding:
-      14px 4px 24px;
-  }
-
-  .hero {
-    padding:
-      20px 15px 22px;
-  }
-
-  .hero-gif,
-  .hero-gif-second {
-    max-width: 100%;
-  }
-
-  .hero h1 {
-    font-size: 30px;
-  }
-
-  .menu-card {
-    min-height: 70px;
-  }
-
-  .card-icon {
-    width: 43px;
-    height: 43px;
-    flex-basis: 43px;
-  }
-
-  .splash-text {
-    font-size: 26px;
-  }
-
-  .splash-sub {
-    font-size: 12px;
-  }
+.hero-gif{
+max-width:100%;
+height:auto;
 }
 
-@media (min-width: 420px) {
-
-  .hero-gif,
-  .hero-gif-second {
-    max-width: 320px;
-  }
-
-  .hero h1 {
-    font-size: 36px;
-  }
-
-  .splash-text {
-    font-size: 36px;
-  }
+.hero h1{
+font-size:30px;
 }
 
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
+.menu-card{
+min-height:70px;
+}
 
-@media (prefers-reduced-motion: reduce) {
+.card-icon{
+width:43px;
+height:43px;
+flex-basis:43px;
+}
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: .01ms !important;
-  }
+.splash-text{
+font-size:26px;
+}
 
-  .web,
-  .bg-animation,
-  .glow {
-    animation: none !important;
-  }
+}
+
+@media(min-width:420px){
+
+.hero-gif{
+max-width:320px;
+height:auto;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+.splash-text{
+font-size:36px;
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- =======================================================
-     SPLASH
-======================================================= -->
-
+<!-- ===== SPLASH ===== -->
 <div class="splash" id="splash">
-  <div class="splash-text">
-    selamat datang
-  </div>
-
-  <div class="splash-sub">
-    selamat bermain
-  </div>
+<div class="splash-text">selamat datang</div>
+<div class="splash-sub">selamat bermain</div>
 </div>
 
-<!-- =======================================================
-     BACKGROUND
-======================================================= -->
-
+<!-- ===== LATAR ===== -->
 <div class="bg-animation"></div>
 <div class="web"></div>
-
 <div class="glow red"></div>
 <div class="glow blue"></div>
 
-<!-- =======================================================
-     PETIR
-======================================================= -->
+<!-- ===== PETIR ===== -->
+<div class="lightning" id="lightning"></div>
 
-<div
-  class="lightning"
-  id="lightning"
-  aria-hidden="true"
-></div>
+<!-- ===== HALAMAN UTAMA ===== -->
+<div class="container" id="mainPage">
 
-<!-- =======================================================
-     MAIN
-======================================================= -->
+<div class="brand-badge enter-item">
+✦ PREMIUM STORE
+</div>
 
-<main
-  class="container"
-  id="mainPage"
+<div class="hero enter-item">
+
+<div class="hero-orb"></div>
+
+<!-- ===== GIF FULL / TIDAK DI-CROP ===== -->
+<img
+class="hero-gif"
+src="https://files.catbox.moe/m5o7wo.gif"
+alt="Premium Animation"
 >
 
-  <div class="brand-badge enter-item">
-    ✦ PREMIUM STORE
-  </div>
+<img
+class="hero-gif"
+src="https://files.catbox.moe/ij8fnk.gif"
+alt="Premium Animation 2"
+>
 
-  <!-- HERO -->
+<div class="hero-kicker">
+SELAMAT DATANG
+</div>
 
-  <section class="hero enter-item">
+<h1>
+SELAMAT BERMAIN
+<span></span>
+</h1>
 
-    <div class="hero-orb"></div>
+<p>
+Pilih menu favoritmu dan temukan penawaran terbaik
+</p>
 
-    <!-- GIF PERTAMA -->
+</div>
 
-    <img
-      class="hero-gif"
-      src="https://files.catbox.moe/m5o7wo.gif"
-      alt="Premium Animation"
-      loading="eager"
-    >
+<!-- ===== LINK TAUTAN ===== -->
+<div class="menu-grid">
 
-    <!-- GIF KEDUA -->
+<a
+class="menu-card enter-item"
+href="https://a1.azkabetgg.com/?ref=gantengkali2"
+target="_blank"
+rel="noopener"
+aria-label="Menu utama"
+>
 
-    <img
-      class="hero-gif hero-gif-second"
-      src="https://files.catbox.moe/ij8fnk.gif"
-      alt="Premium Animation 2"
-      loading="eager"
-    >
+<div class="card-icon">⌂</div>
 
-    <div class="hero-kicker">
-      SELAMAT DATANG
-    </div>
+<div class="card-copy">
+<strong>AZKA</strong>
+<small>Jelajahi pilihan terbaru</small>
+</div>
 
-    <h1>
-      SELAMAT BERMAIN
-      <span></span>
-    </h1>
+<div class="card-arrow">→</div>
 
-    <p>
-      Pilih menu favoritmu dan temukan penawaran terbaik
-    </p>
+</a>
 
-  </section>
 
-  <!-- MENU -->
+<a
+class="menu-card enter-item"
+href="https://tampanslot1.lat/daftar?ref=gantengkali2"
+target="_blank"
+rel="noopener"
+aria-label="Promo"
+>
 
-  <nav
-    class="menu-grid"
-    aria-label="Menu utama"
-  >
+<div class="card-icon">✦</div>
 
-    <a
-      class="menu-card enter-item"
-      href="https://a1.azkabetgg.com/?ref=gantengkali2"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Buka AZKA"
-    >
-      <div class="card-icon">
-        ⌂
-      </div>
+<div class="card-copy">
+<strong>TAMPAN</strong>
+<small>Lihat penawaran pilihan</small>
+</div>
 
-      <div class="card-copy">
-        <strong>AZKA</strong>
-        <small>
-          Jelajahi pilihan terbaru
-        </small>
-      </div>
+<div class="card-arrow">→</div>
 
-      <div class="card-arrow">
-        →
-      </div>
-    </a>
+</a>
 
-    <a
-      class="menu-card enter-item"
-      href="https://tampanslot1.lat/daftar?ref=gantengkali2"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Buka TAMPAN"
-    >
-      <div class="card-icon">
-        ✦
-      </div>
 
-      <div class="card-copy">
-        <strong>TAMPAN</strong>
-        <small>
-          Lihat penawaran pilihan
-        </small>
-      </div>
+<a
+class="menu-card enter-item"
+href="https://silitoto2.net/register?referral_code=gantengkali2"
+target="_blank"
+rel="noopener"
+aria-label="Koleksi"
+>
 
-      <div class="card-arrow">
-        →
-      </div>
-    </a>
+<div class="card-icon">◇</div>
 
-    <a
-      class="menu-card enter-item"
-      href="https://silitoto2.net/register?referral_code=gantengkali2"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Buka SILIT0T0"
-    >
-      <div class="card-icon">
-        ◇
-      </div>
+<div class="card-copy">
+<strong>SILIT0T0</strong>
+<small>Produk yang sedang populer</small>
+</div>
 
-      <div class="card-copy">
-        <strong>SILIT0T0</strong>
-        <small>
-          Produk yang sedang populer
-        </small>
-      </div>
+<div class="card-arrow">→</div>
 
-      <div class="card-arrow">
-        →
-      </div>
-    </a>
+</a>
 
-    <a
-      class="menu-card enter-item"
-      href="https://selir.in/livechat"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Hubungi kami"
-    >
-      <div class="card-icon">
-        ✉
-      </div>
 
-      <div class="card-copy">
-        <strong>Hubungi Kami</strong>
-        <small>
-          Butuh bantuan? Kami siap
-        </small>
-      </div>
+<a
+class="menu-card enter-item"
+href="https://tampanslot1.lat/daftar?ref=gantengkali2"
+target="_blank"
+rel="noopener"
+aria-label="Hubungi kami"
+>
 
-      <div class="card-arrow">
-        →
-      </div>
-    </a>
+<div class="card-icon">✉</div>
 
-  </nav>
+<div class="card-copy">
+<strong>Hubungi Kami</strong>
+<small>Butuh bantuan? Kami siap</small>
+</div>
 
-  <!-- TRUST -->
+<div class="card-arrow">→</div>
 
-  <div class="trust-row enter-item">
-    <span>● Tampilan responsif</span>
-    <span>● Cepat & ringan</span>
-    <span>● Nyaman di mobile</span>
-  </div>
+</a>
 
-  <div class="footer-note enter-item">
-    © 2026 Premium Store · Semua hak dilindungi
-  </div>
+</div>
 
-</main>
+<div class="trust-row enter-item">
+<span>● Tampilan responsif</span>
+<span>● Cepat & ringan</span>
+<span>● Nyaman di mobile</span>
+</div>
+
+<div class="footer-note enter-item">
+© 2026 Premium Store · Semua hak dilindungi
+</div>
+
+</div>
 
 <script>
-'use strict';
 
-/* =========================================================
-   CONFIG
-========================================================= */
+/* ===== SPLASH 5 DETIK ===== */
 
-const SPLASH_DURATION = 5000;
-const SNOW_COUNT = 60;
+setTimeout(function(){
 
-/* =========================================================
-   SPLASH
-========================================================= */
+const splash =
+document.getElementById('splash');
 
-function hideSplash() {
-  const splash = document.getElementById('splash');
-
-  if (!splash) return;
-
-  splash.classList.add('hide');
-
-  animateEnterItems();
+if(splash){
+splash.classList.add('hide');
 }
 
-setTimeout(hideSplash, SPLASH_DURATION);
+animateEnterItems();
 
-/* =========================================================
-   ANIMASI MASUK
-========================================================= */
+},5000);
 
-function animateEnterItems() {
 
-  const items =
-    document.querySelectorAll('.enter-item');
+/* ===== ANIMASI MASUK ===== */
 
-  const directions = [
-    'from-left',
-    'from-right',
-    'from-top',
-    'from-bottom',
-    'from-scale'
-  ];
+function animateEnterItems(){
 
-  items.forEach(function(item, index) {
+const items =
+document.querySelectorAll('.enter-item');
 
-    const randomDirection =
-      directions[
-        Math.floor(
-          Math.random() * directions.length
-        )
-      ];
+const directions=[
+'from-left',
+'from-right',
+'from-top',
+'from-bottom',
+'from-scale'
+];
 
-    item.classList.add(randomDirection);
+items.forEach(function(item,index){
 
-    setTimeout(function() {
-      item.classList.add('show');
-    }, 150 + index * 120);
+const dir=
+directions[
+Math.floor(
+Math.random()*directions.length
+)
+];
 
-  });
+item.classList.add(dir);
+
+setTimeout(function(){
+
+item.classList.add('show');
+
+},150+index*120);
+
+});
+
 }
 
-/* =========================================================
-   SALJU
-========================================================= */
 
-function createSnowflakes() {
+/* ===== SALJU ===== */
 
-  const symbols = [
-    '❄',
-    '❅',
-    '❆',
-    '•',
-    '·'
-  ];
+function createSnowflakes(){
 
-  const fragment =
-    document.createDocumentFragment();
+const snowCount=60;
 
-  for (let i = 0; i < SNOW_COUNT; i++) {
+const symbols=[
+'❄',
+'❅',
+'❆',
+'•',
+'·'
+];
 
-    const flake =
-      document.createElement('div');
+for(let i=0;i<snowCount;i++){
 
-    flake.className =
-      'snowflake';
+const flake=
+document.createElement('div');
 
-    flake.textContent =
-      symbols[
-        Math.floor(
-          Math.random() * symbols.length
-        )
-      ];
+flake.classList.add('snowflake');
 
-    flake.style.left =
-      Math.random() * 100 + 'vw';
+flake.innerHTML=
+symbols[
+Math.floor(
+Math.random()*symbols.length
+)
+];
 
-    const size =
-      Math.random() * 14 + 8;
+flake.style.left=
+Math.random()*100+'vw';
 
-    flake.style.fontSize =
-      size + 'px';
+const size=
+Math.random()*14+8;
 
-    flake.style.opacity =
-      Math.random() * .5 + .3;
+flake.style.fontSize=
+size+'px';
 
-    const duration =
-      Math.random() * 12 + 10;
+flake.style.opacity=
+Math.random()*.5+.3;
 
-    flake.style.animationDuration =
-      duration + 's';
+const duration=
+Math.random()*12+10;
 
-    flake.style.animationDelay =
-      Math.random() * 15 + 's';
+flake.style.animationDuration=
+duration+'s';
 
-    const drift =
-      Math.random() * 60 - 30;
+flake.style.animationDelay=
+Math.random()*15+'s';
 
-    flake.style.setProperty(
-      '--drift',
-      drift + 'px'
-    );
+const drift=
+(Math.random()*60-30)+'px';
 
-    fragment.appendChild(flake);
-  }
+flake.style.setProperty(
+'--drift',
+drift
+);
 
-  document.body.appendChild(fragment);
+document.body.appendChild(flake);
+
+}
+
 }
 
 createSnowflakes();
 
-/* =========================================================
-   GENERATE LIGHTNING PATH
-========================================================= */
+
+/* ===== FUNGSI JALUR PETIR ===== */
 
 function generateLightningPath(
-  height,
-  width = 40
-) {
+height,
+width=40
+){
 
-  let path =
-    `M ${width / 2} 0`;
+let path=
+`M ${width/2} 0`;
 
-  let x =
-    width / 2;
+let x=
+width/2;
 
-  let y = 0;
+let y=0;
 
-  const segments =
-    10 +
-    Math.floor(
-      Math.random() * 8
-    );
+const segments=
+10+Math.floor(
+Math.random()*8
+);
 
-  const stepY =
-    height / segments;
+const stepY=
+height/segments;
 
-  for (
-    let i = 0;
-    i < segments;
-    i++
-  ) {
+for(let i=0;i<segments;i++){
 
-    const offsetX =
-      (Math.random() - .5) *
-      (width * .85);
+const offsetX=
+(Math.random()-.5)*
+(width*.85);
 
-    x =
-      Math.max(
-        3,
-        Math.min(
-          width - 3,
-          x + offsetX
-        )
-      );
+x=
+Math.max(
+3,
+Math.min(
+width-3,
+x+offsetX
+)
+);
 
-    y +=
-      stepY *
-      (.65 + Math.random() * .7);
+y+=
+stepY*
+(.65+Math.random()*.7);
 
-    path +=
-      ` L ${x.toFixed(1)} ${y.toFixed(1)}`;
-  }
+path+=
+` L ${x.toFixed(1)} ${y.toFixed(1)}`;
 
-  return path;
 }
 
-/* =========================================================
-   CREATE LIGHTNING
-========================================================= */
+return path;
 
-function createBolt() {
-
-  const bolt =
-    document.createElement('div');
-
-  bolt.className = 'bolt';
-
-  const height =
-    320 + Math.random() * 280;
-
-  const startX =
-    5 + Math.random() * 90;
-
-  const pathMain =
-    generateLightningPath(
-      height,
-      60
-    );
-
-  bolt.innerHTML = `
-    <svg
-      width="60"
-      height="${height}"
-      viewBox="0 0 60 ${height}"
-      fill="none"
-      style="overflow:visible"
-      aria-hidden="true"
-    >
-
-      <path
-        d="${pathMain}"
-        stroke="#f8f0ff"
-        stroke-width="2.8"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        fill="none"
-      />
-
-      <path
-        d="${pathMain}"
-        stroke="#d8a0ff"
-        stroke-width="1.2"
-        stroke-linecap="round"
-        fill="none"
-        opacity="0.9"
-      />
-
-      <path
-        d="${pathMain}"
-        stroke="#e8c8ff"
-        stroke-width="1.6"
-        stroke-linecap="round"
-        fill="none"
-        opacity="0.7"
-        transform="translate(8,${height * .25})"
-      />
-
-    </svg>
-  `;
-
-  bolt.style.left =
-    startX + 'vw';
-
-  bolt.style.top =
-    (Math.random() * 8 - 2) + 'vh';
-
-  document.body.appendChild(bolt);
-
-  requestAnimationFrame(function() {
-    bolt.classList.add('show');
-  });
-
-  setTimeout(function() {
-    bolt.remove();
-  }, 500);
 }
 
-/* =========================================================
-   TRIGGER LIGHTNING
-========================================================= */
 
-function triggerLightning() {
+/* ===== PETIR LAYAR ===== */
 
-  const lightning =
-    document.getElementById(
-      'lightning'
-    );
+function createBolt(){
 
-  if (!lightning) return;
+const bolt=
+document.createElement('div');
 
-  lightning.classList.remove('flash');
+bolt.classList.add('bolt');
 
-  /*
-   * Memaksa browser me-reset animation.
-   */
-  void lightning.offsetWidth;
+const height=
+320+Math.random()*280;
 
-  lightning.classList.add('flash');
+const startX=
+5+Math.random()*90;
 
-  const count =
-    1 +
-    Math.floor(
-      Math.random() * 3
-    );
+const pathMain=
+generateLightningPath(
+height,
+60
+);
 
-  for (
-    let i = 0;
-    i < count;
-    i++
-  ) {
+const pathBranch=
+generateLightningPath(
+height*.45,
+40
+);
 
-    setTimeout(
-      createBolt,
-      i * 60
-    );
-  }
+bolt.innerHTML=`
+
+<svg
+width="60"
+height="${height}"
+viewBox="0 0 60 ${height}"
+fill="none"
+style="overflow:visible"
+>
+
+<path
+d="${pathMain}"
+stroke="#f8f0ff"
+stroke-width="2.8"
+stroke-linecap="round"
+stroke-linejoin="round"
+fill="none"
+/>
+
+<path
+d="${pathMain}"
+stroke="#d8a0ff"
+stroke-width="1.2"
+stroke-linecap="round"
+fill="none"
+opacity="0.9"
+/>
+
+<path
+d="${pathBranch}"
+stroke="#e8c8ff"
+stroke-width="1.6"
+stroke-linecap="round"
+fill="none"
+opacity="0.7"
+transform="translate(8,${height*.25})"
+/>
+
+</svg>
+`;
+
+bolt.style.left=
+startX+'vw';
+
+bolt.style.top=
+(Math.random()*8-2)+'vh';
+
+document.body.appendChild(bolt);
+
+requestAnimationFrame(function(){
+
+bolt.classList.add('show');
+
+});
+
+setTimeout(function(){
+
+bolt.remove();
+
+},500);
+
 }
 
-/* =========================================================
-   SCHEDULE LIGHTNING
-========================================================= */
 
-let lightningTimer = null;
+/* ===== TRIGGER PETIR ===== */
 
-function scheduleLightning() {
+function triggerLightning(){
 
-  const delay =
-    2800 +
-    Math.random() * 4500;
+const lightning=
+document.getElementById('lightning');
 
-  lightningTimer =
-    setTimeout(function() {
+if(!lightning)return;
 
-      triggerLightning();
+lightning.classList.remove('flash');
 
-      scheduleLightning();
+void lightning.offsetWidth;
 
-    }, delay);
+lightning.classList.add('flash');
+
+const count=
+1+Math.floor(
+Math.random()*3
+);
+
+for(
+let i=0;
+i<count;
+i++
+){
+
+setTimeout(
+createBolt,
+i*60
+);
+
+}
+
+}
+
+
+/* ===== JADWAL PETIR ===== */
+
+function scheduleLightning(){
+
+const delay=
+2800+Math.random()*4500;
+
+setTimeout(function(){
+
+triggerLightning();
+
+scheduleLightning();
+
+},delay);
+
 }
 
 triggerLightning();
+
 scheduleLightning();
 
-/* =========================================================
-   CLICK EFFECT
-========================================================= */
+
+/* ===== EFEK KLIK ===== */
 
 document
-  .querySelectorAll('.menu-card')
-  .forEach(function(card) {
+.querySelectorAll('.menu-card')
+.forEach(function(card){
 
-    card.addEventListener(
-      'pointerdown',
-      function() {
+card.addEventListener(
+'click',
+function(){
 
-        this.style.transform =
-          'scale(.97)';
+this.style.transform=
+'scale(.97)';
 
-      }
-    );
+setTimeout(function(){
 
-    card.addEventListener(
-      'pointerup',
-      function() {
+card.style.transform='';
 
-        this.style.transform =
-          '';
+},150);
 
-      }
-    );
+});
 
-    card.addEventListener(
-      'pointercancel',
-      function() {
+});
 
-        this.style.transform =
-          '';
-
-      }
-    );
-
-    card.addEventListener(
-      'pointerleave',
-      function() {
-
-        this.style.transform =
-          '';
-
-      }
-    );
-
-  });
-
-/* =========================================================
-   CLEANUP WHEN TAB HIDDEN
-========================================================= */
-
-document.addEventListener(
-  'visibilitychange',
-  function() {
-
-    if (
-      document.hidden &&
-      lightningTimer
-    ) {
-
-      clearTimeout(
-        lightningTimer
-      );
-
-      lightningTimer = null;
-
-    } else if (
-      !document.hidden &&
-      !lightningTimer
-    ) {
-
-      scheduleLightning();
-
-    }
-
-  }
-);
 </script>
 
 </body>
