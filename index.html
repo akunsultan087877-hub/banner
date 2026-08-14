@@ -1,3 +1,682 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+min-height:100dvh;
+overflow:hidden;
+background:#0d0518;
+padding:15px;
+position:relative;
+}
+
+/* ===== SPLASH SCREEN ===== */
+.splash{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0d0518;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:100;
+transition:opacity 0.8s ease,visibility 0.8s ease;
+}
+
+.splash.hide{
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+}
+
+.splash-text{
+color:#f0e6ff;
+font-size:32px;
+font-weight:800;
+letter-spacing:2px;
+background:linear-gradient(90deg,#c44dff,#e080ff,#b060ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+animation:splashText 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes splashText{
+0%{
+opacity:.75;
+transform:scale(1);
+filter:drop-shadow(0 0 10px rgba(180,100,255,.4));
+}
+100%{
+opacity:1;
+transform:scale(1.05);
+filter:drop-shadow(0 0 25px rgba(200,120,255,.8));
+}
+}
+
+.splash-sub{
+margin-top:12px;
+color:rgba(220,200,255,.75);
+font-size:14px;
+letter-spacing:3px;
+text-transform:uppercase;
+animation:splashSub 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes splashSub{
+0%{opacity:.5;}
+100%{opacity:1;}
+}
+
+/* ===== LATAR ===== */
+.bg-animation{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-3;
+background:
+radial-gradient(circle at 20% 30%,rgba(120,40,180,.4) 0%,transparent 45%),
+radial-gradient(circle at 80% 20%,rgba(160,60,220,.3) 0%,transparent 40%),
+radial-gradient(circle at 70% 80%,rgba(90,20,140,.35) 0%,transparent 45%),
+radial-gradient(circle at 30% 70%,rgba(140,50,200,.25) 0%,transparent 40%),
+#0d0518;
+animation:bgPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes bgPulse{
+0%{
+filter:hue-rotate(0deg) brightness(1);
+}
+100%{
+filter:hue-rotate(8deg) brightness(1.12);
+}
+}
+
+.web{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-2;
+background-image:
+linear-gradient(rgba(160,80,255,.07) 1px,transparent 1px),
+linear-gradient(90deg,rgba(160,80,255,.07) 1px,transparent 1px);
+background-size:55px 55px;
+animation:webMove 20s linear infinite;
+opacity:.7;
+}
+
+@keyframes webMove{
+0%{background-position:0 0;}
+100%{background-position:55px 55px;}
+}
+
+.glow{
+position:fixed;
+width:300px;
+height:300px;
+border-radius:50%;
+filter:blur(80px);
+z-index:-1;
+opacity:.5;
+animation:floatGlow 12s ease-in-out infinite;
+}
+
+.glow.red{
+background:#9b30ff;
+top:8%;
+left:5%;
+}
+
+.glow.blue{
+background:#c44dff;
+bottom:8%;
+right:5%;
+animation-delay:4s;
+}
+
+@keyframes floatGlow{
+0%,100%{
+transform:translate(0,0) scale(1);
+}
+50%{
+transform:translate(35px,28px) scale(1.2);
+}
+}
+
+/* ===== PETIR ===== */
+.lightning{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:2;
+opacity:0;
+background:transparent;
+}
+
+.lightning.flash{
+animation:lightningFlash .4s ease-out;
+}
+
+@keyframes lightningFlash{
+0%{
+opacity:0;
+background:rgba(220,180,255,0);
+}
+8%{
+opacity:1;
+background:rgba(240,220,255,.45);
+}
+18%{
+opacity:.2;
+background:rgba(200,160,255,.12);
+}
+28%{
+opacity:.95;
+background:rgba(255,240,255,.5);
+}
+45%{
+opacity:.15;
+background:rgba(200,160,255,.08);
+}
+100%{
+opacity:0;
+background:transparent;
+}
+}
+
+.bolt{
+position:fixed;
+pointer-events:none;
+z-index:3;
+opacity:0;
+filter:
+drop-shadow(0 0 6px #e8c0ff)
+drop-shadow(0 0 18px #c070ff)
+drop-shadow(0 0 35px #a040ff);
+}
+
+.bolt.show{
+animation:boltAppear .45s ease-out forwards;
+}
+
+@keyframes boltAppear{
+0%{opacity:0;}
+12%{opacity:1;}
+75%{opacity:.85;}
+100%{opacity:0;}
+}
+
+/* ===== SALJU ===== */
+.snowflake{
+position:fixed;
+top:-20px;
+color:#f0e6ff;
+font-size:12px;
+opacity:.7;
+pointer-events:none;
+z-index:0;
+user-select:none;
+animation:snowfall linear infinite;
+text-shadow:0 0 6px rgba(200,160,255,.8);
+}
+
+@keyframes snowfall{
+0%{
+transform:translateY(-10vh) translateX(0) rotate(0deg);
+opacity:0;
+}
+10%{opacity:.75;}
+90%{opacity:.5;}
+100%{
+transform:translateY(110vh)
+translateX(var(--drift,20px))
+rotate(360deg);
+opacity:0;
+}
+}
+
+/* ===== CONTAINER ===== */
+.container{
+width:100%;
+max-width:430px;
+padding:18px 6px 28px;
+text-align:center;
+position:relative;
+z-index:5;
+}
+
+/* ===== ANIMASI MASUK ===== */
+.enter-item{
+opacity:0;
+transition:
+opacity .7s cubic-bezier(.22,1,.36,1),
+transform .7s cubic-bezier(.22,1,.36,1);
+}
+
+.enter-item.from-left{
+transform:translateX(-80px) scale(.9);
+}
+
+.enter-item.from-right{
+transform:translateX(80px) scale(.9);
+}
+
+.enter-item.from-top{
+transform:translateY(-60px) scale(.9);
+}
+
+.enter-item.from-bottom{
+transform:translateY(60px) scale(.9);
+}
+
+.enter-item.from-scale{
+transform:scale(.5);
+}
+
+.enter-item.show{
+opacity:1;
+transform:translate(0,0) scale(1);
+}
+
+/* ===== BADGE ===== */
+.brand-badge{
+display:inline-flex;
+align-items:center;
+gap:7px;
+padding:8px 14px;
+border:1px solid rgba(224,180,255,.28);
+border-radius:999px;
+color:#ead8ff;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+font-size:11px;
+font-weight:800;
+letter-spacing:2px;
+box-shadow:0 0 25px rgba(160,70,255,.15);
+margin-bottom:18px;
+}
+
+/* ===== HERO ===== */
+.hero{
+position:relative;
+overflow:hidden;
+padding:22px 18px 24px;
+border:1px solid rgba(255,255,255,.11);
+border-radius:28px;
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.10),
+rgba(255,255,255,.035)
+);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+box-shadow:
+0 20px 60px rgba(0,0,0,.30),
+inset 0 1px rgba(255,255,255,.10);
+margin-bottom:18px;
+}
+
+.hero-orb{
+position:absolute;
+width:180px;
+height:180px;
+border-radius:50%;
+top:-95px;
+right:-70px;
+background:rgba(196,77,255,.25);
+filter:blur(15px);
+}
+
+/* ===== GIF ===== */
+.gif-slider{
+position:relative;
+width:100%;
+height:180px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:0 auto 20px;
+overflow:hidden;
+}
+
+.hero-gif{
+position:absolute;
+left:50%;
+top:50%;
+width:100%;
+max-width:300px;
+height:auto;
+object-fit:contain;
+display:block;
+margin:0;
+border-radius:20px;
+border:1px solid rgba(220,160,255,.38);
+box-shadow:
+0 0 20px rgba(170,70,255,.38),
+0 0 45px rgba(120,40,200,.20);
+background:#140720;
+opacity:0;
+transform:translate(-50%,-50%);
+transition:opacity .6s ease;
+}
+
+.hero-gif.active{
+opacity:1;
+}
+
+/* ===== HERO TEXT BERGANTIAN ===== */
+.hero-text-slider{
+position:relative;
+height:55px;
+}
+
+.hero-text-item{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+opacity:0;
+transform:translateY(8px);
+transition:
+opacity .6s ease,
+transform .6s ease;
+pointer-events:none;
+}
+
+.hero-text-item.active{
+opacity:1;
+transform:translateY(0);
+}
+
+.hero-kicker{
+position:relative;
+color:#d9b6ff;
+font-size:10px;
+font-weight:800;
+letter-spacing:3px;
+margin-bottom:9px;
+}
+
+.hero p{
+position:relative;
+margin:0 auto;
+max-width:340px;
+color:rgba(239,228,255,.72);
+font-size:13px;
+line-height:1.65;
+}
+
+/* ===== MENU ===== */
+.menu-grid{
+display:grid;
+gap:11px;
+}
+
+.menu-card{
+display:flex;
+align-items:center;
+gap:13px;
+min-height:74px;
+padding:12px 13px;
+color:#fff;
+text-decoration:none;
+text-align:left;
+border:1px solid rgba(255,255,255,.10);
+border-radius:20px;
+background:
+linear-gradient(
+110deg,
+rgba(255,255,255,.10),
+rgba(255,255,255,.045)
+);
+backdrop-filter:blur(16px);
+-webkit-backdrop-filter:blur(16px);
+box-shadow:
+0 12px 35px rgba(0,0,0,.22),
+inset 0 1px rgba(255,255,255,.08);
+transition:
+transform .28s ease,
+border-color .28s ease,
+box-shadow .28s ease,
+background .28s ease;
+position:relative;
+overflow:hidden;
+}
+
+.menu-card::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+linear-gradient(
+100deg,
+transparent,
+rgba(255,255,255,.08),
+transparent
+);
+transform:translateX(-110%);
+transition:transform .65s ease;
+}
+
+.menu-card:hover{
+transform:translateY(-4px) scale(1.012);
+border-color:rgba(214,151,255,.40);
+background:
+linear-gradient(
+110deg,
+rgba(173,79,255,.18),
+rgba(255,255,255,.065)
+);
+box-shadow:
+0 16px 40px rgba(95,25,160,.30),
+0 0 24px rgba(190,90,255,.13);
+}
+
+.menu-card:hover::before{
+transform:translateX(110%);
+}
+
+.card-icon{
+width:46px;
+height:46px;
+flex:0 0 46px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:15px;
+color:#fff;
+font-size:20px;
+background:
+linear-gradient(
+145deg,
+rgba(196,77,255,.95),
+rgba(103,35,190,.95)
+);
+box-shadow:
+0 7px 20px rgba(129,44,218,.32),
+inset 0 1px rgba(255,255,255,.22);
+}
+
+.card-copy{
+min-width:0;
+flex:1;
+}
+
+.card-copy strong{
+display:block;
+font-size:15px;
+font-weight:800;
+letter-spacing:.1px;
+}
+
+.card-copy small{
+display:block;
+margin-top:4px;
+color:rgba(235,220,255,.60);
+font-size:11px;
+}
+
+.card-arrow{
+width:34px;
+height:34px;
+flex:0 0 34px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+color:#fff;
+background:rgba(255,255,255,.08);
+transition:.28s ease;
+}
+
+.menu-card:hover .card-arrow{
+transform:translateX(3px);
+background:rgba(255,255,255,.16);
+}
+
+/* ===== TRUST ===== */
+.trust-row{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:8px 14px;
+margin:17px 8px 0;
+color:rgba(231,215,255,.48);
+font-size:9px;
+letter-spacing:.2px;
+}
+
+.footer-note{
+margin-top:20px;
+color:rgba(230,210,255,.32);
+font-size:9px;
+letter-spacing:.8px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:380px){
+
+.hero{
+padding:20px 15px 22px;
+}
+
+.gif-slider{
+height:150px;
+}
+
+.hero-gif{
+max-width:100%;
+max-height:135px;
+}
+
+.menu-card{
+min-height:70px;
+}
+
+.card-icon{
+width:43px;
+height:43px;
+flex-basis:43px;
+}
+
+.splash-text{
+font-size:26px;
+}
+
+}
+
+@media(min-width:420px){
+
+.gif-slider{
+height:180px;
+}
+
+.hero-gif{
+max-width:300px;
+max-height:170px;
+}
+
+.splash-text{
+font-size:36px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="splash" id="splash">
+<div class="splash-text">selamat datang</div>
+<div class="splash-sub">selamat bermain</div>
+</div>
+
+<div class="bg-animation"></div>
+<div class="web"></div>
+<div class="glow red"></div>
+<div class="glow blue"></div>
+
+<div class="lightning" id="lightning"></div>
+
+<div class="container" id="mainPage">
+
+<div class="brand-badge enter-item">
+✦ PREMIUM STORE
+</div>
+
+<div class="hero enter-item">
+
+<div class="hero-orb"></div>
+
+<div class="gif-slider">
+
+<img
+class="hero-gif active"
+src="https://files.catbox.moe/m5o7wo.gif"
+alt="Premium Animation 1"
+>
+
+<img
+class="hero-gif"
+src="https://files.catbox.moe/pq3a8b.gif"
+alt="Premium Animation 2"
+>
+
+<img
+class="hero-gif"
+src="https://files.catbox.moe/5moa8g.gif"
+alt="Premium Animation 3"
+>
+
+</div>
+
 <div class="hero-text-slider">
 
 <div class="hero-text-item active">
@@ -12,7 +691,6 @@ Pilih menu favoritmu dan temukan penawaran terbaik
 
 </div>
 
-
 <div class="hero-text-item">
 
 <div class="hero-kicker">
@@ -24,7 +702,6 @@ Temukan berbagai pilihan menarik di sini
 </p>
 
 </div>
-
 
 <div class="hero-text-item">
 
@@ -39,3 +716,480 @@ Nikmati tampilan yang cepat dan nyaman di perangkatmu
 </div>
 
 </div>
+
+</div>
+
+<div class="menu-grid">
+
+<a
+class="menu-card enter-item"
+href="#"
+aria-label="Menu utama"
+>
+
+<div class="card-icon">⌂</div>
+
+<div class="card-copy">
+<strong>MENU UTAMA</strong>
+<small>Jelajahi pilihan terbaru</small>
+</div>
+
+<div class="card-arrow">→</div>
+
+</a>
+
+<a
+class="menu-card enter-item"
+href="#"
+aria-label="Promo"
+>
+
+<div class="card-icon">✦</div>
+
+<div class="card-copy">
+<strong>PROMO</strong>
+<small>Lihat penawaran pilihan</small>
+</div>
+
+<div class="card-arrow">→</div>
+
+</a>
+
+<a
+class="menu-card enter-item"
+href="#"
+aria-label="Koleksi"
+>
+
+<div class="card-icon">◇</div>
+
+<div class="card-copy">
+<strong>KOLEKSI</strong>
+<small>Produk yang sedang populer</small>
+</div>
+
+<div class="card-arrow">→</div>
+
+</a>
+
+<a
+class="menu-card enter-item"
+href="#"
+aria-label="Hubungi kami"
+>
+
+<div class="card-icon">✉</div>
+
+<div class="card-copy">
+<strong>HUBUNGI KAMI</strong>
+<small>Butuh bantuan? Kami siap</small>
+</div>
+
+<div class="card-arrow">→</div>
+
+</a>
+
+</div>
+
+<div class="trust-row enter-item">
+<span>● Tampilan responsif</span>
+<span>● Cepat & ringan</span>
+<span>● Nyaman di mobile</span>
+</div>
+
+<div class="footer-note enter-item">
+© 2026 Premium Store · Semua hak dilindungi
+</div>
+
+</div>
+
+<script>
+
+/* ===== SPLASH ===== */
+
+setTimeout(function(){
+
+const splash =
+document.getElementById('splash');
+
+if(splash){
+splash.classList.add('hide');
+}
+
+animateEnterItems();
+
+},5000);
+
+
+/* ===== ANIMASI MASUK ===== */
+
+function animateEnterItems(){
+
+const items =
+document.querySelectorAll('.enter-item');
+
+const directions=[
+'from-left',
+'from-right',
+'from-top',
+'from-bottom',
+'from-scale'
+];
+
+items.forEach(function(item,index){
+
+const dir=
+directions[
+Math.floor(
+Math.random()*directions.length
+)
+];
+
+item.classList.add(dir);
+
+setTimeout(function(){
+
+item.classList.add('show');
+
+},150+index*120);
+
+});
+
+}
+
+
+/* ===== SALJU ===== */
+
+function createSnowflakes(){
+
+const snowCount=60;
+
+const symbols=[
+'❄',
+'❅',
+'❆',
+'•',
+'·'
+];
+
+for(let i=0;i<snowCount;i++){
+
+const flake=
+document.createElement('div');
+
+flake.classList.add('snowflake');
+
+flake.innerHTML=
+symbols[
+Math.floor(
+Math.random()*symbols.length
+)
+];
+
+flake.style.left=
+Math.random()*100+'vw';
+
+const size=
+Math.random()*14+8;
+
+flake.style.fontSize=
+size+'px';
+
+flake.style.opacity=
+Math.random()*.5+.3;
+
+const duration=
+Math.random()*12+10;
+
+flake.style.animationDuration=
+duration+'s';
+
+flake.style.animationDelay=
+Math.random()*15+'s';
+
+const drift=
+(Math.random()*60-30)+'px';
+
+flake.style.setProperty(
+'--drift',
+drift
+);
+
+document.body.appendChild(flake);
+
+}
+
+}
+
+createSnowflakes();
+
+
+/* ===== PETIR ===== */
+
+function generateLightningPath(
+height,
+width=40
+){
+
+let path=
+`M ${width/2} 0`;
+
+let x=
+width/2;
+
+let y=0;
+
+const segments=
+10+Math.floor(
+Math.random()*8
+);
+
+const stepY=
+height/segments;
+
+for(let i=0;i<segments;i++){
+
+const offsetX=
+(Math.random()-.5)*
+(width*.85);
+
+x=
+Math.max(
+3,
+Math.min(
+width-3,
+x+offsetX
+)
+);
+
+y+=
+stepY*
+(.65+Math.random()*.7);
+
+path+=
+` L ${x.toFixed(1)} ${y.toFixed(1)}`;
+
+}
+
+return path;
+
+}
+
+
+function createBolt(){
+
+const bolt=
+document.createElement('div');
+
+bolt.classList.add('bolt');
+
+const height=
+320+Math.random()*280;
+
+const startX=
+5+Math.random()*90;
+
+const pathMain=
+generateLightningPath(
+height,
+60
+);
+
+const pathBranch=
+generateLightningPath(
+height*.45,
+40
+);
+
+bolt.innerHTML=`
+
+<svg
+width="60"
+height="${height}"
+viewBox="0 0 60 ${height}"
+fill="none"
+style="overflow:visible"
+>
+
+<path
+d="${pathMain}"
+stroke="#f8f0ff"
+stroke-width="2.8"
+stroke-linecap="round"
+stroke-linejoin="round"
+fill="none"
+/>
+
+<path
+d="${pathMain}"
+stroke="#d8a0ff"
+stroke-width="1.2"
+stroke-linecap="round"
+fill="none"
+opacity=".9"
+/>
+
+<path
+d="${pathBranch}"
+stroke="#e8c8ff"
+stroke-width="1.6"
+stroke-linecap="round"
+fill="none"
+opacity=".7"
+transform="translate(8,${height*.25})"
+/>
+
+</svg>
+`;
+
+bolt.style.left=
+startX+'vw';
+
+bolt.style.top=
+(Math.random()*8-2)+'vh';
+
+document.body.appendChild(bolt);
+
+requestAnimationFrame(function(){
+
+bolt.classList.add('show');
+
+});
+
+setTimeout(function(){
+
+bolt.remove();
+
+},500);
+
+}
+
+
+function triggerLightning(){
+
+const lightning=
+document.getElementById('lightning');
+
+if(!lightning)return;
+
+lightning.classList.remove('flash');
+
+void lightning.offsetWidth;
+
+lightning.classList.add('flash');
+
+const count=
+1+Math.floor(
+Math.random()*3
+);
+
+for(
+let i=0;
+i<count;
+i++
+){
+
+setTimeout(
+createBolt,
+i*60
+);
+
+}
+
+}
+
+
+function scheduleLightning(){
+
+const delay=
+2800+Math.random()*4500;
+
+setTimeout(function(){
+
+triggerLightning();
+
+scheduleLightning();
+
+},delay);
+
+}
+
+triggerLightning();
+scheduleLightning();
+
+
+/* ===== GIF BERGANTIAN ===== */
+
+const gifList =
+document.querySelectorAll('.hero-gif');
+
+let gifIndex = 0;
+
+setInterval(function(){
+
+gifList[gifIndex].classList.remove('active');
+
+gifIndex++;
+
+if(gifIndex >= gifList.length){
+gifIndex = 0;
+}
+
+gifList[gifIndex].classList.add('active');
+
+},4000);
+
+
+/* ===== TEKS BERGANTIAN ===== */
+
+const heroTexts =
+document.querySelectorAll('.hero-text-item');
+
+let heroTextIndex = 0;
+
+setInterval(function(){
+
+heroTexts[heroTextIndex].classList.remove('active');
+
+heroTextIndex++;
+
+if(heroTextIndex >= heroTexts.length){
+heroTextIndex = 0;
+}
+
+heroTexts[heroTextIndex].classList.add('active');
+
+},3000);
+
+
+/* ===== EFEK KLIK ===== */
+
+document
+.querySelectorAll('.menu-card')
+.forEach(function(card){
+
+card.addEventListener(
+'click',
+function(e){
+
+if(this.getAttribute('href') === '#'){
+e.preventDefault();
+}
+
+this.style.transform=
+'scale(.97)';
+
+setTimeout(function(){
+
+card.style.transform='';
+
+},150);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
