@@ -15,8 +15,8 @@ a{text-decoration:none;color:inherit}button{font:inherit}.topbar{height:72px;pad
 .hero-visual .gif-slider{
   position:absolute;
   inset:50% auto auto 50%;
-  width:min(560px,82vw);
-  height:min(315px,46vw);
+  width:min(330px,72vw);
+  height:450px;
   transform:translate(-50%,-50%);
   z-index:4;
   pointer-events:none;
@@ -46,10 +46,8 @@ a{text-decoration:none;color:inherit}button{font:inherit}.topbar{height:72px;pad
 }
 @media(max-width:560px){
   .hero-visual .gif-slider{
-    width:92vw;
-    height:52vw;
-    max-height:230px;
-    border-radius:18px;
+    width:260px;
+    height:355px;
   }
 }
 
@@ -285,4 +283,98 @@ main:before{
 @media(max-width:560px){
   body:after{filter:blur(18px)}
   main:before{opacity:.55;background-size:32px 32px}
+}
+
+/* =========================================================
+   DEFINITIVE HORIZONTAL GIF BANNER
+   ========================================================= */
+.hero-visual .gif-slider{
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  right:auto !important;
+  bottom:auto !important;
+  transform:translate(-50%,-50%) !important;
+
+  width:min(620px, 86vw) !important;
+  aspect-ratio:16 / 7 !important;
+  height:auto !important;
+  min-height:0 !important;
+
+  border-radius:26px !important;
+  overflow:hidden !important;
+  z-index:10 !important;
+
+  background:#0b0618 !important;
+  border:1px solid rgba(255,255,255,.24) !important;
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.72),
+    0 0 25px rgba(39,217,255,.48),
+    0 0 55px rgba(255,66,208,.34),
+    0 0 110px rgba(155,77,255,.22) !important;
+}
+.hero-visual .hero-gif{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  opacity:0 !important;
+  transition:opacity .7s ease, transform .8s ease !important;
+  transform:scale(1.03) !important;
+}
+.hero-visual .hero-gif.active{
+  opacity:1 !important;
+  transform:scale(1) !important;
+}
+.gif-shine{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.16) 46%,transparent 60%);
+  transform:translateX(-120%);
+  animation:gifShine 3.8s ease-in-out infinite;
+}
+@keyframes gifShine{
+  0%,35%{transform:translateX(-120%)}
+  70%,100%{transform:translateX(120%)}
+}
+.gif-dots{
+  position:absolute;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+  z-index:5;
+  display:flex;
+  gap:6px;
+}
+.gif-dots i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:rgba(255,255,255,.38);
+  box-shadow:0 0 7px rgba(255,255,255,.2);
+}
+.gif-dots i.selected{
+  background:#63fff1;
+  box-shadow:0 0 10px #63fff1,0 0 18px #ff42d0;
+}
+@media(max-width:900px){
+  .hero-visual .gif-slider{
+    width:min(680px,92vw) !important;
+    aspect-ratio:16 / 7 !important;
+  }
+}
+@media(max-width:560px){
+  .hero-visual .gif-slider{
+    width:94vw !important;
+    aspect-ratio:16 / 7 !important;
+    border-radius:18px !important;
+  }
+  .hero-visual{
+    min-height:320px;
+  }
 }

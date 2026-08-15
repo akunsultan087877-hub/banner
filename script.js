@@ -24,16 +24,22 @@ function render(){
 search.addEventListener("input",render);render();
 document.querySelectorAll(".chips button").forEach(b=>b.onclick=()=>{document.querySelector(".chips .active")?.classList.remove("active");b.classList.add("active");});
 
-// Premium GIF slider
+// Premium GIF slider — 3 horizontal banner animations
 (function(){
   const gifs = document.querySelectorAll(".hero-gif");
+  const dots = document.querySelectorAll(".gif-dots i");
   if(!gifs.length) return;
   let current = 0;
+  function show(index){
+    gifs.forEach((g,i)=>g.classList.toggle("active",i===index));
+    dots.forEach((d,i)=>d.classList.toggle("selected",i===index));
+  }
+  show(0);
   setInterval(()=>{
-    gifs[current].classList.remove("active");
-    current = (current + 1) % gifs.length;
-    gifs[current].classList.add("active");
-  }, 5000);
+    current=(current+1)%gifs.length;
+    show(current);
+  },5000);
+  dots.forEach((dot,i)=>dot.addEventListener("click",()=>{current=i;show(i)}));
 })();
 
 /* Extra moving neon particles */
