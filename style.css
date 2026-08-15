@@ -15,8 +15,8 @@ a{text-decoration:none;color:inherit}button{font:inherit}.topbar{height:72px;pad
 .hero-visual .gif-slider{
   position:absolute;
   inset:50% auto auto 50%;
-  width:min(330px,72vw);
-  height:450px;
+  width:min(560px,82vw);
+  height:min(315px,46vw);
   transform:translate(-50%,-50%);
   z-index:4;
   pointer-events:none;
@@ -46,8 +46,10 @@ a{text-decoration:none;color:inherit}button{font:inherit}.topbar{height:72px;pad
 }
 @media(max-width:560px){
   .hero-visual .gif-slider{
-    width:260px;
-    height:355px;
+    width:92vw;
+    height:52vw;
+    max-height:230px;
+    border-radius:18px;
   }
 }
 
