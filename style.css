@@ -24,3 +24,10 @@ footer{border-top:1px solid var(--line);padding:35px 8%;display:flex;align-items
 .game-card:hover .game-cover img{transform:scale(1.035)}
 .modal-art{padding:0;overflow:hidden}
 .modal-art img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* FINAL POLISH */
+.category-grid button{appearance:none;-webkit-appearance:none;display:block;width:100%;min-height:145px}
+.category-grid button b,.category-grid button small{display:block}
+.category-grid button span{display:block}
+.search-panel{display:none}
+.search-panel.show{display:block}

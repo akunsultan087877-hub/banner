@@ -15,7 +15,7 @@ let category="ALL",cart=0,current=null;
 function render(){
  const q=(search?.value||"").toLowerCase().trim();
  const list=games.filter(g=>(category==="ALL"||g.genre===category)&&`${g.name} ${g.genre}`.toLowerCase().includes(q));
- grid.innerHTML=list.map((g,i)=>`<article class="game-card"><div class="game-cover" style="--c:${g.color}">${g.sale?`<b class="sale">${g.sale}</b>`:""}<span>${g.icon}</span></div><div class="game-info"><span class="genre">${g.genre}</span><h3>${g.name}</h3><div class="game-meta"><span>★★★★★</span><span>${g.rating}</span></div><div class="game-price">${g.price}${g.old?`<del>${g.old}</del>`:""}</div><button class="details" onclick="openGame(${games.indexOf(g)})">LIHAT DETAIL</button></div></article>`).join("");
+ grid.innerHTML=list.map((g,i)=>`<article class="game-card"><div class="game-cover" style="--c:${g.color}"><img src="${g.image}" alt="${g.name} cover" loading="lazy">${g.sale?`<b class="sale">${g.sale}</b>`:""}</div><div class="game-info"><span class="genre">${g.genre}</span><h3>${g.name}</h3><div class="game-meta"><span>★★★★★</span><span>${g.rating}</span></div><div class="game-price">${g.price}${g.old?`<del>${g.old}</del>`:""}</div><button class="details" onclick="openGame(${games.indexOf(g)})">LIHAT DETAIL</button></div></article>`).join("");
  document.getElementById("emptyState").hidden=list.length>0;
 }
 function openGame(i){
