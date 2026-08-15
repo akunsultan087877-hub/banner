@@ -5,7 +5,7 @@
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}.cursor-glow{display:none}}
 
 /* Pinterest wallpaper */
-body{background:linear-gradient(rgba(3,4,18,.50),rgba(3,4,18,.78)),url("https://files.catbox.moe/jrrhmc.gif") center/cover fixed no-repeat}
+body{background:linear-gradient(rgba(3,4,18,.50),rgba(3,4,18,.78)),url("https://files.catbox.moe/oqjp7e.gif") center/cover fixed no-repeat}
 #stars,.noise{opacity:.35}
 
 /* Gerakan lembut untuk wallpaper */
