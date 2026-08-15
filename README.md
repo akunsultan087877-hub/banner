@@ -1,7 +1,3 @@
-# TAMPAN GAME STORE — Luxury Edition
-Premium dark-luxury game store frontend with original cover artwork.
-Upload the complete folder contents to GitHub Pages.
+# TAMPAN GAME STORE — Visual Landing Edition
 
-
-## Starfall Cute Edition
-Added animated falling stars, moon glow, and playful rounded navigation.
+Mobile-first premium gaming landing page with original SVG artwork, neon gradients, game cards, collections, mosaic gallery, and starfall effects.
