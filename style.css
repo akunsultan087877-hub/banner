@@ -21,3 +21,9 @@ body{
 @media(max-width:800px){
   body{background-size:auto 120%}
 }
+
+
+/* Biarkan wallpaper GIF terlihat di balik seluruh halaman */
+.site-shell{
+  background:linear-gradient(90deg,rgba(6,7,22,.62),rgba(6,7,22,.44));
+}
