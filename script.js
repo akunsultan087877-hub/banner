@@ -23,3 +23,41 @@ function render(){
 }
 search.addEventListener("input",render);render();
 document.querySelectorAll(".chips button").forEach(b=>b.onclick=()=>{document.querySelector(".chips .active")?.classList.remove("active");b.classList.add("active");});
+
+// Premium GIF slider
+(function(){
+  const gifs = document.querySelectorAll(".hero-gif");
+  if(!gifs.length) return;
+  let current = 0;
+  setInterval(()=>{
+    gifs[current].classList.remove("active");
+    current = (current + 1) % gifs.length;
+    gifs[current].classList.add("active");
+  }, 5000);
+})();
+
+/* Extra moving neon particles */
+(function(){
+  const layer=document.querySelector(".stars");
+  if(!layer) return;
+  for(let i=0;i<18;i++){
+    const p=document.createElement("i");
+    p.style.position="absolute";
+    p.style.width=(2+Math.random()*4)+"px";
+    p.style.height=p.style.width;
+    p.style.left=(Math.random()*100)+"%";
+    p.style.top=(Math.random()*100)+"%";
+    p.style.borderRadius="50%";
+    p.style.background=["#27d9ff","#ff42d0","#9b4dff","#63fff1","#ffe66d"][i%5];
+    p.style.boxShadow=`0 0 8px ${p.style.background},0 0 18px ${p.style.background}`;
+    p.style.opacity=.25+Math.random()*.7;
+    p.style.animation=`particleFloat ${4+Math.random()*7}s ease-in-out ${Math.random()*3}s infinite alternate`;
+    layer.appendChild(p);
+  }
+  const st=document.createElement("style");
+  st.textContent=`@keyframes particleFloat{
+    from{transform:translate(0,0) scale(.7);opacity:.25}
+    to{transform:translate(${Math.random()*70-35}px,${Math.random()*90-45}px) scale(1.6);opacity:1}
+  }`;
+  document.head.appendChild(st);
+})();

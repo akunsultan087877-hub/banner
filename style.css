@@ -10,3 +10,277 @@ a{text-decoration:none;color:inherit}button{font:inherit}.topbar{height:72px;pad
 .visual-section{padding-top:15px}.mosaic{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.mosaic div{position:relative;height:210px;overflow:hidden;border-radius:13px;border:1px solid #ffffff14}.mosaic img{width:100%;height:100%;object-fit:cover;transition:.35s}.mosaic div:hover img{transform:scale(1.08)}.mosaic span{position:absolute;bottom:10px;left:10px;font-size:9px;font-weight:700;text-shadow:0 2px 10px #000}.join{max-width:1160px;margin:30px auto 80px;padding:45px 6%;border-radius:25px;background:linear-gradient(110deg,#3a1680,#1b0a3b);border:1px solid #ffffff18;display:flex;align-items:center;justify-content:space-between}.join>div>span{font-size:9px;color:#d9a4ff;letter-spacing:2px}.join h2{font-size:42px;line-height:.9;margin:10px 0}.join em{font-style:normal;color:#55d7ff}.join p{color:#b8abc9;font-size:11px}footer{padding:35px 6%;border-top:1px solid var(--line);display:flex;align-items:center;gap:35px;color:#877d99;font-size:9px}footer p{flex:1}
 @media(max-width:900px){.topbar nav{display:none}.hero{grid-template-columns:1fr;padding-top:45px}.hero-visual{height:450px}.collection-grid{grid-template-columns:repeat(2,1fr)}.game-grid{grid-template-columns:repeat(2,1fr)}.mosaic{grid-template-columns:repeat(3,1fr)}.wide-banner{margin:20px 6% 60px}.join{margin:20px 6% 60px}}
 @media(max-width:560px){.topbar{padding:0 4%;height:64px}.top-actions button:first-child{display:none}.hero{padding:42px 5%;min-height:720px}.hero h1{font-size:50px;letter-spacing:-3px}.hero-visual{height:400px}.hero-visual>img{width:250px;height:350px}.float-card{transform:scale(.85)}.fc1{left:-8px}.fc2{right:-8px}.section{padding:55px 5%}.heading{display:block}.heading>a{display:inline-block;margin-top:12px}.searchbox{margin-top:15px}.collection-grid,.game-grid{grid-template-columns:1fr 1fr;gap:9px}.big-card{height:300px}.game-cover{height:190px}.game-info h3{font-size:12px}.wide-banner{grid-template-columns:1fr;padding:28px 6%}.banner-art{height:220px}.mosaic{grid-template-columns:repeat(2,1fr)}.mosaic div{height:190px}.join{display:block;padding:35px 7%}.join .primary{margin-top:18px}footer{display:block}.logo{margin-bottom:18px}}
+
+/* PREMIUM GIF SLIDER */
+.hero-visual .gif-slider{
+  position:absolute;
+  inset:50% auto auto 50%;
+  width:min(330px,72vw);
+  height:450px;
+  transform:translate(-50%,-50%);
+  z-index:4;
+  pointer-events:none;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:0 30px 90px rgba(0,0,0,.65),0 0 65px rgba(143,70,255,.32);
+  background:rgba(18,8,40,.55);
+}
+.hero-gif{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity .65s ease, transform .65s ease;
+  transform:scale(1.02);
+}
+.hero-gif.active{
+  opacity:1;
+  transform:scale(1);
+}
+.hero-visual > img{
+  opacity:.14;
+  filter:saturate(.8);
+}
+@media(max-width:560px){
+  .hero-visual .gif-slider{
+    width:260px;
+    height:355px;
+  }
+}
+
+/* ===== BRIGHT NEON MOTION EDITION ===== */
+:root{
+  --bg:#080414;
+  --bg2:#14082c;
+  --neon-purple:#9b4dff;
+  --neon-pink:#ff42d0;
+  --neon-blue:#27d9ff;
+  --neon-cyan:#63fff1;
+  --neon-yellow:#ffe66d;
+}
+
+/* animated color atmosphere */
+body{
+  background:
+    radial-gradient(circle at 15% 15%,rgba(255,66,208,.22),transparent 25%),
+    radial-gradient(circle at 85% 12%,rgba(39,217,255,.20),transparent 25%),
+    radial-gradient(circle at 50% 65%,rgba(155,77,255,.20),transparent 32%),
+    linear-gradient(135deg,#070311 0%,#18082f 42%,#090318 100%);
+}
+body:after{
+  content:"";
+  position:fixed;
+  inset:-30%;
+  pointer-events:none;
+  z-index:-2;
+  background:
+    conic-gradient(from 0deg,
+      transparent 0 12%,
+      rgba(255,66,208,.08) 16%,
+      transparent 22% 38%,
+      rgba(39,217,255,.08) 44%,
+      transparent 52% 70%,
+      rgba(155,77,255,.10) 77%,
+      transparent 84%);
+  filter:blur(30px);
+  animation:neonSpin 18s linear infinite;
+}
+@keyframes neonSpin{to{transform:rotate(360deg)}}
+
+/* diagonal moving neon streaks */
+.stars:before,.stars:after{
+  width:170px;
+  height:3px;
+  background:linear-gradient(90deg,transparent,#63fff1,#fff,#ff42d0,transparent);
+  box-shadow:0 0 8px #63fff1,0 0 24px #ff42d0,0 0 45px #9b4dff;
+  animation:shootBright 3.2s linear infinite;
+}
+.stars:after{
+  width:110px;
+  animation-delay:1.3s;
+  background:linear-gradient(90deg,transparent,#27d9ff,#fff,transparent);
+}
+@keyframes shootBright{
+  0%{opacity:0;transform:translate(250px,-100px) rotate(-30deg) scale(.7)}
+  8%{opacity:1}
+  48%{opacity:1}
+  70%,100%{opacity:0;transform:translate(-600px,420px) rotate(-30deg) scale(1.2)}
+}
+
+/* animated neon grid */
+main:before{
+  content:"";
+  position:fixed;
+  left:-20%;
+  right:-20%;
+  bottom:-15%;
+  height:45%;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    linear-gradient(rgba(77,220,255,.10) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,70,220,.10) 1px,transparent 1px);
+  background-size:45px 45px;
+  transform:perspective(300px) rotateX(58deg);
+  mask-image:linear-gradient(transparent,#000);
+  animation:gridMove 8s linear infinite;
+}
+@keyframes gridMove{to{background-position:0 45px,45px 0}}
+
+/* brighter hero */
+.hero h1{
+  text-shadow:0 0 28px rgba(155,77,255,.22);
+}
+.hero h1 span{
+  background:linear-gradient(90deg,#63fff1,#7b7cff,#ff42d0,#ffe66d,#63fff1);
+  background-size:300% auto;
+  animation:gradientFlow 5s linear infinite;
+  -webkit-background-clip:text;
+  color:transparent;
+}
+@keyframes gradientFlow{to{background-position:300% center}}
+.eyebrow{
+  border-color:rgba(99,255,241,.35);
+  box-shadow:0 0 25px rgba(39,217,255,.12),inset 0 0 20px rgba(255,66,208,.06);
+}
+
+/* hero image floating motion */
+.hero-visual>img{
+  animation:heroFloat 4.5s ease-in-out infinite;
+  box-shadow:
+    0 30px 90px #000b,
+    0 0 25px rgba(39,217,255,.38),
+    0 0 65px rgba(255,66,208,.30),
+    0 0 110px rgba(155,77,255,.22);
+}
+@keyframes heroFloat{
+  0%,100%{transform:rotate(3deg) translateY(0)}
+  50%{transform:rotate(-2deg) translateY(-13px)}
+}
+
+/* moving colorful borders */
+.game-card,.big-card,.wide-banner,.join{
+  position:relative;
+  isolation:isolate;
+  border-color:transparent;
+}
+.game-card:before,.big-card:before,.wide-banner:before,.join:before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  z-index:-1;
+  padding:1px;
+  background:linear-gradient(120deg,#27d9ff,#9b4dff,#ff42d0,#ffe66d,#27d9ff);
+  background-size:300% 300%;
+  animation:borderFlow 6s linear infinite;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+}
+@keyframes borderFlow{to{background-position:300% 0}}
+
+/* glowing game covers */
+.game-cover{
+  box-shadow:inset 0 0 40px rgba(39,217,255,.08);
+}
+.game-card:hover{
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.65),
+    0 0 28px rgba(155,77,255,.28),
+    0 0 50px rgba(255,66,208,.14);
+}
+
+/* floating mini cards */
+.float-card{
+  animation:cardFloat 3.5s ease-in-out infinite;
+  box-shadow:0 18px 50px #0008,0 0 25px rgba(39,217,255,.15);
+}
+.fc2{animation-delay:1.2s}
+@keyframes cardFloat{
+  0%,100%{transform:translateY(0) rotate(0)}
+  50%{transform:translateY(-12px) rotate(1.5deg)}
+}
+
+/* brighter buttons */
+.primary{
+  background:linear-gradient(100deg,#713cff,#c43dff,#ff42b8,#27d9ff);
+  background-size:250% 100%;
+  animation:buttonFlow 4s linear infinite;
+  box-shadow:0 10px 30px rgba(155,77,255,.38),0 0 25px rgba(255,66,208,.20);
+}
+@keyframes buttonFlow{to{background-position:250% 0}}
+.primary:hover{box-shadow:0 0 25px #ff42d0,0 0 50px #27d9ff55}
+
+/* chips pulse */
+.chips button:hover,.chips .active{
+  box-shadow:0 0 18px rgba(155,77,255,.35),0 0 30px rgba(255,66,208,.12);
+}
+
+/* moving ticker */
+.ticker b{
+  animation:tickerGlow 2.8s ease-in-out infinite alternate;
+}
+.ticker b:nth-child(3n){animation-delay:.6s}
+.ticker b:nth-child(4n){animation-delay:1.2s}
+@keyframes tickerGlow{
+  from{text-shadow:0 0 0 transparent;color:#aaa0bd}
+  to{text-shadow:0 0 12px #63fff1;color:#fff}
+}
+
+/* visual mosaic neon hover */
+.mosaic div{
+  box-shadow:0 0 0 rgba(0,0,0,0);
+  transition:.35s;
+}
+.mosaic div:hover{
+  transform:translateY(-7px) rotate(-.5deg);
+  box-shadow:0 0 22px rgba(255,66,208,.28),0 18px 40px #0008;
+}
+
+/* section headings have tiny neon underline */
+.heading h2{
+  position:relative;
+  display:inline-block;
+}
+.heading h2:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-9px;
+  width:48%;
+  height:2px;
+  background:linear-gradient(90deg,#27d9ff,#ff42d0,transparent);
+  box-shadow:0 0 12px #ff42d0;
+  animation:underlinePulse 2.2s ease-in-out infinite alternate;
+}
+@keyframes underlinePulse{to{width:80%;opacity:.65}}
+
+/* GIF frame gets colorful moving glow */
+.hero-visual .gif-slider{
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.65),
+    0 0 25px rgba(39,217,255,.42),
+    0 0 60px rgba(255,66,208,.30),
+    0 0 110px rgba(155,77,255,.24);
+}
+.hero-visual .gif-slider:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:linear-gradient(120deg,transparent 25%,rgba(255,255,255,.12) 45%,transparent 60%);
+  transform:translateX(-100%);
+  animation:shine 3.8s ease-in-out infinite;
+}
+@keyframes shine{55%,100%{transform:translateX(100%)}}
+
+/* mobile keeps the glow but reduces blur-heavy elements */
+@media(max-width:560px){
+  body:after{filter:blur(18px)}
+  main:before{opacity:.55;background-size:32px 32px}
+}
