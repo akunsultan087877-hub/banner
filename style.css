@@ -378,3 +378,60 @@ main:before{
     min-height:320px;
   }
 }
+
+/* ===== SHOW GIF COMPLETELY — NO CROPPING ===== */
+.hero-visual .gif-slider{
+  width:min(760px,92vw) !important;
+  height:auto !important;
+  aspect-ratio:auto !important;
+  min-height:0 !important;
+  background:rgba(8,4,20,.92) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.hero-visual .hero-gif{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  background:#080414 !important;
+}
+.hero-visual .gif-shine{
+  z-index:3 !important;
+}
+.hero-visual .gif-dots{
+  z-index:6 !important;
+}
+@media(max-width:560px){
+  .hero-visual .gif-slider{
+    width:94vw !important;
+    height:52vw !important;
+    max-height:260px !important;
+    aspect-ratio:auto !important;
+  }
+  .hero-visual .hero-gif{
+    object-fit:contain !important;
+  }
+}
+
+/* ===== COMPACT FULL GIF ===== */
+.hero-visual .gif-slider{
+  width:min(520px,72vw) !important;
+  max-width:520px !important;
+}
+@media(max-width:900px){
+  .hero-visual .gif-slider{
+    width:min(500px,76vw) !important;
+  }
+}
+@media(max-width:560px){
+  .hero-visual .gif-slider{
+    width:82vw !important;
+    max-width:390px !important;
+    height:46vw !important;
+    max-height:200px !important;
+  }
+}
