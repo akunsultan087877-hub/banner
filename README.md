@@ -1,22 +1,14 @@
-# TAMPAN GAME STORE — GitHub Version
+# TAMPAN GAME STORE — Luxury Edition
 
-Website toko game demo menggunakan HTML, CSS, dan JavaScript murni.
+Website marketplace game dengan gaya premium, elegan, dark luxury, gold accent, dan responsive.
 
-## File
-- `index.html` — struktur halaman
-- `style.css` — desain responsif
-- `script.js` — data game, pencarian, kategori, modal detail, dan keranjang
-- `images/` — tempat aset gambar game
+Upload file:
+- index.html
+- style.css
+- script.js
+- images/
 
-## Menjalankan di PC
-Buka `index.html` dengan browser.
+Setelah upload ke GitHub Pages, buka:
+https://USERNAME.github.io/REPOSITORY/
 
-## Upload ke GitHub
-1. Buat repository baru, misalnya `TampanGameStore`.
-2. Upload `index.html`, `style.css`, `script.js`, dan folder `images`.
-3. Masuk ke **Settings → Pages**.
-4. Pilih **Deploy from a branch**.
-5. Pilih branch `main` dan folder `/ (root)`.
-6. Simpan dan tunggu GitHub Pages membuat alamat website.
-
-Versi ini adalah demo. Pembayaran, akun pengguna, database, panel admin, dan sistem download belum terhubung.
+Versi ini adalah frontend/demo. Sistem akun, database, pembayaran, dan delivery belum terhubung.

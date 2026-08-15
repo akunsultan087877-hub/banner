@@ -1,135 +1,42 @@
-const games = [
-  {
-    id: 1, name: "Neon Racer", category: "RACING", rating: "4.8",
-    price: "Gratis", icon: "🏎️",
-    description: "Balapan arcade futuristik dengan lintasan neon, kendaraan cepat, dan tantangan skor tinggi."
-  },
-  {
-    id: 2, name: "Galaxy Quest", category: "ACTION", rating: "4.7",
-    price: "Rp 19.000", icon: "🚀",
-    description: "Jelajahi galaksi, hadapi musuh, dan selesaikan misi dalam petualangan luar angkasa."
-  },
-  {
-    id: 3, name: "Mystic Puzzle", category: "PUZZLE", rating: "4.6",
-    price: "Gratis", icon: "🧩",
-    description: "Game puzzle santai dengan teka-teki bertingkat dan tantangan yang makin sulit."
-  },
-  {
-    id: 4, name: "Dungeon Hero", category: "ADVENTURE", rating: "4.9",
-    price: "Rp 29.000", icon: "⚔️",
-    description: "Masuki dungeon misterius, kumpulkan item, dan kalahkan monster untuk menjadi pahlawan."
-  },
-  {
-    id: 5, name: "Shadow Arena", category: "ACTION", rating: "4.5",
-    price: "Rp 15.000", icon: "🥷",
-    description: "Arena aksi cepat dengan karakter bayangan dan pertarungan penuh strategi."
-  },
-  {
-    id: 6, name: "Ocean Explorer", category: "ADVENTURE", rating: "4.7",
-    price: "Gratis", icon: "🌊",
-    description: "Eksplorasi dunia bawah laut dan temukan rahasia yang tersembunyi."
-  },
-  {
-    id: 7, name: "Turbo Kart", category: "RACING", rating: "4.4",
-    price: "Gratis", icon: "🏁",
-    description: "Balapan kart penuh aksi dengan trek unik dan power-up."
-  },
-  {
-    id: 8, name: "Brain Blocks", category: "PUZZLE", rating: "4.8",
-    price: "Rp 9.000", icon: "🧠",
-    description: "Susun blok, pecahkan pola, dan raih skor tertinggi."
-  }
+const games=[
+{name:"Elden Ring",genre:"RPG",rating:"4.8",price:"Rp 599.000",old:"Rp 749.000",icon:"✦",color:"#5b3c18",sale:"-20%",desc:"Petualangan fantasi epik dengan dunia luas, pertarungan intens, dan eksplorasi tanpa batas."},
+{name:"Red Dead Redemption 2",genre:"ACTION",rating:"4.7",price:"Rp 499.000",old:"",icon:"♞",color:"#7a2d18",sale:"",desc:"Jelajahi dunia koboi yang luas dengan cerita sinematik dan karakter yang memorable."},
+{name:"Forza Horizon 5",genre:"RACING",rating:"4.6",price:"Rp 449.000",old:"Rp 549.000",icon:"♢",color:"#205b72",sale:"-18%",desc:"Balapan open-world dengan mobil impian dan pemandangan spektakuler."},
+{name:"Resident Evil 4",genre:"ACTION",rating:"4.9",price:"Rp 399.000",old:"",icon:"☠",color:"#3b4651",sale:"",desc:"Survival horror penuh ketegangan dengan aksi cepat dan atmosfer gelap."},
+{name:"God of War Ragnarök",genre:"ADVENTURE",rating:"4.9",price:"Rp 599.000",old:"Rp 749.000",icon:"⚔",color:"#315b72",sale:"-20%",desc:"Ikuti perjalanan Kratos dan Atreus menghadapi takdir di dunia Norse."},
+{name:"Horizon Forbidden West",genre:"ADVENTURE",rating:"4.7",price:"Rp 299.000",old:"",icon:"◈",color:"#7b5a35",sale:"",desc:"Eksplorasi dunia futuristik yang indah dan hadapi mesin-mesin raksasa."},
+{name:"Sekiro: Shadows Die Twice",genre:"ACTION",rating:"4.8",price:"Rp 499.000",old:"",icon:"忍",color:"#50332c",sale:"",desc:"Pertarungan samurai presisi tinggi dalam perjalanan penuh tantangan."},
+{name:"Turbo Kart",genre:"RACING",rating:"4.5",price:"Rp 129.000",old:"",icon:"🏎",color:"#673b72",sale:"",desc:"Balapan arcade seru dengan trek unik dan power-up."}
 ];
 
-const grid = document.getElementById("gameGrid");
-const searchInput = document.getElementById("searchInput");
-const emptyState = document.getElementById("emptyState");
-const modal = document.getElementById("gameModal");
-const cartCount = document.getElementById("cartCount");
-let activeCategory = "ALL";
-let cart = 0;
-let selectedGame = null;
+const grid=document.getElementById("gameGrid"),search=document.getElementById("searchInput"),panel=document.getElementById("searchPanel");
+let category="ALL",cart=0,current=null;
 
-function renderGames() {
-  const query = searchInput.value.trim().toLowerCase();
-  const filtered = games.filter(game => {
-    const categoryMatch = activeCategory === "ALL" || game.category === activeCategory;
-    const searchMatch = `${game.name} ${game.category}`.toLowerCase().includes(query);
-    return categoryMatch && searchMatch;
-  });
-
-  grid.innerHTML = filtered.map(game => `
-    <article class="game-card">
-      <div class="cover">${game.icon}</div>
-      <div class="card-body">
-        <span class="tag">${game.category}</span>
-        <h3>${game.name}</h3>
-        <div class="meta">
-          <span>⭐ ${game.rating}</span>
-          <span>PC / Mobile</span>
-        </div>
-        <div class="price">${game.price}</div>
-        <button class="details-btn" onclick="openGame(${game.id})">LIHAT DETAIL</button>
-      </div>
-    </article>
-  `).join("");
-
-  emptyState.hidden = filtered.length !== 0;
+function render(){
+ const q=(search?.value||"").toLowerCase().trim();
+ const list=games.filter(g=>(category==="ALL"||g.genre===category)&&`${g.name} ${g.genre}`.toLowerCase().includes(q));
+ grid.innerHTML=list.map((g,i)=>`<article class="game-card"><div class="game-cover" style="--c:${g.color}">${g.sale?`<b class="sale">${g.sale}</b>`:""}<span>${g.icon}</span></div><div class="game-info"><span class="genre">${g.genre}</span><h3>${g.name}</h3><div class="game-meta"><span>★★★★★</span><span>${g.rating}</span></div><div class="game-price">${g.price}${g.old?`<del>${g.old}</del>`:""}</div><button class="details" onclick="openGame(${games.indexOf(g)})">LIHAT DETAIL</button></div></article>`).join("");
+ document.getElementById("emptyState").hidden=list.length>0;
 }
-
-function openGame(id) {
-  selectedGame = games.find(game => game.id === id);
-  document.getElementById("modalIcon").textContent = selectedGame.icon;
-  document.getElementById("modalCategory").textContent = selectedGame.category;
-  document.getElementById("modalTitle").textContent = selectedGame.name;
-  document.getElementById("modalDescription").textContent = selectedGame.description;
-  document.getElementById("modalRating").textContent = `⭐ ${selectedGame.rating}`;
-  document.getElementById("modalPrice").textContent = selectedGame.price;
-  modal.classList.add("show");
-  modal.setAttribute("aria-hidden", "false");
+function openGame(i){
+ current=games[i];
+ document.getElementById("modalArt").textContent=current.icon;
+ document.getElementById("modalArt").style.background=`radial-gradient(circle,${current.color},#121016 65%)`;
+ document.getElementById("modalCategory").textContent=current.genre;
+ document.getElementById("modalTitle").textContent=current.name;
+ document.getElementById("modalDescription").textContent=current.desc;
+ document.getElementById("modalRating").textContent=current.rating;
+ document.getElementById("modalPrice").textContent=current.price;
+ document.getElementById("modal").classList.add("show");
 }
-
-function closeGame() {
-  modal.classList.remove("show");
-  modal.setAttribute("aria-hidden", "true");
-}
-
-function toast(message) {
-  const el = document.getElementById("toast");
-  el.textContent = message;
-  el.classList.add("show");
-  setTimeout(() => el.classList.remove("show"), 2200);
-}
-
-document.querySelectorAll(".category").forEach(button => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".category").forEach(b => b.classList.remove("active"));
-    button.classList.add("active");
-    activeCategory = button.dataset.category;
-    renderGames();
-  });
-});
-
-searchInput.addEventListener("input", renderGames);
-document.getElementById("closeModal").addEventListener("click", closeGame);
-
-modal.addEventListener("click", event => {
-  if (event.target === modal) closeGame();
-});
-
-document.getElementById("addCartBtn").addEventListener("click", () => {
-  cart++;
-  cartCount.textContent = cart;
-  toast(`${selectedGame.name} ditambahkan ke keranjang`);
-  closeGame();
-});
-
-document.getElementById("cartBtn").addEventListener("click", () => {
-  toast(cart ? `Keranjang berisi ${cart} item` : "Keranjang masih kosong");
-});
-
-document.getElementById("notifyBtn").addEventListener("click", () => {
-  toast("Fitur notifikasi akan tersedia pada versi berikutnya.");
-});
-
-renderGames();
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+function toast(t){const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2200)}
+document.getElementById("searchToggle").onclick=()=>panel.classList.toggle("show");
+search.oninput=render;
+document.getElementById("close").onclick=closeModal;
+document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal()};
+document.getElementById("addCart").onclick=()=>{cart++;document.getElementById("cartCount").textContent=cart;toast(current.name+" masuk ke keranjang");closeModal()};
+document.getElementById("cartBtn").onclick=()=>toast(cart?`Keranjang: ${cart} item`:"Keranjang masih kosong");
+document.getElementById("allBtn").onclick=()=>{category="ALL";document.querySelectorAll(".category-grid button").forEach(b=>b.classList.remove("selected"));render();document.getElementById("games").scrollIntoView()};
+document.querySelectorAll(".category-grid button").forEach(b=>b.onclick=()=>{category=b.dataset.category;render();document.getElementById("games").scrollIntoView({behavior:"smooth"})});
+render();

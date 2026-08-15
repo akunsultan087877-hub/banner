@@ -1,102 +1,120 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TAMPAN GAME STORE</title>
-  <meta name="description" content="TAMPAN GAME STORE - marketplace game modern.">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAMPAN GAME STORE — Premium Game Marketplace</title>
+<meta name="description" content="TAMPAN GAME STORE — premium gaming marketplace.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="logo" href="#" aria-label="Tampan Game Store">TAMPAN<span>GAME</span></a>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#games">Games</a>
-      <a href="#categories">Kategori</a>
-      <a href="#about">Tentang</a>
-    </nav>
-    <button class="cart-btn" id="cartBtn">🛒 <span id="cartCount">0</span></button>
-  </header>
+<div class="ambient ambient-one"></div>
+<div class="ambient ambient-two"></div>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-copy">
-        <p class="eyebrow">NEXT LEVEL GAMING</p>
-        <h1>Temukan game<br><span>favoritmu.</span></h1>
-        <p class="hero-text">Jelajahi koleksi game pilihan dengan tampilan toko modern yang cepat dan nyaman.</p>
-        <a class="primary-btn" href="#games">JELAJAHI GAME</a>
-      </div>
-      <div class="hero-card">
-        <div class="hero-icon">🎮</div>
-        <p>GAME OF THE WEEK</p>
-        <h2>NEON RACER</h2>
-        <span>⭐ 4.8 • Racing</span>
-      </div>
-    </section>
+<header class="nav">
+  <a class="brand" href="#home">
+    <span class="brand-mark">✦</span>
+    <span><b>TAMPAN</b><small>GAME STORE</small></span>
+  </a>
+  <nav class="nav-links">
+    <a class="active" href="#home">Beranda</a>
+    <a href="#games">Game</a>
+    <a href="#categories">Kategori</a>
+    <a href="#deals">Promo</a>
+    <a href="#about">Bantuan</a>
+  </nav>
+  <div class="nav-actions">
+    <button class="icon-btn" id="searchToggle">⌕</button>
+    <button class="icon-btn cart" id="cartBtn">♧<i id="cartCount">0</i></button>
+    <button class="avatar">A</button>
+  </div>
+</header>
 
-    <section class="section" id="categories">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">BROWSE</p>
-          <h2>Kategori</h2>
-        </div>
-      </div>
-      <div class="categories" id="categoryList">
-        <button class="category active" data-category="ALL">🎮 Semua</button>
-        <button class="category" data-category="ACTION">⚔️ Action</button>
-        <button class="category" data-category="ADVENTURE">🗺️ Adventure</button>
-        <button class="category" data-category="RACING">🏎️ Racing</button>
-        <button class="category" data-category="PUZZLE">🧩 Puzzle</button>
-      </div>
-    </section>
+<div class="search-panel" id="searchPanel">
+  <div class="search-inner"><span>⌕</span><input id="searchInput" placeholder="Cari judul game, genre, atau kategori..." autocomplete="off"></div>
+</div>
 
-    <section class="section" id="games">
-      <div class="section-head games-head">
-        <div>
-          <p class="eyebrow">COLLECTION</p>
-          <h2>Game Pilihan</h2>
-        </div>
-        <label class="search">
-          <span>🔎</span>
-          <input id="searchInput" type="search" placeholder="Cari game..." autocomplete="off">
-        </label>
-      </div>
-      <div class="game-grid" id="gameGrid"></div>
-      <p class="empty" id="emptyState" hidden>Game tidak ditemukan.</p>
-    </section>
-
-    <section class="newsletter" id="about">
-      <div>
-        <p class="eyebrow">TAMPAN GAME STORE</p>
-        <h2>Bangun koleksi game kamu.</h2>
-        <p>Ini adalah versi demo website. Fitur login, pembayaran, download, dan database dapat ditambahkan pada tahap berikutnya.</p>
-      </div>
-      <button class="primary-btn" id="notifyBtn">DAPATKAN INFO</button>
-    </section>
-  </main>
-
-  <footer>
-    <strong>TAMPAN GAME STORE</strong>
-    <span>© 2026 • Demo Project</span>
-  </footer>
-
-  <div class="modal" id="gameModal" aria-hidden="true">
-    <div class="modal-box">
-      <button class="close" id="closeModal">×</button>
-      <div class="modal-icon" id="modalIcon">🎮</div>
-      <p class="eyebrow" id="modalCategory">ACTION</p>
-      <h2 id="modalTitle">Game</h2>
-      <p id="modalDescription"></p>
-      <div class="modal-meta">
-        <span id="modalRating">⭐ 4.8</span>
-        <strong id="modalPrice">Gratis</strong>
-      </div>
-      <button class="primary-btn full" id="addCartBtn">TAMBAH KE KERANJANG</button>
+<main>
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <div class="pill">✦ PREMIUM GAME COLLECTION</div>
+    <h1>Play something<br><em>extraordinary.</em></h1>
+    <p>Temukan game pilihan dengan pengalaman belanja yang elegan, cepat, dan terasa premium.</p>
+    <div class="hero-actions">
+      <a class="gold-btn" href="#games">JELAJAHI KOLEKSI <span>→</span></a>
+      <a class="text-btn" href="#categories">Lihat kategori</a>
+    </div>
+    <div class="trust">
+      <span>✦ 100% Aman</span><span>⚡ Instant Delivery</span><span>◉ Support 24/7</span>
     </div>
   </div>
+  <div class="hero-art">
+    <div class="art-glow"></div>
+    <div class="featured-cover">
+      <div class="cover-top"><span>GAME OF THE WEEK</span><b>-20%</b></div>
+      <div class="cover-character">⚔</div>
+      <div class="cover-bottom">
+        <small>EPIC ADVENTURE</small>
+        <h2>SHADOW<br><strong>LEGENDS</strong></h2>
+        <div><span>★★★★★</span><label>4.9 / 5</label></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div class="toast" id="toast"></div>
-  <script src="script.js"></script>
+<section class="section" id="categories">
+  <div class="section-title"><div><span>EXPLORE</span><h2>Temukan duniamu.</h2></div><p>Genre pilihan untuk setiap gaya bermain.</p></div>
+  <div class="category-grid">
+    <button data-category="ACTION"><span>⚔</span><b>Action</b><small>128 Games</small></button>
+    <button data-category="ADVENTURE"><span>◈</span><b>Adventure</b><small>96 Games</small></button>
+    <button data-category="RPG"><span>✦</span><b>RPG</b><small>84 Games</small></button>
+    <button data-category="RACING"><span>♢</span><b>Racing</b><small>72 Games</small></button>
+    <button data-category="SPORTS"><span>◉</span><b>Sports</b><small>61 Games</small></button>
+    <button data-category="PUZZLE"><span>✚</span><b>Puzzle</b><small>53 Games</small></button>
+  </div>
+</section>
+
+<section class="section" id="games">
+  <div class="section-title"><div><span>CURATED FOR YOU</span><h2>Game pilihan.</h2></div><button class="filter-btn" id="allBtn">SEMUA GAME ↗</button></div>
+  <div class="game-grid" id="gameGrid"></div>
+  <p class="empty" id="emptyState" hidden>Tidak ada game yang cocok.</p>
+</section>
+
+<section class="promo" id="deals">
+  <div><span>LIMITED TIME</span><h2>Weekend<br><em>Game Night.</em></h2><p>Diskon spesial untuk koleksi pilihan. Jangan lewatkan.</p></div>
+  <div class="promo-price"><small>UP TO</small><strong>40%</strong><span>OFF</span></div>
+  <a class="gold-btn" href="#games">LIHAT PROMO →</a>
+</section>
+
+<section class="section about" id="about">
+  <div class="section-title"><div><span>WHY TAMPAN</span><h2>Lebih dari sekadar toko game.</h2></div></div>
+  <div class="benefits">
+    <article><span>01</span><h3>Premium Selection</h3><p>Koleksi game pilihan dengan kurasi yang mengutamakan kualitas.</p></article>
+    <article><span>02</span><h3>Instant Experience</h3><p>Alur pembelian dirancang sederhana, cepat, dan nyaman.</p></article>
+    <article><span>03</span><h3>Always Here</h3><p>Dukungan pelanggan siap membantu ketika kamu membutuhkan.</p></article>
+  </div>
+</section>
+</main>
+
+<footer><div class="brand"><span class="brand-mark">✦</span><span><b>TAMPAN</b><small>GAME STORE</small></span></div><p>Premium gaming experience.</p><span>© 2026 TAMPAN GAME STORE</span></footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="close" id="close">×</button>
+    <div class="modal-art" id="modalArt">⚔</div>
+    <div class="modal-content">
+      <span id="modalCategory">ACTION</span>
+      <h2 id="modalTitle">Shadow Legends</h2>
+      <p id="modalDescription"></p>
+      <div class="modal-row"><span>★★★★★ <small id="modalRating">4.9</small></span><strong id="modalPrice">Rp 299.000</strong></div>
+      <button class="gold-btn full" id="addCart">TAMBAH KE KERANJANG →</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
 </body>
 </html>
