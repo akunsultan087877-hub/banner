@@ -31,3 +31,32 @@ footer{border-top:1px solid var(--line);padding:35px 8%;display:flex;align-items
 .category-grid button span{display:block}
 .search-panel{display:none}
 .search-panel.show{display:block}
+
+/* STARFALL + CUTE UI */
+.starfield{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+.starfield:before,.starfield:after{content:"";position:absolute;inset:-20%;
+background-image:
+ radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.8px),
+ radial-gradient(circle,rgba(255,221,143,.8) 0 1px,transparent 1.8px),
+ radial-gradient(circle,rgba(190,154,255,.7) 0 1.2px,transparent 2px);
+background-size:130px 170px,190px 220px,260px 280px;
+background-position:10px 0,60px 90px,140px 40px;
+animation:twinkle 4s ease-in-out infinite alternate}
+.starfield:after{transform:rotate(8deg);opacity:.55;animation:twinkle 6s ease-in-out infinite alternate-reverse}
+@keyframes twinkle{from{opacity:.35;transform:scale(1)}to{opacity:.85;transform:scale(1.04)}}
+.falling-star{position:absolute;width:120px;height:2px;border-radius:999px;background:linear-gradient(90deg,transparent,#fff7d1,transparent);filter:drop-shadow(0 0 6px #e9c879);transform:rotate(-28deg);opacity:0}
+.falling-star:after{content:"";position:absolute;right:0;top:-2px;width:6px;height:6px;border-radius:50%;background:#fff9dc;box-shadow:0 0 12px 3px #e5bf67}
+@keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(-28deg)}8%{opacity:1}35%{opacity:1}55%,100%{opacity:0;transform:translate(-420px,270px) rotate(-28deg)}}
+.moon-orb{position:fixed;right:5vw;top:105px;width:74px;height:74px;border-radius:50%;display:grid;place-items:center;color:#f7d889;font-size:25px;border:1px solid rgba(241,208,138,.35);background:radial-gradient(circle at 35% 30%,#8d6cb9,#2a1a42 55%,#100c16);box-shadow:0 0 50px rgba(140,87,220,.25);z-index:-1;animation:floatOrb 5s ease-in-out infinite}
+@keyframes floatOrb{50%{transform:translateY(9px) rotate(8deg)}}
+.nav-links{gap:12px}
+.nav-links a{padding:9px 12px;border:1px solid transparent;border-radius:999px}
+.nav-links a:hover,.nav-links .active{background:rgba(214,170,88,.08);border-color:rgba(214,170,88,.2)}
+.nav-links .active:after{display:none}
+.nav-links a span{font-size:12px}
+.cute-note{display:inline-block;margin-top:15px;color:#d8b8ff;font-size:11px;letter-spacing:.4px;padding:7px 12px;border-radius:999px;background:rgba(122,66,232,.10);border:1px solid rgba(180,140,255,.18)}
+.category-grid button{border-radius:20px}
+.category-grid button:before{content:"✦";float:right;color:rgba(214,170,88,.25)}
+.category-grid button:hover{box-shadow:0 14px 35px rgba(122,66,232,.12)}
+.gold-btn{border-radius:999px}
+.details{border-radius:999px}

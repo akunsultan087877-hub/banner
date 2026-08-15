@@ -39,3 +39,18 @@ document.getElementById("cartBtn").onclick=()=>toast(cart?`Keranjang: ${cart} it
 document.getElementById("allBtn").onclick=()=>{category="ALL";document.querySelectorAll(".category-grid button").forEach(b=>b.classList.remove("selected"));render();document.getElementById("games").scrollIntoView()};
 document.querySelectorAll(".category-grid button").forEach(b=>b.onclick=()=>{category=b.dataset.category;render();document.getElementById("games").scrollIntoView({behavior:"smooth"})});
 render();
+
+const starfield=document.querySelector(".starfield");
+if(starfield){
+  function makeStar(delay=0){
+    const star=document.createElement("span");
+    star.className="falling-star";
+    star.style.left=(20+Math.random()*90)+"%";
+    star.style.top=(-5+Math.random()*55)+"%";
+    star.style.animation=`shoot ${3.2+Math.random()*2.8}s linear ${delay}s`;
+    starfield.appendChild(star);
+    setTimeout(()=>star.remove(),7500);
+  }
+  for(let i=0;i<4;i++) makeStar(i*1.6);
+  setInterval(()=>makeStar(0),4200);
+}
