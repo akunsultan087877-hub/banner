@@ -416,3 +416,56 @@ main:before{
     object-fit:contain !important;
   }
 }
+
+/* ===== COMPACT FULL GIF ===== */
+.hero-visual .gif-slider{
+  width:min(520px,72vw) !important;
+  max-width:520px !important;
+}
+@media(max-width:900px){
+  .hero-visual .gif-slider{
+    width:min(500px,76vw) !important;
+  }
+}
+@media(max-width:560px){
+  .hero-visual .gif-slider{
+    width:82vw !important;
+    max-width:390px !important;
+    height:46vw !important;
+    max-height:200px !important;
+  }
+}
+
+/* FINAL GIF SIZE OVERRIDE */
+.hero-visual .gif-slider {
+  width: 430px !important;
+  height: 235px !important;
+  max-width: none !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.hero-visual .gif-slider .hero-gif {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 900px) {
+  .hero-visual .gif-slider {
+    width: 400px !important;
+    height: 219px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-visual .gif-slider {
+    width: 82vw !important;
+    height: 46vw !important;
+    max-width: 340px !important;
+    max-height: 190px !important;
+  }
+}
