@@ -1,83 +1,110 @@
 <!doctype html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TAMPAN GAME STORE — Future Gaming</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050611">
+  <meta name="description" content="Tema link futuristik dengan nuansa biru elektrik dan hijau neon.">
+  <title>BEYOND // Neon Links</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="stars"></div>
-<header class="topbar">
-  <a class="logo" href="#"><span>✦</span><b>TAMPAN</b><small>GAME STORE</small></a>
-  <nav><a class="on" href="#home">Home</a><a href="#games">Games</a><a href="#collections">Collections</a><a href="#deals">Deals</a></nav>
-  <div class="top-actions"><button>⌕</button><button>🛒<i>0</i></button><button class="profile">A</button></div>
-</header>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
-<main>
-<section class="hero" id="home">
- <div class="hero-copy">
-   <div class="eyebrow">✦ 2400+ GAMES • PREMIUM COLLECTION</div>
-   <h1>YOUR NEXT<br><span>ADVENTURE</span><br>STARTS HERE.</h1>
-   <p>Temukan dunia game pilihan dengan visual neon, koleksi seru, dan pengalaman belanja yang terasa premium.</p>
-   <div class="hero-buttons"><a class="primary" href="#games">EXPLORE GAMES <b>→</b></a><a class="ghost" href="#collections">VIEW COLLECTIONS</a></div>
-   <div class="mini-stats"><span>⚡ Instant</span><span>★ 4.9 Rating</span><span>◈ Secure</span></div>
- </div>
- <div class="hero-visual">
-<div class="gif-slider gif-slider-compact" aria-label="Premium animations">
-  <img class="hero-gif active" src="https://files.catbox.moe/m5o7wo.gif" alt="Premium Animation 1">
-  <img class="hero-gif" src="https://files.catbox.moe/5moa8g.gif" alt="Premium Animation 2">
-  <img class="hero-gif" src="https://files.catbox.moe/pq3a8b.gif" alt="Premium Animation 3">
-</div>
+  <main class="site-shell">
+    <header class="topbar reveal">
+      <a class="brand" href="#home" aria-label="Kembali ke atas">
+        <span class="brand-target">＋</span>
+        <span>BEYOND<span class="neon">//</span>LINKS</span>
+      </a>
+      <p class="status"><span></span> ONLINE • AVAILABLE 24/7</p>
+    </header>
 
-   <div class="orb orb1"></div><div class="orb orb2"></div>
-   <img src="images/hero.svg" alt="Tampan Game Store visual">
-   <div class="float-card fc1"><b>🔥 HOT</b><span>Cyber Raid</span><strong>Rp 299K</strong></div>
-   <div class="float-card fc2"><span>★ 4.9</span><b>BEST SELLER</b></div>
- </div>
-</section>
+    <section class="hero" id="home">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span>///</span> NEXT-GEN DIGITAL SPACE</p>
+        <h1>GO<br><em>BEYOND</em><br>LIMITS</h1>
+        <p class="intro">Satu halaman futuristik untuk semua link pentingmu. Cepat, berani, dan dibuat untuk tampil beda.</p>
+        <a class="primary-btn" href="#links"><span>EXPLORE LINKS</span><b>→</b></a>
+      </div>
 
-<section class="ticker"><span>✦ TRENDING NOW</span><b>Cyber Raid</b><b>Galaxy Run</b><b>Shadow Ops</b><b>Neon Rush</b><b>Arcane Quest</b></section>
+      <div class="cyber-art reveal" aria-label="Ilustrasi bola energi futuristik">
+        <div class="scanline"></div>
+        <div class="orbit orbit-a"></div>
+        <div class="orbit orbit-b"></div>
+        <div class="portrait">
+          <div class="halo"></div>
+          <div class="head">
+            <span class="visor"></span>
+            <span class="neck"></span>
+          </div>
+        </div>
+        <div class="hud hud-top">SYS.011<br><strong>ACTIVE</strong></div>
+        <div class="hud hud-bottom">SIGNAL<br><strong>98.7%</strong></div>
+        <div class="coordinates">06°12'48"N — 106°49'18"E</div>
+      </div>
+    </section>
 
-<section class="section" id="collections">
- <div class="heading"><div><small>DISCOVER</small><h2>Popular <em>Collections</em></h2></div><a href="#games">VIEW ALL →</a></div>
- <div class="chips"><button class="active">✦ All</button><button>⚔ Action</button><button>◈ Adventure</button><button>🏎 Racing</button><button>♞ RPG</button><button>☄ Casual</button></div>
- <div class="collection-grid">
-   <article class="big-card"><img src="images/cyber.svg"><div class="card-shade"></div><div class="big-label"><small>FEATURED</small><h3>Cyber Raid</h3><p>Fight. Upgrade. Dominate.</p><b>EXPLORE →</b></div></article>
-   <article class="big-card"><img src="images/galaxy.svg"><div class="card-shade"></div><div class="big-label"><small>NEW DROP</small><h3>Galaxy Run</h3><p>Run beyond the stars.</p><b>EXPLORE →</b></div></article>
-   <article class="big-card"><img src="images/shadow.svg"><div class="card-shade"></div><div class="big-label"><small>HOT</small><h3>Shadow Ops</h3><p>Stealth meets chaos.</p><b>EXPLORE →</b></div></article>
- </div>
-</section>
+    <section class="links-section" id="links">
+      <div class="section-head reveal">
+        <div><span class="index">01</span><h2>SELECTED<br><em>LINKS</em></h2></div>
+        <p>Tiga akses utama dalam satu tampilan. Ganti judul dan alamat link langsung di file <strong>index.html</strong>.</p>
+      </div>
 
-<section class="section" id="games">
- <div class="heading"><div><small>CURATED FOR YOU</small><h2>Game <em>Favorites</em></h2></div><div class="searchbox">⌕ <input id="search" placeholder="Cari game..."></div></div>
- <div class="game-grid" id="gameGrid"></div>
-</section>
+      <div class="link-grid">
+        <a class="link-card reveal" href="#" target="_blank" rel="noopener">
+          <span class="card-no">01 //</span>
+          <div class="card-visual visual-one"><i></i><i></i><i></i></div>
+          <div class="card-copy"><small>OFFICIAL ACCESS</small><h3>LINK UTAMA</h3><p>Masuk melalui halaman resmi utama.</p></div>
+          <span class="card-arrow">↗</span>
+        </a>
+        <a class="link-card reveal" href="#" target="_blank" rel="noopener">
+          <span class="card-no">02 //</span>
+          <div class="card-visual visual-two"><i></i><i></i><i></i></div>
+          <div class="card-copy"><small>ALTERNATIVE ACCESS</small><h3>LINK CADANGAN</h3><p>Akses alternatif yang cepat dan mudah.</p></div>
+          <span class="card-arrow">↗</span>
+        </a>
+        <a class="link-card reveal" href="#" target="_blank" rel="noopener">
+          <span class="card-no">03 //</span>
+          <div class="card-visual visual-three"><i></i><i></i><i></i></div>
+          <div class="card-copy"><small>DIRECT SUPPORT</small><h3>HUBUNGI KAMI</h3><p>Bantuan cepat langsung dari tim kami.</p></div>
+          <span class="card-arrow">↗</span>
+        </a>
+      </div>
+    </section>
 
-<section class="wide-banner" id="deals">
- <div class="banner-copy"><small>WEEKEND DROP</small><h2>LEVEL UP<br><em>YOUR NIGHT.</em></h2><p>Diskon hingga <b>40%</b> untuk game pilihan minggu ini.</p><a class="primary" href="#games">CLAIM DEALS →</a></div>
- <div class="banner-art"><img src="images/battle.svg" alt=""></div>
-</section>
+    <section class="metrics reveal" aria-label="Statistik">
+      <div><strong data-count="24">0</strong><span>/7</span><p>ONLINE ACCESS</p></div>
+      <div><strong data-count="3">0</strong><span>+</span><p>ACTIVE LINKS</p></div>
+      <div><strong data-count="99">0</strong><span>%</span><p>UPTIME TARGET</p></div>
+      <blockquote>“THE FUTURE IS<br><b>ONE CLICK AWAY.</b>”</blockquote>
+    </section>
 
-<section class="section visual-section">
- <div class="heading"><div><small>MORE TO EXPLORE</small><h2>More <em>Worlds.</em></h2></div></div>
- <div class="mosaic">
-  <div><img src="images/fantasy.svg"><span>Fantasy Worlds</span></div>
-  <div><img src="images/horror.svg"><span>Dark Nights</span></div>
-  <div><img src="images/sports.svg"><span>Star Arena</span></div>
-  <div><img src="images/puzzle.svg"><span>Pixel Fun</span></div>
-  <div><img src="images/adventure.svg"><span>Sky Legends</span></div>
-  <div><img src="images/sim.svg"><span>City Life</span></div>
- </div>
-</section>
+    <section class="connect reveal">
+      <div class="connect-copy">
+        <span class="index">02</span>
+        <h2>LET'S<br><em>CONNECT</em></h2>
+        <p>Temukan kami di semua platform. Satu klik dan kamu sudah terhubung.</p>
+      </div>
+      <div class="energy-cube" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+      <div class="contact-list">
+        <p class="eyebrow">GET IN TOUCH</p>
+        <a href="#">◎ &nbsp; Instagram <span>↗</span></a>
+        <a href="#">◉ &nbsp; Telegram <span>↗</span></a>
+        <a href="#">◇ &nbsp; WhatsApp <span>↗</span></a>
+      </div>
+    </section>
 
-<section class="join">
- <div><span>✦ TAMPAN COMMUNITY</span><h2>Ready to<br><em>play?</em></h2><p>Masuk ke dunia TAMPAN GAME STORE dan temukan game berikutnya.</p></div>
- <a class="primary" href="#games">START EXPLORING →</a>
-</section>
-</main>
-<footer><div class="logo"><span>✦</span><b>TAMPAN</b><small>GAME STORE</small></div><p>Premium gaming experience.</p><span>© 2026 TAMPAN GAME STORE</span></footer>
-<script src="script.js"></script>
-</body></html>
+    <footer>
+      <div class="marquee"><span>★ LET'S BUILD THE FUTURE TOGETHER &nbsp; ★ LET'S BUILD THE FUTURE TOGETHER &nbsp; ★ LET'S BUILD THE FUTURE TOGETHER &nbsp;</span></div>
+      <p>© 2026 BEYOND LINKS <b>//</b> DESIGNED FOR THE FUTURE</p>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
