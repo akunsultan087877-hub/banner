@@ -1,941 +1,1271 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TAMPAN GAME STORE — Future Gaming</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TAMPAN GAME STORE</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,sans-serif;
+    background:
+        radial-gradient(circle at 20% 10%,#2c0752 0,transparent 28%),
+        radial-gradient(circle at 80% 30%,#16043b 0,transparent 30%),
+        #07030d;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+    background-image:
+        radial-gradient(#b55cff 1px,transparent 1px),
+        radial-gradient(#fff 1px,transparent 1px);
+    background-size:50px 50px,90px 90px;
+    background-position:0 0,25px 20px;
+    opacity:.18;
+}
+
+/* HEADER */
+
+.topbar{
+    height:78px;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(18px);
+    background:rgba(8,3,16,.78);
+    border-bottom:1px solid rgba(186,82,255,.15);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:white;
+    text-decoration:none;
+}
+
+.logo span{
+    color:#d060ff;
+    font-size:25px;
+}
+
+.logo b{
+    font-size:20px;
+    font-weight:900;
+}
+
+.logo small{
+    color:#a38dac;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+nav{
+    display:flex;
+    gap:34px;
+}
+
+nav a{
+    color:#9e91a7;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+    transition:.3s;
+}
+
+nav a:hover,
+nav a.on{
+    color:#d765ff;
+}
+
+.top-actions{
+    display:flex;
+    gap:8px;
+}
+
+.top-actions button{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    border:1px solid rgba(194,85,255,.2);
+    background:#12091d;
+    color:white;
+    cursor:pointer;
+}
+
+.profile{
+    background:linear-gradient(135deg,#9d38ff,#e064ff)!important;
+}
+
+/* HERO */
+
+.hero{
+    width:88%;
+    max-width:1400px;
+    min-height:650px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:55px;
+    padding:70px 0;
+}
+
+.eyebrow{
+    color:#d067ff;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.8px;
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-size:clamp(48px,6vw,86px);
+    line-height:.95;
+    letter-spacing:-4px;
+    font-weight:900;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,#c34cff,#ff59dc,#786bff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    color:#a99caf;
+    line-height:1.7;
+    max-width:580px;
+    margin:26px 0;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.primary,
+.ghost{
+    padding:15px 22px;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:800;
+}
+
+.primary{
+    color:white;
+    background:linear-gradient(135deg,#9635ff,#dd54ff);
+    box-shadow:0 10px 35px rgba(173,52,255,.35);
+}
+
+.ghost{
+    color:white;
+    border:1px solid rgba(196,91,255,.25);
+    background:rgba(255,255,255,.03);
+}
+
+.mini-stats{
+    margin-top:22px;
+    display:flex;
+    gap:22px;
+    color:#897d90;
+    font-size:11px;
+}
+
+/* HERO IMAGE */
+
+.hero-art{
+    position:relative;
+    height:500px;
+}
+
+.hero-art > img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:32px;
+    border:1px solid rgba(196,75,255,.28);
+    box-shadow:
+        0 0 70px rgba(132,39,255,.22),
+        0 30px 70px rgba(0,0,0,.55);
+}
+
+.hero-art:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:32px;
+    background:linear-gradient(to top,rgba(8,2,15,.65),transparent 65%);
+    pointer-events:none;
+}
+
+.float-card{
+    position:absolute;
+    z-index:3;
+    padding:14px 18px;
+    border-radius:14px;
+    background:rgba(13,5,22,.82);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(213,97,255,.25);
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+}
+
+.fc1{
+    left:-30px;
+    bottom:40px;
+}
+
+.fc1>*{
+    display:block;
+}
+
+.fc1 b{
+    color:#ff55ad;
+    font-size:10px;
+}
+
+.fc1 span{
+    margin:6px 0;
+    font-weight:700;
+}
+
+.fc1 strong{
+    color:#d260ff;
+    font-size:12px;
+}
+
+.fc2{
+    top:30px;
+    right:-20px;
+}
+
+.fc2 span{
+    color:#ffd35c;
+}
+
+/* TICKER */
+
+.ticker{
+    display:flex;
+    gap:50px;
+    overflow:hidden;
+    white-space:nowrap;
+    padding:18px 6%;
+    border-top:1px solid rgba(190,70,255,.12);
+    border-bottom:1px solid rgba(190,70,255,.12);
+    background:#0b0512;
+    font-size:12px;
+}
+
+.ticker span{
+    color:#cb55ff;
+}
+
+.ticker b{
+    color:#8f8297;
+}
+
+/* SECTIONS */
+
+.section{
+    width:88%;
+    max-width:1400px;
+    margin:auto;
+    padding:90px 0;
+}
+
+.heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:30px;
+}
+
+.heading small{
+    color:#c45cff;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.heading h2{
+    font-size:38px;
+    margin-top:6px;
+}
+
+.heading h2 em{
+    color:#c95cff;
+    font-style:normal;
+}
+
+.heading > a{
+    color:#b861ff;
+    text-decoration:none;
+    font-size:12px;
+}
+
+/* CHIPS */
+
+.chips{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.chips button{
+    padding:10px 17px;
+    border-radius:30px;
+    color:#95879f;
+    background:#100719;
+    border:1px solid rgba(191,83,255,.16);
+    cursor:pointer;
+}
+
+.chips button.active,
+.chips button:hover{
+    color:white;
+    background:linear-gradient(135deg,#7623c9,#b33df8);
+}
+
+/* COLLECTIONS */
+
+.collection-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.big-card{
+    height:390px;
+    position:relative;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid rgba(200,82,255,.18);
+    background:#0a0311;
+}
+
+.big-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.big-card:hover img{
+    transform:scale(1.07);
+}
+
+.card-shade{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,#07020d 4%,rgba(7,2,13,.75) 30%,transparent 70%);
+}
+
+.big-label{
+    position:absolute;
+    left:22px;
+    bottom:22px;
+}
+
+.big-label small{
+    color:#c561ff;
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.big-label h3{
+    font-size:25px;
+    margin:7px 0;
+}
+
+.big-label p{
+    color:#9b8fa2;
+    font-size:12px;
+    margin-bottom:13px;
+}
+
+.big-label b{
+    color:#d064ff;
+    font-size:10px;
+}
+
+/* SEARCH */
+
+.searchbox{
+    border:1px solid rgba(184,74,255,.2);
+    background:#100719;
+    padding:10px 16px;
+    border-radius:12px;
+}
+
+.searchbox input{
+    border:none;
+    outline:none;
+    background:transparent;
+    color:white;
+    margin-left:5px;
+}
+
+/* GAME GRID */
+
+.game-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.game-card{
+    overflow:hidden;
+    border-radius:18px;
+    background:#0d0615;
+    border:1px solid rgba(191,72,255,.16);
+    transition:.3s;
+}
+
+.game-card:hover{
+    transform:translateY(-7px);
+    border-color:#9d40d7;
+    box-shadow:0 18px 50px rgba(135,35,255,.15);
+}
+
+.game-photo{
+    height:220px;
+    overflow:hidden;
+}
+
+.game-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.game-card:hover img{
+    transform:scale(1.08);
+}
+
+.game-info{
+    padding:17px;
+}
+
+.game-info small{
+    color:#bd55ff;
+    font-size:9px;
+    letter-spacing:1.5px;
+}
+
+.game-info h3{
+    font-size:17px;
+    margin:7px 0 15px;
+}
+
+.game-meta{
+    display:flex;
+    justify-content:space-between;
+}
+
+.game-meta span{
+    color:#ffd65b;
+    font-size:11px;
+}
+
+.game-meta strong{
+    color:#d15cff;
+    font-size:12px;
+}
+
+/* DEAL */
+
+.wide-banner{
+    width:88%;
+    max-width:1400px;
+    min-height:430px;
+    margin:30px auto 80px;
+    border-radius:30px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    overflow:hidden;
+    position:relative;
+    border:1px solid rgba(199,80,255,.22);
+    background:linear-gradient(120deg,#150522,#080310);
+}
+
+.banner-copy{
+    padding:70px;
+    z-index:2;
+}
+
+.banner-copy small{
+    color:#d25dff;
+    letter-spacing:2px;
+}
+
+.banner-copy h2{
+    font-size:52px;
+    line-height:1;
+    margin:15px 0;
+}
+
+.banner-copy h2 em{
+    color:#d25cff;
+    font-style:normal;
+}
+
+.banner-copy p{
+    color:#a698ad;
+    margin-bottom:30px;
+}
+
+.banner-art img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* MOSAIC */
+
+.mosaic{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.mosaic > div{
+    height:250px;
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+}
+
+.mosaic img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.mosaic div:hover img{
+    transform:scale(1.08);
+}
+
+.mosaic div:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,#08020e,transparent);
+}
+
+.mosaic span{
+    position:absolute;
+    bottom:18px;
+    left:18px;
+    z-index:2;
+    font-weight:800;
+}
+
+/* JOIN */
+
+.join{
+    width:88%;
+    max-width:1400px;
+    margin:40px auto 100px;
+    padding:70px;
+    border-radius:30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:
+        radial-gradient(circle at 20%,rgba(182,62,255,.23),transparent 35%),
+        #0c0414;
+    border:1px solid rgba(192,78,255,.18);
+}
+
+.join span{
+    color:#c257ff;
+    font-size:10px;
+    letter-spacing:2px;
+}
+
+.join h2{
+    font-size:55px;
+    line-height:.95;
+    margin:10px 0;
+}
+
+.join h2 em{
+    color:#cf59ff;
+    font-style:normal;
+}
+
+.join p{
+    color:#9d91a3;
+}
+
+/* FOOTER */
+
+footer{
+    padding:35px 6%;
+    border-top:1px solid rgba(190,80,255,.12);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#85778d;
+    font-size:11px;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+    .hero-art{
+        height:420px;
+    }
+
+    .game-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .collection-grid{
+        grid-template-columns:1fr;
+    }
+
+    .wide-banner{
+        grid-template-columns:1fr;
+    }
+
+    nav{
+        display:none;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .topbar{
+        padding:0 18px;
+    }
+
+    .logo small{
+        display:none;
+    }
+
+    .hero{
+        width:92%;
+        padding:40px 0;
+    }
+
+    .hero h1{
+        font-size:44px;
+        letter-spacing:-2px;
+    }
+
+    .hero-art{
+        height:350px;
+    }
+
+    .section{
+        width:92%;
+        padding:60px 0;
+    }
+
+    .heading{
+        align-items:flex-start;
+        gap:20px;
+        flex-direction:column;
+    }
+
+    .heading h2{
+        font-size:30px;
+    }
+
+    .game-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .game-photo{
+        height:160px;
+    }
+
+    .game-info{
+        padding:12px;
+    }
+
+    .game-info h3{
+        font-size:14px;
+    }
+
+    .mosaic{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .mosaic > div{
+        height:180px;
+    }
+
+    .banner-copy{
+        padding:35px 25px;
+    }
+
+    .banner-copy h2{
+        font-size:40px;
+    }
+
+    .join{
+        width:92%;
+        padding:40px 25px;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:30px;
+    }
+
+    .join h2{
+        font-size:43px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:12px;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="stars"></div>
-
 <header class="topbar">
 
-  <a class="logo" href="#">
-    <span>✦</span>
-    <b>TAMPAN</b>
-    <small>GAME STORE</small>
-  </a>
+<a class="logo" href="#home">
+<span>✦</span>
+<b>TAMPAN</b>
+<small>GAME STORE</small>
+</a>
 
-  <nav>
-    <a class="on" href="#home">Home</a>
-    <a href="#games">Games</a>
-    <a href="#collections">Collections</a>
-    <a href="#deals">Deals</a>
-  </nav>
+<nav>
+<a class="on" href="#home">Home</a>
+<a href="#games">Games</a>
+<a href="#collections">Collections</a>
+<a href="#deals">Deals</a>
+</nav>
 
-  <div class="top-actions">
-    <button>⌕</button>
-    <button>🛒<i>0</i></button>
-    <button class="profile">A</button>
-  </div>
+<div class="top-actions">
+<button>⌕</button>
+<button>🛒</button>
+<button class="profile">A</button>
+</div>
 
 </header>
 
 
 <main>
 
-
-<!-- ================= HERO ================= -->
-
 <section class="hero" id="home">
 
-  <div class="hero-copy">
+<div class="hero-copy">
 
-    <div class="eyebrow">
-      ✦ 2400+ GAMES • PREMIUM COLLECTION
-    </div>
+<div class="eyebrow">
+✦ 2400+ GAMES • PREMIUM COLLECTION
+</div>
 
-    <h1>
-      YOUR NEXT<br>
-      <span>ADVENTURE</span><br>
-      STARTS HERE.
-    </h1>
+<h1>
+YOUR NEXT<br>
+<span>ADVENTURE</span><br>
+STARTS HERE.
+</h1>
 
-    <p>
-      Temukan dunia game pilihan dengan visual neon,
-      koleksi seru, dan pengalaman belanja yang terasa premium.
-    </p>
+<p>
+Temukan dunia game pilihan dengan visual neon, koleksi seru,
+dan pengalaman belanja yang terasa premium.
+</p>
 
-    <div class="hero-buttons">
+<div class="hero-buttons">
 
-      <a class="primary" href="https://tampan.pro/">
-        EXPLORE GAMES <b>→</b>
-      </a>
+<a class="primary" href="https://tampan.pro/">
+EXPLORE GAMES →
+</a>
 
-      <a class="ghost" href="https://tampan.pro/">
-        VIEW COLLECTIONS
-      </a>
+<a class="ghost" href="#collections">
+VIEW COLLECTIONS
+</a>
 
-    </div>
+</div>
 
-    <div class="mini-stats">
-      <span>⚡ Instant</span>
-      <span>★ 4.9 Rating</span>
-      <span>◈ Secure</span>
-    </div>
+<div class="mini-stats">
+<span>⚡ Instant</span>
+<span>★ 4.9 Rating</span>
+<span>◈ Secure</span>
+</div>
 
-  </div>
+</div>
 
 
-  <div class="hero-art">
+<div class="hero-art">
 
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
+<img
+src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=90"
+alt="Gaming">
 
-    <img
-      src="images/hero.svg"
-      alt="Tampan Game Store visual"
-    >
+<div class="float-card fc1">
+<b>🔥 HOT</b>
+<span>Cyber Raid</span>
+<strong>Rp 299K</strong>
+</div>
 
-    <div class="float-card fc1">
-      <b>🔥 HOT</b>
-      <span>Cyber Raid</span>
-      <strong>Rp 299K</strong>
-    </div>
+<div class="float-card fc2">
+<span>★ 4.9</span>
+<b> BEST SELLER</b>
+</div>
 
-    <div class="float-card fc2">
-      <span>★ 4.9</span>
-      <b>BEST SELLER</b>
-    </div>
-
-  </div>
+</div>
 
 </section>
 
-
-
-<!-- ================= TICKER ================= -->
 
 <section class="ticker">
-
-  <span>✦ TRENDING NOW</span>
-
-  <b>Cyber Raid</b>
-  <b>Galaxy Run</b>
-  <b>Shadow Ops</b>
-  <b>Neon Rush</b>
-  <b>Arcane Quest</b>
-
+<span>✦ TRENDING NOW</span>
+<b>Cyber Raid</b>
+<b>Galaxy Run</b>
+<b>Shadow Ops</b>
+<b>Neon Rush</b>
+<b>Arcane Quest</b>
 </section>
 
-
-
-<!-- ================= COLLECTION ================= -->
 
 <section class="section" id="collections">
 
-  <div class="heading">
+<div class="heading">
 
-    <div>
-      <small>DISCOVER</small>
-      <h2>
-        Popular <em>Collections</em>
-      </h2>
-    </div>
+<div>
+<small>DISCOVER</small>
+<h2>Popular <em>Collections</em></h2>
+</div>
 
-    <a href="https://tampan.pro/">
-      VIEW ALL →
-    </a>
+<a href="#games">VIEW ALL →</a>
 
-  </div>
+</div>
 
-
-  <div class="chips">
-
-    <button class="active">✦ All</button>
-    <button>⚔ Action</button>
-    <button>◈ Adventure</button>
-    <button>🏎 Racing</button>
-    <button>♞ RPG</button>
-    <button>☄ Casual</button>
-
-  </div>
+<div class="chips">
+<button class="active">✦ All</button>
+<button>⚔ Action</button>
+<button>◈ Adventure</button>
+<button>🏎 Racing</button>
+<button>♞ RPG</button>
+<button>☄ Casual</button>
+</div>
 
 
-  <div class="collection-grid">
+<div class="collection-grid">
+
+<article class="big-card">
+
+<img
+src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=90"
+alt="Cyber Raid">
+
+<div class="card-shade"></div>
+
+<div class="big-label">
+<small>FEATURED</small>
+<h3>Cyber Raid</h3>
+<p>Fight. Upgrade. Dominate.</p>
+<b>EXPLORE →</b>
+</div>
+
+</article>
 
 
-    <!-- CARD 1 -->
+<article class="big-card">
 
-    <article class="big-card">
+<img
+src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=90"
+alt="Galaxy Run">
 
-      <img
-        src="images/cyber.svg"
-        alt="Cyber Raid"
-      >
+<div class="card-shade"></div>
 
-      <div class="card-shade"></div>
+<div class="big-label">
+<small>NEW DROP</small>
+<h3>Galaxy Run</h3>
+<p>Run beyond the stars.</p>
+<b>EXPLORE →</b>
+</div>
 
-      <div class="big-label">
-
-        <small>FEATURED</small>
-
-        <h3>Cyber Raid</h3>
-
-        <p>
-          Fight. Upgrade. Dominate.
-        </p>
-
-        <b>EXPLORE →</b>
-
-      </div>
-
-    </article>
+</article>
 
 
+<article class="big-card">
 
-    <!-- CARD 2 -->
+<img
+src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=900&q=90"
+alt="Shadow Ops">
 
-    <article class="big-card">
+<div class="card-shade"></div>
 
-      <img
-        src="images/galaxy.svg"
-        alt="Galaxy Run"
-      >
+<div class="big-label">
+<small>HOT</small>
+<h3>Shadow Ops</h3>
+<p>Stealth meets chaos.</p>
+<b>EXPLORE →</b>
+</div>
 
-      <div class="card-shade"></div>
+</article>
 
-      <div class="big-label">
-
-        <small>NEW DROP</small>
-
-        <h3>Galaxy Run</h3>
-
-        <p>
-          Run beyond the stars.
-        </p>
-
-        <b>EXPLORE →</b>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- CARD 3 -->
-
-    <article class="big-card">
-
-      <img
-        src="images/shadow.svg"
-        alt="Shadow Ops"
-      >
-
-      <div class="card-shade"></div>
-
-      <div class="big-label">
-
-        <small>HOT</small>
-
-        <h3>Shadow Ops</h3>
-
-        <p>
-          Stealth meets chaos.
-        </p>
-
-        <b>EXPLORE →</b>
-
-      </div>
-
-    </article>
-
-  </div>
+</div>
 
 </section>
 
-
-
-<!-- ================= GAMES ================= -->
 
 <section class="section" id="games">
 
-  <div class="heading">
+<div class="heading">
 
-    <div>
+<div>
+<small>CURATED FOR YOU</small>
+<h2>Game <em>Favorites</em></h2>
+</div>
 
-      <small>
-        CURATED FOR YOU
-      </small>
+<div class="searchbox">
+⌕
+<input id="search" placeholder="Cari game...">
+</div>
 
-      <h2>
-        Game <em>Favorites</em>
-      </h2>
+</div>
 
-    </div>
 
+<div class="game-grid" id="gameGrid">
 
-    <div class="searchbox">
 
-      ⌕
+<article class="game-card" data-name="Cyber Raid">
 
-      <input
-        id="search"
-        placeholder="Cari game..."
-      >
+<div class="game-photo">
+<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=700&q=85">
+</div>
 
-    </div>
+<div class="game-info">
+<small>ACTION</small>
+<h3>Cyber Raid</h3>
+<div class="game-meta">
+<span>★ 4.9</span>
+<strong>Rp 299K</strong>
+</div>
+</div>
 
-  </div>
+</article>
 
 
+<article class="game-card" data-name="Galaxy Run">
 
-  <div class="game-grid" id="gameGrid">
+<div class="game-photo">
+<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=85">
+</div>
 
+<div class="game-info">
+<small>ADVENTURE</small>
+<h3>Galaxy Run</h3>
+<div class="game-meta">
+<span>★ 4.8</span>
+<strong>Rp 249K</strong>
+</div>
+</div>
 
-    <!-- GAME 1 -->
+</article>
 
-    <article class="game-card">
 
-      <div class="game-photo">
+<article class="game-card" data-name="Shadow Ops">
 
-        <img
-          src="images/cyber.svg"
-          alt="Cyber Raid"
-        >
+<div class="game-photo">
+<img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=700&q=85">
+</div>
 
-      </div>
+<div class="game-info">
+<small>SHOOTER</small>
+<h3>Shadow Ops</h3>
+<div class="game-meta">
+<span>★ 4.9</span>
+<strong>Rp 329K</strong>
+</div>
+</div>
 
-      <div class="game-info">
+</article>
 
-        <small>
-          ACTION
-        </small>
 
-        <h3>
-          Cyber Raid
-        </h3>
+<article class="game-card" data-name="Neon Rush">
 
-        <div class="game-meta">
+<div class="game-photo">
+<img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=85">
+</div>
 
-          <span>
-            ★ 4.9
-          </span>
+<div class="game-info">
+<small>RACING</small>
+<h3>Neon Rush</h3>
+<div class="game-meta">
+<span>★ 4.7</span>
+<strong>Rp 199K</strong>
+</div>
+</div>
 
-          <strong>
-            Rp 299K
-          </strong>
+</article>
 
-        </div>
 
-      </div>
+<article class="game-card" data-name="Arcane Quest">
 
-    </article>
+<div class="game-photo">
+<img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=700&q=85">
+</div>
 
+<div class="game-info">
+<small>RPG</small>
+<h3>Arcane Quest</h3>
+<div class="game-meta">
+<span>★ 4.9</span>
+<strong>Rp 399K</strong>
+</div>
+</div>
 
+</article>
 
-    <!-- GAME 2 -->
 
-    <article class="game-card">
+<article class="game-card" data-name="Sky Legends">
 
-      <div class="game-photo">
+<div class="game-photo">
+<img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?auto=format&fit=crop&w=700&q=85">
+</div>
 
-        <img
-          src="images/galaxy.svg"
-          alt="Galaxy Run"
-        >
+<div class="game-info">
+<small>ADVENTURE</small>
+<h3>Sky Legends</h3>
+<div class="game-meta">
+<span>★ 4.8</span>
+<strong>Rp 279K</strong>
+</div>
+</div>
 
-      </div>
+</article>
 
-      <div class="game-info">
 
-        <small>
-          ADVENTURE
-        </small>
+<article class="game-card" data-name="Dark Nights">
 
-        <h3>
-          Galaxy Run
-        </h3>
+<div class="game-photo">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=85">
+</div>
 
-        <div class="game-meta">
+<div class="game-info">
+<small>HORROR</small>
+<h3>Dark Nights</h3>
+<div class="game-meta">
+<span>★ 4.7</span>
+<strong>Rp 219K</strong>
+</div>
+</div>
 
-          <span>
-            ★ 4.8
-          </span>
+</article>
 
-          <strong>
-            Rp 249K
-          </strong>
 
-        </div>
+<article class="game-card" data-name="Star Arena">
 
-      </div>
+<div class="game-photo">
+<img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=700&q=85">
+</div>
 
-    </article>
+<div class="game-info">
+<small>SPORTS</small>
+<h3>Star Arena</h3>
+<div class="game-meta">
+<span>★ 4.8</span>
+<strong>Rp 189K</strong>
+</div>
+</div>
 
+</article>
 
 
-    <!-- GAME 3 -->
-
-    <article class="game-card">
-
-      <div class="game-photo">
-
-        <img
-          src="images/shadow.svg"
-          alt="Shadow Ops"
-        >
-
-      </div>
-
-      <div class="game-info">
-
-        <small>
-          SHOOTER
-        </small>
-
-        <h3>
-          Shadow Ops
-        </h3>
-
-        <div class="game-meta">
-
-          <span>
-            ★ 4.9
-          </span>
-
-          <strong>
-            Rp 329K
-          </strong>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- GAME 4 -->
-
-    <article class="game-card">
-
-      <div class="game-photo">
-
-        <img
-          src="images/neon.svg"
-          alt="Neon Rush"
-        >
-
-      </div>
-
-      <div class="game-info">
-
-        <small>
-          RACING
-        </small>
-
-        <h3>
-          Neon Rush
-        </h3>
-
-        <div class="game-meta">
-
-          <span>
-            ★ 4.7
-          </span>
-
-          <strong>
-            Rp 199K
-          </strong>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- GAME 5 -->
-
-    <article class="game-card">
-
-      <div class="game-photo">
-
-        <img
-          src="images/fantasy.svg"
-          alt="Arcane Quest"
-        >
-
-      </div>
-
-      <div class="game-info">
-
-        <small>
-          RPG
-        </small>
-
-        <h3>
-          Arcane Quest
-        </h3>
-
-        <div class="game-meta">
-
-          <span>
-            ★ 4.9
-          </span>
-
-          <strong>
-            Rp 399K
-          </strong>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- GAME 6 -->
-
-    <article class="game-card">
-
-      <div class="game-photo">
-
-        <img
-          src="images/adventure.svg"
-          alt="Sky Legends"
-        >
-
-      </div>
-
-      <div class="game-info">
-
-        <small>
-          ADVENTURE
-        </small>
-
-        <h3>
-          Sky Legends
-        </h3>
-
-        <div class="game-meta">
-
-          <span>
-            ★ 4.8
-          </span>
-
-          <strong>
-            Rp 279K
-          </strong>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- GAME 7 -->
-
-    <article class="game-card">
-
-      <div class="game-photo">
-
-        <img
-          src="images/horror.svg"
-          alt="Dark Nights"
-        >
-
-      </div>
-
-      <div class="game-info">
-
-        <small>
-          HORROR
-        </small>
-
-        <h3>
-          Dark Nights
-        </h3>
-
-        <div class="game-meta">
-
-          <span>
-            ★ 4.7
-          </span>
-
-          <strong>
-            Rp 219K
-          </strong>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- GAME 8 -->
-
-    <article class="game-card">
-
-      <div class="game-photo">
-
-        <img
-          src="images/sports.svg"
-          alt="Star Arena"
-        >
-
-      </div>
-
-      <div class="game-info">
-
-        <small>
-          SPORTS
-        </small>
-
-        <h3>
-          Star Arena
-        </h3>
-
-        <div class="game-meta">
-
-          <span>
-            ★ 4.8
-          </span>
-
-          <strong>
-            Rp 189K
-          </strong>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- GAME 9 -->
-
-    <article class="game-card">
-
-      <div class="game-photo">
-
-        <img
-          src="images/puzzle.svg"
-          alt="Pixel Fun"
-        >
-
-      </div>
-
-      <div class="game-info">
-
-        <small>
-          CASUAL
-        </small>
-
-        <h3>
-          Pixel Fun
-        </h3>
-
-        <div class="game-meta">
-
-          <span>
-            ★ 4.6
-          </span>
-
-          <strong>
-            Rp 99K
-          </strong>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-
-    <!-- GAME 10 -->
-
-    <article class="game-card">
-
-      <div class="game-photo">
-
-        <img
-          src="images/sim.svg"
-          alt="City Life"
-        >
-
-      </div>
-
-      <div class="game-info">
-
-        <small>
-          SIMULATION
-        </small>
-
-        <h3>
-          City Life
-        </h3>
-
-        <div class="game-meta">
-
-          <span>
-            ★ 4.7
-          </span>
-
-          <strong>
-            Rp 159K
-          </strong>
-
-        </div>
-
-      </div>
-
-    </article>
-
-
-  </div>
+</div>
 
 </section>
 
-
-
-<!-- ================= DEALS ================= -->
 
 <section class="wide-banner" id="deals">
 
-  <div class="banner-copy">
+<div class="banner-copy">
 
-    <small>
-      WEEKEND DROP
-    </small>
+<small>WEEKEND DROP</small>
 
-    <h2>
-      LEVEL UP<br>
-      <em>YOUR NIGHT.</em>
-    </h2>
+<h2>
+LEVEL UP<br>
+<em>YOUR NIGHT.</em>
+</h2>
 
-    <p>
-      Diskon hingga
-      <b>40%</b>
-      untuk game pilihan minggu ini.
-    </p>
+<p>
+Diskon hingga <b>40%</b> untuk game pilihan minggu ini.
+</p>
 
-    <a
-      class="primary"
-      href="https://tampan.pro"
-    >
-      CLAIM DEALS →
-    </a>
+<a class="primary" href="https://tampan.pro/">
+CLAIM DEALS →
+</a>
 
-  </div>
+</div>
 
 
-  <div class="banner-art">
+<div class="banner-art">
 
-    <img
-      src="images/battle.svg"
-      alt="Game Deals"
-    >
+<img
+src="https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?auto=format&fit=crop&w=1200&q=90">
 
-  </div>
+</div>
 
 </section>
 
 
+<section class="section">
 
-<!-- ================= MORE WORLDS ================= -->
-
-<section class="section visual-section">
-
-  <div class="heading">
-
-    <div>
-
-      <small>
-        MORE TO EXPLORE
-      </small>
-
-      <h2>
-        More <em>Worlds.</em>
-      </h2>
-
-    </div>
-
-  </div>
+<div class="heading">
+<div>
+<small>MORE TO EXPLORE</small>
+<h2>More <em>Worlds.</em></h2>
+</div>
+</div>
 
 
-  <div class="mosaic">
+<div class="mosaic">
 
+<div>
+<img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=85">
+<span>Fantasy Worlds</span>
+</div>
 
-    <div>
+<div>
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=85">
+<span>Dark Nights</span>
+</div>
 
-      <img
-        src="images/fantasy.svg"
-        alt="Fantasy Worlds"
-      >
+<div>
+<img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=800&q=85">
+<span>Star Arena</span>
+</div>
 
-      <span>
-        Fantasy Worlds
-      </span>
+<div>
+<img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=800&q=85">
+<span>Pixel Fun</span>
+</div>
 
-    </div>
+<div>
+<img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?auto=format&fit=crop&w=800&q=85">
+<span>Sky Legends</span>
+</div>
 
+<div>
+<img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=800&q=85">
+<span>City Life</span>
+</div>
 
-
-    <div>
-
-      <img
-        src="images/horror.svg"
-        alt="Dark Nights"
-      >
-
-      <span>
-        Dark Nights
-      </span>
-
-    </div>
-
-
-
-    <div>
-
-      <img
-        src="images/sports.svg"
-        alt="Star Arena"
-      >
-
-      <span>
-        Star Arena
-      </span>
-
-    </div>
-
-
-
-    <div>
-
-      <img
-        src="images/puzzle.svg"
-        alt="Pixel Fun"
-      >
-
-      <span>
-        Pixel Fun
-      </span>
-
-    </div>
-
-
-
-    <div>
-
-      <img
-        src="images/adventure.svg"
-        alt="Sky Legends"
-      >
-
-      <span>
-        Sky Legends
-      </span>
-
-    </div>
-
-
-
-    <div>
-
-      <img
-        src="images/sim.svg"
-        alt="City Life"
-      >
-
-      <span>
-        City Life
-      </span>
-
-    </div>
-
-
-  </div>
+</div>
 
 </section>
 
-
-
-<!-- ================= COMMUNITY ================= -->
 
 <section class="join">
 
-  <div>
+<div>
 
-    <span>
-      ✦ TAMPAN COMMUNITY
-    </span>
+<span>✦ TAMPAN COMMUNITY</span>
 
-    <h2>
-      Ready to<br>
-      <em>play?</em>
-    </h2>
+<h2>
+Ready to<br>
+<em>play?</em>
+</h2>
 
-    <p>
-      Masuk ke dunia TAMPAN GAME STORE
-      dan temukan game berikutnya.
-    </p>
+<p>
+Masuk ke dunia TAMPAN GAME STORE dan temukan game berikutnya.
+</p>
 
-  </div>
+</div>
 
-
-  <a
-    class="primary"
-    href="https://tampan.pro/"
-  >
-    START EXPLORING →
-  </a>
+<a class="primary" href="https://tampan.pro/">
+START EXPLORING →
+</a>
 
 </section>
-
 
 </main>
 
 
-
-<!-- ================= FOOTER ================= -->
-
 <footer>
 
-  <div class="logo">
+<div class="logo">
+<span>✦</span>
+<b>TAMPAN</b>
+<small>GAME STORE</small>
+</div>
 
-    <span>
-      ✦
-    </span>
+<p>Premium gaming experience.</p>
 
-    <b>
-      TAMPAN
-    </b>
-
-    <small>
-      GAME STORE
-    </small>
-
-  </div>
-
-  <p>
-    Premium gaming experience.
-  </p>
-
-  <span>
-    © 2026 TAMPAN GAME STORE
-  </span>
+<span>
+© 2026 TAMPAN GAME STORE
+</span>
 
 </footer>
 
 
-<script src="script.js"></script>
+<script>
+
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".game-card");
+
+search.addEventListener("input", function(){
+
+    const keyword = this.value.toLowerCase();
+
+    cards.forEach(card=>{
+
+        const name =
+        card.dataset.name.toLowerCase();
+
+        card.style.display =
+        name.includes(keyword)
+        ? ""
+        : "none";
+
+    });
+
+});
+
+</script>
 
 </body>
 </html>
