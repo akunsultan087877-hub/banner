@@ -1,1 +1,83 @@
-<!doctype html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NORVA — Wild North</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css?v=norva-mountain"></head><body><main class="shell"><section class="hero"><nav><a class="logo">NORVA</a><div><a>Locations</a><a>Journeys</a><a>Stories</a><a>Availability</a></div><button>LOGIN</button></nav><div class="hero-copy"><p class="mini">NORTHERN EXPEDITIONS</p><h1>NOR<span>V</span>A<sup>✦</sup></h1><p>Wild mountains, quiet rivers, and journeys that stay with you long after the trail disappears.</p><button class="cta" id="explore">EXPLORE <b>→</b></button></div><p class="side">EXPLORE THE WILD</p><footer><span>© 2026 NORVA</span><span>SCROLL TO DISCOVER ↓</span><span>01 / 03</span></footer></section><section class="gallery" id="gallery"><nav><a class="logo">NORVA</a><div><a>Locations</a><a>Journeys</a><a>Stories</a></div><button id="back">BACK</button></nav><div class="gallery-copy"><h2>Browse our<br>Gallery</h2><p>Choose a place to start and build an adventure that feels entirely your own.</p></div><article class="spot"><div><span>01</span><h3>Amber Valley</h3><p>River trails, mountain light, and wildlife at every turn.</p><button>VIEW JOURNEY</button></div></article></section></main><script src="script.js?v=norva-transition"></script></body></html>
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TAMPAN GAME STORE — Future Gaming</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stars"></div>
+<header class="topbar">
+  <a class="logo" href="#"><span>✦</span><b>TAMPAN</b><small>GAME STORE</small></a>
+  <nav><a class="on" href="#home">Home</a><a href="#games">Games</a><a href="#collections">Collections</a><a href="#deals">Deals</a></nav>
+  <div class="top-actions"><button>⌕</button><button>🛒<i>0</i></button><button class="profile">A</button></div>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="hero-copy">
+   <div class="eyebrow">✦ 2400+ GAMES • PREMIUM COLLECTION</div>
+   <h1>YOUR NEXT<br><span>ADVENTURE</span><br>STARTS HERE.</h1>
+   <p>Temukan dunia game pilihan dengan visual neon, koleksi seru, dan pengalaman belanja yang terasa premium.</p>
+   <div class="hero-buttons"><a class="primary" href="#games">EXPLORE GAMES <b>→</b></a><a class="ghost" href="#collections">VIEW COLLECTIONS</a></div>
+   <div class="mini-stats"><span>⚡ Instant</span><span>★ 4.9 Rating</span><span>◈ Secure</span></div>
+ </div>
+ <div class="hero-visual">
+<div class="gif-slider" aria-label="Premium animations">
+  <img class="hero-gif active" src="https://files.catbox.moe/m5o7wo.gif" alt="Premium Animation 1">
+  <img class="hero-gif" src="https://files.catbox.moe/5moa8g.gif" alt="Premium Animation 2">
+  <img class="hero-gif" src="https://files.catbox.moe/pq3a8b.gif" alt="Premium Animation 3">
+</div>
+
+   <div class="orb orb1"></div><div class="orb orb2"></div>
+   <img src="images/hero.svg" alt="Tampan Game Store visual">
+   <div class="float-card fc1"><b>🔥 HOT</b><span>Cyber Raid</span><strong>Rp 299K</strong></div>
+   <div class="float-card fc2"><span>★ 4.9</span><b>BEST SELLER</b></div>
+ </div>
+</section>
+
+<section class="ticker"><span>✦ TRENDING NOW</span><b>Cyber Raid</b><b>Galaxy Run</b><b>Shadow Ops</b><b>Neon Rush</b><b>Arcane Quest</b></section>
+
+<section class="section" id="collections">
+ <div class="heading"><div><small>DISCOVER</small><h2>Popular <em>Collections</em></h2></div><a href="#games">VIEW ALL →</a></div>
+ <div class="chips"><button class="active">✦ All</button><button>⚔ Action</button><button>◈ Adventure</button><button>🏎 Racing</button><button>♞ RPG</button><button>☄ Casual</button></div>
+ <div class="collection-grid">
+   <article class="big-card"><img src="images/cyber.svg"><div class="card-shade"></div><div class="big-label"><small>FEATURED</small><h3>Cyber Raid</h3><p>Fight. Upgrade. Dominate.</p><b>EXPLORE →</b></div></article>
+   <article class="big-card"><img src="images/galaxy.svg"><div class="card-shade"></div><div class="big-label"><small>NEW DROP</small><h3>Galaxy Run</h3><p>Run beyond the stars.</p><b>EXPLORE →</b></div></article>
+   <article class="big-card"><img src="images/shadow.svg"><div class="card-shade"></div><div class="big-label"><small>HOT</small><h3>Shadow Ops</h3><p>Stealth meets chaos.</p><b>EXPLORE →</b></div></article>
+ </div>
+</section>
+
+<section class="section" id="games">
+ <div class="heading"><div><small>CURATED FOR YOU</small><h2>Game <em>Favorites</em></h2></div><div class="searchbox">⌕ <input id="search" placeholder="Cari game..."></div></div>
+ <div class="game-grid" id="gameGrid"></div>
+</section>
+
+<section class="wide-banner" id="deals">
+ <div class="banner-copy"><small>WEEKEND DROP</small><h2>LEVEL UP<br><em>YOUR NIGHT.</em></h2><p>Diskon hingga <b>40%</b> untuk game pilihan minggu ini.</p><a class="primary" href="#games">CLAIM DEALS →</a></div>
+ <div class="banner-art"><img src="images/battle.svg" alt=""></div>
+</section>
+
+<section class="section visual-section">
+ <div class="heading"><div><small>MORE TO EXPLORE</small><h2>More <em>Worlds.</em></h2></div></div>
+ <div class="mosaic">
+  <div><img src="images/fantasy.svg"><span>Fantasy Worlds</span></div>
+  <div><img src="images/horror.svg"><span>Dark Nights</span></div>
+  <div><img src="images/sports.svg"><span>Star Arena</span></div>
+  <div><img src="images/puzzle.svg"><span>Pixel Fun</span></div>
+  <div><img src="images/adventure.svg"><span>Sky Legends</span></div>
+  <div><img src="images/sim.svg"><span>City Life</span></div>
+ </div>
+</section>
+
+<section class="join">
+ <div><span>✦ TAMPAN COMMUNITY</span><h2>Ready to<br><em>play?</em></h2><p>Masuk ke dunia TAMPAN GAME STORE dan temukan game berikutnya.</p></div>
+ <a class="primary" href="#games">START EXPLORING →</a>
+</section>
+</main>
+<footer><div class="logo"><span>✦</span><b>TAMPAN</b><small>GAME STORE</small></div><p>Premium gaming experience.</p><span>© 2026 TAMPAN GAME STORE</span></footer>
+<script src="script.js"></script>
+</body></html>
