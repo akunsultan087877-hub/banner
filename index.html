@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta name="theme-color" content="#050000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>RTP GAME STORE</title>
 <style>
 *{box-sizing:border-box}
@@ -31,6 +35,47 @@ body{overflow-x:hidden}
 #fireworksCanvas{position:fixed;inset:0;width:100vw;height:100vh;z-index:9999;pointer-events:none;mix-blend-mode:screen;opacity:1}
 .page::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:11;background:radial-gradient(circle at 50% 14%,rgba(255,55,35,.08),transparent 34%),radial-gradient(circle at 18% 30%,rgba(255,180,70,.055),transparent 22%),radial-gradient(circle at 82% 28%,rgba(255,70,50,.05),transparent 24%)}
 
+
+
+/* ===== MOBILE / SELULER OPTIMIZATION ===== */
+html{-webkit-text-size-adjust:100%;touch-action:manipulation}
+body{min-width:0;overscroll-behavior-y:none}
+@media(max-width:700px){
+  .page{width:100vw;max-width:none;margin:0;overflow:hidden}
+  .hero{width:100vw;height:auto;object-fit:contain}
+  .games-window{
+    left:1.5%;top:62.15%;width:97%;height:16.45%;
+    padding:.25% 0;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 2%,#000 98%,transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 2%,#000 98%,transparent 100%);
+  }
+  .games-track{
+    gap:2.1%;padding:0 1.7%;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;
+  }
+  .game-card{
+    flex:0 0 46.5%;height:100%;border-radius:10px;
+    scroll-snap-align:center;border-width:1px;
+    box-shadow:0 0 10px rgba(255,60,20,.5);
+  }
+  .nav-btn{
+    width:9.5vw;min-width:38px;max-width:46px;top:56.25%;
+    font-size:26px;background:rgba(20,0,0,.78);
+    backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+  }
+  .nav-prev{right:12.8%}.nav-next{right:2.2%}
+}
+@media(max-width:430px){
+  .game-card{flex-basis:47.5%}
+  .games-track{gap:2.3%;padding:0 1.5%}
+  .nav-btn{top:56.0%}
+}
+#fireworksCanvas{
+  position:fixed!important;left:0!important;top:0!important;
+  width:100vw!important;height:100dvh!important;
+  z-index:99999!important;pointer-events:none!important;
+  display:block!important;visibility:visible!important;opacity:1!important;
+}
 
 </style>
 </head>
@@ -71,7 +116,42 @@ track.addEventListener('pointerup',e=>{down=false;track.classList.remove('draggi
 track.addEventListener('pointercancel',()=>{down=false;track.classList.remove('dragging')});
 track.addEventListener('click',e=>{if(moved){e.preventDefault();e.stopPropagation();}},true);
 </script>
-\n<script>\n(()=>{\n  const canvas=document.getElementById('fireworksCanvas');
-  canvas.style.display='block'; canvas.style.visibility='visible'; canvas.style.opacity='1';\n  const page=document.querySelector('.page');\n  if(!canvas||!page||matchMedia('(prefers-reduced-motion: reduce)').matches)return;\n  const ctx=canvas.getContext('2d',{alpha:true});\n  let W=0,H=0,DPR=1,last=0,nextBurst=0;\n  const rockets=[], sparks=[], embers=[];\n  const palette=[\n    [255,56,38],[255,235,205],[255,183,66],[255,255,255],[255,92,72],[255,214,120]\n  ];\n  const rnd=(a,b)=>a+Math.random()*(b-a);\n  function resize(){\n    const r=page.getBoundingClientRect();\n    W=Math.max(1,r.width); H=Math.max(1,page.scrollHeight); DPR=Math.min(devicePixelRatio||1,1.6);\n    canvas.width=Math.round(W*DPR); canvas.height=Math.round(H*DPR);\n    canvas.style.width=W+'px'; canvas.style.height=H+'px';\n    ctx.setTransform(DPR,0,0,DPR,0,0);\n  }\n  new ResizeObserver(resize).observe(page); resize();\n  class Rocket{\n    constructor(){\n      this.x=rnd(W*.12,W*.88); this.y=Math.min(H*.55,rnd(H*.42,H*.56));\n      this.tx=rnd(W*.10,W*.90); this.ty=rnd(H*.055,H*.34);\n      this.vx=(this.tx-this.x)/rnd(38,54); this.vy=(this.ty-this.y)/rnd(38,54);\n      this.life=0; this.max=rnd(38,54); this.color=palette[(Math.random()*palette.length)|0]; this.tr=[];\n    }\n    step(){\n      this.tr.push([this.x,this.y]); if(this.tr.length>14)this.tr.shift();\n      this.x+=this.vx; this.y+=this.vy; this.vy+=.012; this.life++;\n      return this.life>=this.max||this.y<=this.ty;\n    }\n    draw(){\n      if(this.tr.length>1){ctx.beginPath();ctx.moveTo(this.tr[0][0],this.tr[0][1]);for(const p of this.tr)ctx.lineTo(p[0],p[1]);ctx.strokeStyle='rgba(255,225,190,.35)';ctx.lineWidth=1.1;ctx.stroke()}\n      ctx.shadowBlur=12;ctx.shadowColor='rgba(255,180,90,.95)';ctx.fillStyle='rgba(255,245,220,.95)';ctx.beginPath();ctx.arc(this.x,this.y,1.7,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;\n    }\n  }\n  class Spark{\n    constructor(x,y,c,angle,speed,life,thick=1){\n      this.x=x;this.y=y;this.px=x;this.py=y;this.c=c;this.a=angle;this.s=speed;this.life=life;this.max=life;this.g=rnd(.035,.07);this.drag=rnd(.972,.986);this.thick=thick;this.twinkle=Math.random()<.28;\n    }\n    step(){this.px=this.x;this.py=this.y;this.s*=this.drag;this.x+=Math.cos(this.a)*this.s;this.y+=Math.sin(this.a)*this.s;this.y+=this.g*(this.max-this.life);this.life--;return this.life<=0}\n    draw(){\n      const t=Math.max(0,this.life/this.max); const blink=this.twinkle?(0.55+0.45*Math.abs(Math.sin(this.life*.8))):1;\n      const [r,g,b]=this.c; ctx.strokeStyle=`rgba(${r},${g},${b},${Math.pow(t,.55)*blink})`;\n      ctx.lineWidth=this.thick*(.55+t);ctx.shadowBlur=8*t;ctx.shadowColor=`rgba(${r},${g},${b},${.9*t})`;\n      ctx.beginPath();ctx.moveTo(this.px,this.py);ctx.lineTo(this.x,this.y);ctx.stroke();ctx.shadowBlur=0;\n    }\n  }\n  function burst(x,y,base){\n    const style=Math.random(); const n=style<.18?120:style<.55?88:70;\n    for(let i=0;i<n;i++){\n      const ring=style<.22; const angle=(i/n)*Math.PI*2+rnd(-.035,.035); const speed=ring?rnd(3.3,4.3):rnd(1.4,5.2)*Math.pow(Math.random(),.18);\n      const c=Math.random()<.72?base:palette[(Math.random()*palette.length)|0];\n      sparks.push(new Spark(x,y,c,angle,speed,rnd(42,78),rnd(.75,1.25)));\n    }\n    if(style>.45){for(let j=0;j<24;j++){const a=rnd(0,Math.PI*2);sparks.push(new Spark(x,y,[255,245,220],a,rnd(.6,2.2),rnd(20,38),.65));}}\n    for(let j=0;j<14;j++)embers.push({x,y,vx:rnd(-.7,.7),vy:rnd(-.8,.2),life:rnd(28,52),max:52});\n  }\n  function spawn(){rockets.push(new Rocket()); if(Math.random()<.22)setTimeout(()=>rockets.push(new Rocket()),130+rnd(0,220));}\n  function frame(ts){\n    requestAnimationFrame(frame); if(!last)last=ts; const dt=Math.min(32,ts-last); last=ts;\n    ctx.clearRect(0,0,W,H);\n    if(ts>nextBurst){spawn(); nextBurst=ts+rnd(850,1650)}\n    for(let i=rockets.length-1;i>=0;i--){const r=rockets[i];if(r.step()){burst(r.x,r.y,r.color);rockets.splice(i,1)}else r.draw()}\n    for(let i=sparks.length-1;i>=0;i--){const s=sparks[i];if(s.step())sparks.splice(i,1);else s.draw()}\n    for(let i=embers.length-1;i>=0;i--){const e=embers[i];e.x+=e.vx;e.y+=e.vy;e.vy+=.025;e.life-=dt/16.7;if(e.life<=0){embers.splice(i,1);continue}const a=Math.max(0,e.life/e.max);ctx.fillStyle=`rgba(255,160,70,${a*.65})`;ctx.fillRect(e.x,e.y,1.2,1.2)}\n  }\n  requestAnimationFrame(frame);\n})();\n</script>\n
+
+<script>
+(()=>{
+  const canvas=document.getElementById('fireworksCanvas');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d',{alpha:true});
+  let W=1,H=1,DPR=1,last=0,nextBurst=0;
+  const rockets=[], sparks=[], embers=[];
+  const palette=[[255,55,35],[255,230,190],[255,175,55],[255,255,255],[255,85,65],[255,210,105]];
+  const rnd=(a,b)=>a+Math.random()*(b-a);
+  function resize(){
+    W=Math.max(1,window.innerWidth); H=Math.max(1,window.innerHeight);
+    DPR=Math.min(window.devicePixelRatio||1,1.5);
+    canvas.width=Math.round(W*DPR); canvas.height=Math.round(H*DPR);
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  addEventListener('resize',resize,{passive:true});
+  addEventListener('orientationchange',()=>setTimeout(resize,120),{passive:true});
+  resize();
+  class Rocket{
+    constructor(){this.x=rnd(W*.12,W*.88);this.y=rnd(H*.78,H*.98);this.tx=rnd(W*.10,W*.90);this.ty=rnd(H*.09,H*.48);const f=rnd(30,46);this.vx=(this.tx-this.x)/f;this.vy=(this.ty-this.y)/f;this.life=0;this.max=f;this.c=palette[(Math.random()*palette.length)|0];this.tr=[]}
+    step(){this.tr.push([this.x,this.y]);if(this.tr.length>12)this.tr.shift();this.x+=this.vx;this.y+=this.vy;this.life++;return this.life>=this.max||this.y<=this.ty}
+    draw(){if(this.tr.length>1){ctx.beginPath();ctx.moveTo(...this.tr[0]);for(const q of this.tr)ctx.lineTo(...q);ctx.strokeStyle='rgba(255,220,185,.55)';ctx.lineWidth=1;ctx.stroke()}ctx.shadowBlur=14;ctx.shadowColor='rgba(255,175,70,.95)';ctx.fillStyle='#fff4d9';ctx.beginPath();ctx.arc(this.x,this.y,1.7,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0}
+  }
+  class Spark{
+    constructor(x,y,c,a,s,life){this.x=x;this.y=y;this.px=x;this.py=y;this.c=c;this.a=a;this.s=s;this.life=life;this.max=life;this.g=rnd(.025,.055);this.drag=rnd(.974,.987);this.tw=Math.random()<.3}
+    step(){this.px=this.x;this.py=this.y;this.s*=this.drag;this.x+=Math.cos(this.a)*this.s;this.y+=Math.sin(this.a)*this.s;this.y+=this.g*(this.max-this.life);return --this.life<=0}
+    draw(){const t=Math.max(0,this.life/this.max),q=this.tw?(.55+.45*Math.abs(Math.sin(this.life*.75))):1,[r,g,b]=this.c;ctx.strokeStyle=`rgba(${r},${g},${b},${Math.pow(t,.5)*q})`;ctx.lineWidth=.7+t;ctx.shadowBlur=9*t;ctx.shadowColor=`rgba(${r},${g},${b},${.9*t})`;ctx.beginPath();ctx.moveTo(this.px,this.py);ctx.lineTo(this.x,this.y);ctx.stroke();ctx.shadowBlur=0}
+  }
+  function burst(x,y,base){const mobile=W<700,n=mobile?62:92;for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2+rnd(-.05,.05),s=rnd(1.2,mobile?4.0:5.0)*Math.pow(Math.random(),.16),c=Math.random()<.75?base:palette[(Math.random()*palette.length)|0];sparks.push(new Spark(x,y,c,a,s,rnd(38,72)))}for(let i=0;i<(mobile?8:14);i++)embers.push({x,y,vx:rnd(-.7,.7),vy:rnd(-.8,.1),life:rnd(24,45),max:45})}
+  function spawn(){rockets.push(new Rocket());if(Math.random()<.28)setTimeout(()=>rockets.push(new Rocket()),120+rnd(0,180))}
+  function frame(ts){requestAnimationFrame(frame);if(!last)last=ts;const dt=Math.min(32,ts-last);last=ts;ctx.clearRect(0,0,W,H);if(ts>nextBurst){spawn();nextBurst=ts+rnd(650,1250)}for(let i=rockets.length-1;i>=0;i--){const r=rockets[i];if(r.step()){burst(r.x,r.y,r.c);rockets.splice(i,1)}else r.draw()}for(let i=sparks.length-1;i>=0;i--){const s=sparks[i];if(s.step())sparks.splice(i,1);else s.draw()}for(let i=embers.length-1;i>=0;i--){const e=embers[i];e.x+=e.vx;e.y+=e.vy;e.vy+=.022;e.life-=dt/16.7;if(e.life<=0){embers.splice(i,1);continue}const a=Math.max(0,e.life/e.max);ctx.fillStyle=`rgba(255,155,65,${a*.7})`;ctx.fillRect(e.x,e.y,1.15,1.15)}}
+  requestAnimationFrame(frame);
+})();
+</script>
+
 </body>
 </html>
