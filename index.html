@@ -11,12 +11,12 @@ body{overflow-x:hidden}
 .page{position:relative;width:100%;max-width:1400px;margin:0 auto;background:#050000;line-height:0;overflow:hidden}
 .hero{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
 /* Covers only the original 6 game cards, leaving title + arrows visible */
-.games-window{position:absolute;left:1.65%;top:62.35%;width:96.9%;height:16.1%;z-index:20;overflow:hidden;background:transparent;line-height:normal;padding:.15% 0}
+.games-window{position:absolute;left:1.65%;top:62.35%;width:96.9%;height:16.1%;z-index:20;overflow:hidden;background:#080000;line-height:normal;padding:.15% 0}
 .games-track{height:100%;display:flex;align-items:stretch;gap:.85%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;scroll-behavior:smooth;cursor:grab;touch-action:pan-y;padding:0 .15%}
 .games-track::-webkit-scrollbar{display:none}
 .games-track.dragging{cursor:grabbing;scroll-behavior:auto}
 .game-card{flex:0 0 15.55%;height:100%;display:block;border-radius:8px;overflow:hidden;text-decoration:none;box-shadow:0 0 9px rgba(255,69,0,.42);border:1px solid rgba(255,77,20,.8);background:#190000}
-.game-card img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;user-select:none;-webkit-user-drag:none;pointer-events:none;background:#250000}
+.game-card img{width:100%;height:100%;display:block;object-fit:cover;user-select:none;-webkit-user-drag:none;pointer-events:none}
 .nav-btn{position:absolute;top:57.25%;z-index:30;width:3.6%;aspect-ratio:1/1;border-radius:50%;border:1px solid rgba(255,65,35,.75);background:rgba(8,0,0,.74);color:#fff;font-size:clamp(15px,2vw,30px);display:flex;align-items:center;justify-content:center;cursor:pointer;line-height:1;box-shadow:0 0 10px rgba(255,0,0,.24)}
 .nav-btn:hover{background:rgba(80,0,0,.9)}
 .nav-prev{right:8.2%} .nav-next{right:3.7%}
@@ -27,24 +27,66 @@ body{overflow-x:hidden}
  .nav-prev{right:9.5%} .nav-next{right:3.4%}
 }
 </style>
+
+<style id="github-final-fix">
+/* FINAL FIX: real image files + reliable horizontal game slider */
+.games-window{
+  overflow:hidden !important;
+  background:#080000 !important;
+}
+.games-track{
+  display:flex !important;
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;
+  touch-action:pan-x pan-y !important;
+}
+.game-card{
+  position:relative;
+  flex:0 0 15.55% !important;
+  min-width:15.55% !important;
+  height:100% !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  background:#160000 !important;
+  scroll-snap-align:start;
+}
+.game-card img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  object-fit:cover !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+@media(max-width:700px){
+  .game-card{
+    flex-basis:31.3% !important;
+    min-width:31.3% !important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="page">
   <img class="hero" src="assets/hero.jpg" alt="RTP Game Store 17 Agustus">
   <div class="games-window" aria-label="Koleksi game terbaik">
     <div class="games-track" id="gamesTrack">
-      <a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Gates of Olympus"><img src="assets/gates-olympus.jpg" alt="Gates of Olympus"></a>
+      <a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Gates of Olympus"><img src="assets/gates-of-olympus.jpg" alt="Gates of Olympus"></a>
 <a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Sweet Bonanza"><img src="assets/sweet-bonanza.jpg" alt="Sweet Bonanza"></a>
 <a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Mahjong Ways 2"><img src="assets/mahjong-ways-2.jpg" alt="Mahjong Ways 2"></a>
 <a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Wild West Gold"><img src="assets/wild-west-gold.jpg" alt="Wild West Gold"></a>
 <a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Starlight Princess"><img src="assets/starlight-princess.jpg" alt="Starlight Princess"></a>
 <a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Sugar Rush"><img src="assets/sugar-rush.jpg" alt="Sugar Rush"></a>
-<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Gates of Olympus"><img src="assets/gates-olympus.jpg" alt="Gates of Olympus"></a>
-<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Sweet Bonanza"><img src="assets/sweet-bonanza.jpg" alt="Sweet Bonanza"></a>
-<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Mahjong Ways 2"><img src="assets/mahjong-ways-2.jpg" alt="Mahjong Ways 2"></a>
-<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Wild West Gold"><img src="assets/wild-west-gold.jpg" alt="Wild West Gold"></a>
-<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Starlight Princess"><img src="assets/starlight-princess.jpg" alt="Starlight Princess"></a>
-<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Sugar Rush"><img src="assets/sugar-rush.jpg" alt="Sugar Rush"></a>
+<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Gates of Olympus"><img src="assets/gates-of-olympus-2.jpg" alt="Gates of Olympus"></a>
+<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Sweet Bonanza"><img src="assets/sweet-bonanza-2.jpg" alt="Sweet Bonanza"></a>
+<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Mahjong Ways 2"><img src="assets/mahjong-ways-2-2.jpg" alt="Mahjong Ways 2"></a>
+<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Wild West Gold"><img src="assets/wild-west-gold-2.jpg" alt="Wild West Gold"></a>
+<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Starlight Princess"><img src="assets/starlight-princess-2.jpg" alt="Starlight Princess"></a>
+<a class="game-card" href="https://tampan.pro/" target="_blank" rel="noopener" aria-label="Sugar Rush"><img src="assets/sugar-rush-2.jpg" alt="Sugar Rush"></a>
     </div>
   </div>
   <button class="nav-btn nav-prev" id="prevBtn" type="button" aria-label="Geser ke kiri">‹</button>
@@ -63,11 +105,6 @@ track.addEventListener('pointermove',e=>{if(!down)return;let dx=e.clientX-startX
 track.addEventListener('pointerup',e=>{down=false;track.classList.remove('dragging');try{track.releasePointerCapture(e.pointerId)}catch(_){}});
 track.addEventListener('pointercancel',()=>{down=false;track.classList.remove('dragging')});
 track.addEventListener('click',e=>{if(moved){e.preventDefault();e.stopPropagation();}},true);
-
-// If an image ever fails to load, hide only that image instead of showing broken-image text.
-document.querySelectorAll('.game-card img').forEach(img=>{
-  img.addEventListener('error',()=>{img.style.visibility='hidden';});
-});
 </script>
 </body>
 </html>
