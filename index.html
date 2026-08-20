@@ -2,46 +2,17 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<meta name="theme-color" content="#080000">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090000">
 <title>RTP GAME STORE</title>
 <style>
-html,body{margin:0;background:#030000;color:#fff;font-family:Arial,sans-serif;min-height:100%}
-#loading{min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 20%,#6b0b00,#090000 52%,#000);font-weight:900;letter-spacing:.08em}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#050000;color:#fff;font-family:Arial,Helvetica,sans-serif}a{text-decoration:none;color:inherit}.wrap{width:min(1180px,94%);margin:auto}.top{position:sticky;top:0;z-index:50;background:rgba(10,0,0,.94);border-bottom:1px solid #65150d;backdrop-filter:blur(12px)}.nav{min-height:70px;display:flex;align-items:center;gap:18px}.brand{font-weight:900;font-size:20px;margin-right:auto}.brand b{color:#ff321e}.links{display:flex;gap:8px}.links a,.btn{padding:11px 16px;border-radius:10px;font-weight:800}.links a:hover{background:#250503}.btn{display:inline-block;background:linear-gradient(135deg,#ff4025,#a60c02);border:1px solid #ff7558;box-shadow:0 0 20px rgba(255,50,20,.25)}.hero{min-height:570px;display:flex;align-items:center;background:radial-gradient(circle at 70% 40%,rgba(255,45,15,.27),transparent 30%),linear-gradient(115deg,#140000,#050000 60%);position:relative;overflow:hidden}.hero:after{content:'77';position:absolute;right:5%;font-size:min(36vw,470px);font-weight:1000;color:rgba(255,35,15,.12);line-height:1}.copy{position:relative;z-index:2;max-width:690px;padding:70px 0}.badge{display:inline-block;border:1px solid #7c261c;background:#260603;padding:8px 12px;border-radius:999px;color:#ffd6cb;font-size:12px;font-weight:800}.copy h1{font-size:clamp(45px,7vw,86px);line-height:.95;margin:18px 0 15px;letter-spacing:-3px}.copy h1 span{color:#ff321e;text-shadow:0 0 30px rgba(255,50,30,.45)}.copy p{color:#cdb7b2;line-height:1.7;font-size:17px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.ghost{padding:11px 16px;border:1px solid #6a2a22;border-radius:10px;font-weight:800}.section{padding:55px 0}.section h2{font-size:34px;margin:0 0 22px}.games{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{min-height:230px;border-radius:18px;padding:18px;display:flex;align-items:flex-end;background:linear-gradient(150deg,#3d0805,#110100);border:1px solid #5c1a12;box-shadow:0 15px 35px rgba(0,0,0,.35);transition:.2s;cursor:pointer}.card:nth-child(2n){background:linear-gradient(150deg,#61120a,#170100)}.card:hover{transform:translateY(-5px);border-color:#ff5136}.card b{font-size:20px}.promo{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.promo article{padding:25px;border:1px solid #5b1912;border-radius:18px;background:#120201}.promo h3{margin:0 0 8px;color:#ff553d}.promo p{margin:0;color:#bca6a2;line-height:1.6}footer{border-top:1px solid #35100c;padding:30px 0;color:#856f6b;text-align:center}@media(max-width:800px){.links{display:none}.nav{min-height:60px}.hero{min-height:520px}.copy{padding:55px 0}.games{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}.card{min-width:72vw;scroll-snap-align:center}.promo{grid-template-columns:1fr}.copy h1{letter-spacing:-2px}.hero:after{right:-10%;font-size:80vw}}
 </style>
 </head>
 <body>
-<div id="loading">MEMUAT RTP GAME STORE…</div>
-<script>
-(async()=>{
- try{
-  let html=await (await fetch('mobile.html?v=20260820b',{cache:'no-store'})).text();
-  const upgrade=`
-<style>
-html,body{background:#030000!important;scroll-behavior:smooth!important}
-.page{position:relative!important;max-width:1536px!important;margin:auto!important;box-shadow:0 0 70px rgba(255,24,0,.28)!important}
-.hero{filter:brightness(1.13) contrast(1.09) saturate(1.18)!important;image-rendering:auto!important}
-.games-window{filter:brightness(1.08) saturate(1.1)!important}
-.game-card{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;-webkit-tap-highlight-color:rgba(255,80,30,.2)!important;transition:transform .15s ease,filter .15s ease!important}
-.game-card:active{transform:scale(.96)!important;filter:brightness(1.18)!important}
-#touchLayer{position:absolute;z-index:99998;left:0;top:0;width:100%;height:100%;pointer-events:none}
-.touch{position:absolute;display:block;pointer-events:auto!important;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;border-radius:12px;outline:none}
-.touch:active{background:rgba(255,70,35,.10);box-shadow:inset 0 0 18px rgba(255,75,35,.22);transform:scale(.97)}
-.t-home{left:23.1%;top:1.4%;width:7.8%;height:4.4%}.t-koleksi{left:31.3%;top:1.4%;width:7.6%;height:4.4%}.t-slot{left:39.3%;top:1.4%;width:5.1%;height:4.4%}.t-arcade{left:45.3%;top:1.4%;width:7%;height:4.4%}.t-hot{left:53%;top:1.4%;width:5.2%;height:4.4%}.t-promo{left:59%;top:1.4%;width:6.3%;height:4.4%}.t-kontak{left:66.3%;top:1.4%;width:6.7%;height:4.4%}.t-masuk{left:79.7%;top:1.25%;width:8.1%;height:4.2%}.t-daftar{left:88.1%;top:1.25%;width:7.5%;height:4.2%}
-.t-daftar2{left:16.3%;top:43%;width:15.8%;height:4.9%}.t-koleksi2{left:33%;top:43%;width:13.8%;height:4.9%}
-.t-event{left:3.8%;top:78.3%;width:30.8%;height:12.3%}.t-cashback{left:35.8%;top:78.3%;width:30.6%;height:12.3%}.t-referral{left:67.6%;top:78.3%;width:29.5%;height:12.3%}
-@media(max-width:700px){.touch{min-height:34px}.hero{filter:brightness(1.11) contrast(1.08) saturate(1.16)!important}.t-masuk,.t-daftar{min-height:32px}}
-</style>
-<div id="touchLayer">
-<a class="touch t-home" href="#home" aria-label="Beranda"></a><a class="touch t-koleksi" href="#games" aria-label="Koleksi"></a><a class="touch t-slot" href="#games" aria-label="Slot"></a><a class="touch t-arcade" href="#games" aria-label="Arcade"></a><a class="touch t-hot" href="#games" aria-label="Hot"></a><a class="touch t-promo" href="#promo" aria-label="Promo"></a><a class="touch t-kontak" href="#kontak" aria-label="Kontak"></a><a class="touch t-masuk" href="#masuk" aria-label="Masuk"></a><a class="touch t-daftar" href="#daftar" aria-label="Daftar"></a><a class="touch t-daftar2" href="#daftar" aria-label="Daftar sekarang"></a><a class="touch t-koleksi2" href="#games" aria-label="Lihat koleksi"></a><a class="touch t-event" href="#promo" aria-label="Event Merdeka"></a><a class="touch t-cashback" href="#promo" aria-label="Cashback harian"></a><a class="touch t-referral" href="#promo" aria-label="Referral bonus"></a>
-</div>
-<script>
-(()=>{const page=document.querySelector('.page');if(page){page.id='home';const layer=document.getElementById('touchLayer');if(layer)page.appendChild(layer)}const games=document.querySelector('.games-window');if(games)games.id='games';document.querySelectorAll('a.touch').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href');if(h&&h.startsWith('#')&&!document.querySelector(h)){e.preventDefault();alert('Tombol aktif. Kirim link tujuan dan saya pasangkan langsung.') }}));})();
-<\/script>`;
-  html=html.replace(/<\/body>/i,upgrade+'\n</body>');
-  document.open();document.write(html);document.close();
- }catch(e){document.getElementById('loading').textContent='Gagal memuat halaman. Silakan refresh.';console.error(e)}
-})();
-</script>
-</body>
-</html>
+<header class="top"><div class="wrap nav"><a class="brand" href="#home"><b>RTP</b> GAME STORE</a><nav class="links"><a href="#home">BERANDA</a><a href="#games">KOLEKSI</a><a href="#promo">PROMO</a></nav><a class="btn" href="#games">LIHAT GAME</a></div></header>
+<main id="home"><section class="hero"><div class="wrap"><div class="copy"><span class="badge">🇮🇩 SPESIAL KEMERDEKAAN</span><h1>MERDEKA<br><span>BERMAIN</span></h1><p>Tampilan baru yang bersih, cepat, responsif dan nyaman disentuh di HP maupun desktop.</p><div class="actions"><a class="btn" href="#games">LIHAT KOLEKSI</a><a class="ghost" href="#promo">LIHAT PROMO</a></div></div></div></section>
+<section class="section" id="games"><div class="wrap"><h2>Koleksi Terbaik</h2><div class="games"><a class="card" href="#game1"><b>Gates of Olympus</b></a><a class="card" href="#game2"><b>Sweet Bonanza</b></a><a class="card" href="#game3"><b>Mahjong Ways</b></a><a class="card" href="#game4"><b>Starlight Princess</b></a></div></div></section>
+<section class="section" id="promo"><div class="wrap"><h2>Promo Spesial</h2><div class="promo"><article><h3>Event Merdeka</h3><p>Area promo dibuat lebih rapi dan mudah dibaca.</p></article><article><h3>Bonus Harian</h3><p>Tampilan kartu responsif untuk layar kecil dan besar.</p></article><article><h3>Referral</h3><p>Semua elemen utama bisa disentuh dan diklik.</p></article></div></div></section></main>
+<footer>© 2026 RTP GAME STORE • Indonesia</footer>
+</body></html>
