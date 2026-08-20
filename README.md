@@ -1,1 +1,1 @@
-Upload HANYA index.html ini ke root GitHub Pages. Tidak perlu folder assets.
+Versi 4K. Upload index.html ke root GitHub Pages.
