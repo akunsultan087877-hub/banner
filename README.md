@@ -1,1 +1,1 @@
-Versi high quality di bawah 25 MB. Upload index.html ke root GitHub Pages.
+Versi ini memakai foto terbaru yang dikirim sebagai tampilan utama. Upload index.html ke GitHub Pages.
