@@ -3,67 +3,85 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<meta name="theme-color" content="#050000">
+<meta name="theme-color" content="#090000">
 <title>RTP GAME STORE</title>
 <style>
 html,body{margin:0;background:#050000;color:#fff;font-family:Arial,Helvetica,sans-serif;min-height:100%}
-#loading{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box}
+#loading{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box;background:radial-gradient(circle at 50% 20%,#4b0707,#070000 55%,#000);font-weight:800;letter-spacing:.08em}
 </style>
 </head>
 <body>
-<div id="loading">Memuat website…</div>
+<div id="loading">MEMUAT RTP GAME STORE…</div>
 <script>
 (async()=>{
-  const source='https://raw.githubusercontent.com/akunsultan087877-hub/banner/ee7ddef646f476ed5fbf39af622d0212366a998d/index.html';
-  try{
-    let html=await (await fetch(source,{cache:'no-store'})).text();
-    const fix=`
+ const source='https://raw.githubusercontent.com/akunsultan087877-hub/banner/ee7ddef646f476ed5fbf39af622d0212366a998d/index.html';
+ try{
+  let html=await (await fetch(source,{cache:'no-store'})).text();
+  const upgrade=`
 <style>
-.game-card{position:relative!important;z-index:50!important;pointer-events:auto!important;touch-action:manipulation!important;-webkit-tap-highlight-color:rgba(255,255,255,.16)!important}
-.game-card img{pointer-events:none!important}
-.nav-btn{pointer-events:auto!important;touch-action:manipulation!important;z-index:100!important}
+:root{--red:#ff2b16;--gold:#ffbf45;--glass:rgba(16,0,0,.72)}
+html{scroll-behavior:smooth;background:#030000!important}
+body{background:radial-gradient(circle at 50% 5%,#260000 0,#090000 38%,#020000 100%)!important}
+.page{box-shadow:0 0 70px rgba(255,35,10,.22);isolation:isolate}
+.hero{image-rendering:auto;filter:contrast(1.075) saturate(1.12) brightness(1.035);transform:translateZ(0);backface-visibility:hidden}
+.page:before{content:'';position:absolute;inset:0;z-index:12;pointer-events:none;background:linear-gradient(115deg,transparent 15%,rgba(255,255,255,.045) 34%,transparent 43%);background-size:220% 100%;animation:shineSweep 7s linear infinite}
+@keyframes shineSweep{from{background-position:180% 0}to{background-position:-140% 0}}
+.games-window{border-top:1px solid rgba(255,183,75,.3);border-bottom:1px solid rgba(255,60,25,.34);background:linear-gradient(180deg,rgba(18,0,0,.92),rgba(5,0,0,.96))!important;box-shadow:inset 0 12px 30px rgba(0,0,0,.5),0 0 28px rgba(255,30,0,.15)}
+.games-track{scroll-snap-type:x proximity!important;overscroll-behavior-x:contain}
+.game-card{position:relative!important;z-index:50!important;pointer-events:auto!important;touch-action:manipulation!important;-webkit-tap-highlight-color:rgba(255,255,255,.16)!important;scroll-snap-align:center;transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;border:1px solid rgba(255,175,70,.65)!important;box-shadow:0 4px 18px rgba(0,0,0,.55),0 0 12px rgba(255,48,15,.35)!important}
+.game-card:hover{transform:translateY(-3px) scale(1.025);filter:brightness(1.1) saturate(1.12);box-shadow:0 9px 24px rgba(0,0,0,.65),0 0 24px rgba(255,70,20,.55)!important}
+.game-card:active{transform:scale(.97)}
+.game-card img{pointer-events:none!important;image-rendering:auto;filter:contrast(1.1) saturate(1.14) brightness(1.04)}
+.nav-btn{pointer-events:auto!important;touch-action:manipulation!important;z-index:100!important;border:1px solid rgba(255,196,92,.75)!important;background:radial-gradient(circle at 35% 30%,rgba(120,18,8,.95),rgba(15,0,0,.94))!important;box-shadow:0 0 14px rgba(255,45,15,.45),inset 0 0 10px rgba(255,180,70,.12)!important;transition:.2s ease}
+.nav-btn:hover{transform:scale(1.08);box-shadow:0 0 24px rgba(255,68,20,.7)!important}
 .games-window,.games-track{pointer-events:auto!important}
-#fireworksCanvas{pointer-events:none!important}
+#fireworksCanvas{pointer-events:none!important;filter:brightness(1.18) saturate(1.18)}
+#siteTopbar{position:fixed;left:50%;top:12px;transform:translateX(-50%);width:min(94%,1260px);height:54px;z-index:999999;display:flex;align-items:center;justify-content:space-between;padding:0 16px;box-sizing:border-box;border:1px solid rgba(255,165,70,.28);border-radius:16px;background:linear-gradient(180deg,rgba(28,0,0,.86),rgba(7,0,0,.78));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 30px rgba(0,0,0,.42),0 0 22px rgba(255,30,0,.14);line-height:normal}
+#siteTopbar .brand{display:flex;align-items:center;gap:9px;font-weight:900;font-size:14px;letter-spacing:.08em;color:#fff;text-shadow:0 0 12px rgba(255,70,20,.65)}
+#siteTopbar .brand i{width:10px;height:10px;border-radius:50%;background:#ff3a20;box-shadow:0 0 15px #ff321a;animation:pulseDot 1.2s ease-in-out infinite alternate}
+@keyframes pulseDot{to{transform:scale(1.45);box-shadow:0 0 24px #ffb34e}}
+#siteTopbar nav{display:flex;align-items:center;gap:8px}
+#siteTopbar nav a{color:#f7e9df;text-decoration:none;font-size:12px;font-weight:800;padding:9px 13px;border-radius:10px;border:1px solid transparent;transition:.2s}
+#siteTopbar nav a:hover{background:rgba(255,65,25,.12);border-color:rgba(255,115,50,.28);color:#fff}
+#siteTopbar .cta{background:linear-gradient(135deg,#ff3b20,#a60800)!important;border-color:rgba(255,193,95,.45)!important;box-shadow:0 0 14px rgba(255,42,15,.3)}
+#livePill{position:fixed;right:18px;bottom:18px;z-index:999998;line-height:normal;padding:9px 12px;border-radius:999px;background:rgba(9,0,0,.78);border:1px solid rgba(255,130,50,.32);backdrop-filter:blur(10px);font-size:10px;font-weight:800;letter-spacing:.08em;color:#ffe6d1;box-shadow:0 0 18px rgba(255,30,0,.2);pointer-events:none}
+#livePill b{color:#ff5b37;text-shadow:0 0 8px #ff2b16}
+@media(max-width:700px){
+ #siteTopbar{top:7px;height:46px;width:96%;padding:0 10px;border-radius:13px}
+ #siteTopbar .brand{font-size:11px;gap:6px}
+ #siteTopbar nav{gap:3px}
+ #siteTopbar nav a{font-size:10px;padding:7px 8px}
+ #siteTopbar nav a:nth-child(2){display:none}
+ #livePill{right:9px;bottom:9px;font-size:9px;padding:7px 9px}
+ .hero{filter:contrast(1.09) saturate(1.15) brightness(1.04)}
+ .game-card{box-shadow:0 3px 12px rgba(0,0,0,.55),0 0 10px rgba(255,48,15,.38)!important}
+}
 </style>
 <script>
 (()=>{
-  function activate(){
-    const track=document.getElementById('gamesTrack');
-    if(!track)return;
-
-    // Di HP/tablet, jangan biarkan script drag desktop menangkap sentuhan.
-    // Swipe tetap memakai scrolling native browser, sedangkan tap membuka link.
-    track.addEventListener('pointerdown',e=>{
-      if(e.pointerType==='touch'||e.pointerType==='pen'){
-        e.stopImmediatePropagation();
-      }
-    },true);
-
-    // Pastikan semua kartu benar-benar bisa ditekan.
-    track.querySelectorAll('a.game-card').forEach(card=>{
-      card.style.pointerEvents='auto';
-      card.style.cursor='pointer';
-      card.setAttribute('role','link');
-    });
-
-    const prev=document.getElementById('prevBtn');
-    const next=document.getElementById('nextBtn');
-    [prev,next].forEach(btn=>{
-      if(btn){btn.style.pointerEvents='auto';btn.style.cursor='pointer';}
-    });
+ function activate(){
+  const track=document.getElementById('gamesTrack');
+  if(track){
+   track.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||e.pointerType==='pen')e.stopImmediatePropagation()},true);
+   track.querySelectorAll('a.game-card').forEach(card=>{card.style.pointerEvents='auto';card.style.cursor='pointer';card.setAttribute('role','link')});
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',activate,{once:true});
-  else activate();
+  const prev=document.getElementById('prevBtn'),next=document.getElementById('nextBtn');
+  [prev,next].forEach(btn=>{if(btn){btn.style.pointerEvents='auto';btn.style.cursor='pointer'}});
+  if(!document.getElementById('siteTopbar')){
+   const bar=document.createElement('header');bar.id='siteTopbar';
+   bar.innerHTML='<div class="brand"><i></i>RTP GAME STORE</div><nav><a href="#home">HOME</a><a href="#games">KOLEKSI</a><a class="cta" href="#games">MAIN SEKARANG</a></nav>';
+   document.body.appendChild(bar);
+  }
+  if(!document.getElementById('livePill')){
+   const pill=document.createElement('div');pill.id='livePill';pill.innerHTML='<b>● LIVE</b> • SWIPE & TAP GAME';document.body.appendChild(pill);
+  }
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',activate,{once:true});else activate();
 })();
 <\/script>`;
-    html=html.replace(/<\/body>/i,fix+'\n</body>');
-    document.open();
-    document.write(html);
-    document.close();
-  }catch(err){
-    document.getElementById('loading').innerHTML='Website gagal dimuat. Silakan refresh halaman.';
-    console.error(err);
-  }
+  html=html.replace(/<\/body>/i,upgrade+'\n</body>');
+  document.open();document.write(html);document.close();
+ }catch(err){document.getElementById('loading').innerHTML='Website gagal dimuat. Silakan refresh halaman.';console.error(err)}
 })();
 </script>
 </body>
