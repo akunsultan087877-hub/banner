@@ -6,61 +6,50 @@
 <meta name="theme-color" content="#080000">
 <title>RTP GAME STORE</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;background:#030000;color:#fff;font-family:Arial,Helvetica,sans-serif}body{overflow-x:hidden}.stage{position:relative;width:100%;max-width:1536px;margin:0 auto;line-height:0;background:#050000}.art{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}.tap{position:absolute;z-index:20;display:block;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;border-radius:10px;outline:none}.tap::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(255,255,255,0);box-shadow:0 0 0 rgba(255,0,0,0);transition:.16s ease}.tap:hover::after{background:rgba(255,255,255,.025);box-shadow:inset 0 0 18px rgba(255,75,45,.12),0 0 16px rgba(255,40,20,.12)}.tap:active::after{background:rgba(255,70,35,.10);box-shadow:inset 0 0 20px rgba(255,95,45,.24),0 0 20px rgba(255,45,20,.25);transform:scale(.96)}
-/* NAV */
-.home{left:23.2%;top:1.4%;width:7.6%;height:4.3%}.collection{left:31.3%;top:1.4%;width:7.4%;height:4.3%}.slot{left:39.4%;top:1.4%;width:5.1%;height:4.3%}.arcade{left:45.4%;top:1.4%;width:6.9%;height:4.3%}.hot{left:53.1%;top:1.4%;width:5.1%;height:4.3%}.promo{left:59.0%;top:1.4%;width:6.2%;height:4.3%}.contact{left:66.3%;top:1.4%;width:6.6%;height:4.3%}.login{left:79.8%;top:1.45%;width:8.0%;height:4.2%}.register{left:88.2%;top:1.45%;width:7.4%;height:4.2%}
-/* HERO */
-.hero-register{left:16.3%;top:43.05%;width:15.7%;height:4.8%}.hero-collection{left:33.0%;top:43.05%;width:13.8%;height:4.8%}
+*{box-sizing:border-box}html,body{margin:0;background:#030000;color:#fff;font-family:Arial,Helvetica,sans-serif}body{overflow-x:hidden}.stage{position:relative;width:100%;max-width:1536px;margin:0 auto;line-height:0;background:#050000}.art{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}.tap{position:absolute;z-index:20;display:block;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;border-radius:10px;outline:none;background:transparent}.tap::after{content:"";position:absolute;inset:1px;border-radius:inherit;background:rgba(255,255,255,0);box-shadow:0 0 0 rgba(255,0,0,0);transition:background .14s ease,box-shadow .14s ease,transform .14s ease}.tap:hover::after{background:rgba(255,255,255,.025);box-shadow:inset 0 0 16px rgba(255,85,50,.10),0 0 14px rgba(255,45,20,.10)}.tap:active::after{background:rgba(255,70,35,.10);box-shadow:inset 0 0 20px rgba(255,95,45,.22),0 0 18px rgba(255,45,20,.20);transform:scale(.965)}
+/* HEADER — aligned to the artwork */
+.home{left:23.15%;top:1.55%;width:7.50%;height:4.15%}.collection{left:31.45%;top:1.55%;width:7.10%;height:4.15%}.slot{left:39.65%;top:1.55%;width:4.80%;height:4.15%}.arcade{left:45.55%;top:1.55%;width:6.80%;height:4.15%}.hot{left:53.25%;top:1.55%;width:4.80%;height:4.15%}.promo{left:59.05%;top:1.55%;width:6.00%;height:4.15%}.contact{left:66.40%;top:1.55%;width:6.00%;height:4.15%}.login{left:80.20%;top:1.65%;width:7.25%;height:3.65%}.register{left:88.30%;top:1.65%;width:7.15%;height:3.65%}
+/* HERO BUTTONS */
+.hero-register{left:16.45%;top:43.20%;width:15.25%;height:4.35%}.hero-collection{left:33.05%;top:43.20%;width:13.30%;height:4.35%}
+/* GAME NAV ARROWS */
+.prev{left:89.70%;top:57.55%;width:3.25%;height:4.35%;border-radius:50%}.next{left:93.55%;top:57.55%;width:3.25%;height:4.35%;border-radius:50%}
 /* GAME CARDS */
-.game1{left:3.8%;top:63.0%;width:14.8%;height:13.9%}.game2{left:19.8%;top:63.0%;width:14.8%;height:13.9%}.game3{left:35.8%;top:63.0%;width:14.8%;height:13.9%}.game4{left:51.8%;top:63.0%;width:14.8%;height:13.9%}.game5{left:67.8%;top:63.0%;width:14.8%;height:13.9%}.game6{left:83.8%;top:63.0%;width:12.6%;height:13.9%}
+.game1{left:4.00%;top:63.30%;width:14.60%;height:13.40%}.game2{left:20.00%;top:63.30%;width:14.50%;height:13.40%}.game3{left:36.00%;top:63.30%;width:14.50%;height:13.40%}.game4{left:52.00%;top:63.30%;width:14.50%;height:13.40%}.game5{left:68.00%;top:63.30%;width:14.50%;height:13.40%}.game6{left:84.00%;top:63.30%;width:12.50%;height:13.40%}
 /* PROMO CARDS */
-.event{left:3.7%;top:78.2%;width:30.8%;height:12.4%}.cashback{left:35.7%;top:78.2%;width:30.8%;height:12.4%}.referral{left:67.7%;top:78.2%;width:29.2%;height:12.4%}
-/* SOCIAL / FOOTER */
-.social1{left:43.1%;top:95.4%;width:3.0%;height:2.8%;border-radius:50%}.social2{left:47.0%;top:95.4%;width:3.0%;height:2.8%;border-radius:50%}.social3{left:50.9%;top:95.4%;width:3.0%;height:2.8%;border-radius:50%}
-@media(max-width:700px){.stage{width:100vw;max-width:none}.tap{border-radius:6px}.login,.register{min-height:28px}.hero-register,.hero-collection{min-height:30px}}
+.event{left:4.00%;top:78.40%;width:30.50%;height:12.00%}.cashback{left:36.00%;top:78.40%;width:30.00%;height:12.00%}.referral{left:68.00%;top:78.40%;width:29.00%;height:12.00%}
+/* SOCIAL ICONS */
+.social1{left:43.15%;top:95.25%;width:3.05%;height:3.15%;border-radius:50%}.social2{left:47.05%;top:95.25%;width:3.05%;height:3.15%;border-radius:50%}.social3{left:50.95%;top:95.25%;width:3.05%;height:3.15%;border-radius:50%}
+@media(max-width:700px){.stage{width:100vw;max-width:none}.tap{border-radius:6px}.login,.register{min-height:28px}.hero-register,.hero-collection{min-height:30px}.prev,.next{min-width:28px;min-height:28px}}
 </style>
 </head>
 <body>
-<div class="stage" id="home">
+<div class="stage">
 <img class="art" src="https://files.catbox.moe/m9spbk.png" alt="RTP Game Store 17 Agustus">
-
-<a class="tap home" href="#home" aria-label="Beranda"></a>
-<a class="tap collection" href="#games" aria-label="Koleksi"></a>
-<a class="tap slot" href="#games" aria-label="Slot"></a>
-<a class="tap arcade" href="#games" aria-label="Arcade"></a>
-<a class="tap hot" href="#games" aria-label="Hot"></a>
-<a class="tap promo" href="#promos" aria-label="Promo"></a>
-<a class="tap contact placeholder" href="#" aria-label="Kontak"></a>
-<a class="tap login placeholder" href="#" aria-label="Masuk"></a>
-<a class="tap register placeholder" href="#" aria-label="Daftar"></a>
-
-<a class="tap hero-register placeholder" href="#" aria-label="Daftar sekarang"></a>
-<a class="tap hero-collection" href="#games" aria-label="Lihat koleksi"></a>
-
-<a class="tap game1 placeholder" id="games" href="#" aria-label="Game 1"></a>
-<a class="tap game2 placeholder" href="#" aria-label="Game 2"></a>
-<a class="tap game3 placeholder" href="#" aria-label="Game 3"></a>
-<a class="tap game4 placeholder" href="#" aria-label="Game 4"></a>
-<a class="tap game5 placeholder" href="#" aria-label="Game 5"></a>
-<a class="tap game6 placeholder" href="#" aria-label="Game 6"></a>
-
-<a class="tap event placeholder" id="promos" href="#" aria-label="Event Merdeka"></a>
-<a class="tap cashback placeholder" href="#" aria-label="Cashback Harian"></a>
-<a class="tap referral placeholder" href="#" aria-label="Referral Bonus"></a>
-
-<a class="tap social1 placeholder" href="#" aria-label="Instagram"></a>
-<a class="tap social2 placeholder" href="#" aria-label="Telegram"></a>
-<a class="tap social3 placeholder" href="#" aria-label="WhatsApp"></a>
+<a class="tap home" href="https://tampan.pro/" aria-label="Beranda"></a>
+<a class="tap collection" href="https://tampan.pro/" aria-label="Koleksi"></a>
+<a class="tap slot" href="https://tampan.pro/" aria-label="Slot"></a>
+<a class="tap arcade" href="https://tampan.pro/" aria-label="Arcade"></a>
+<a class="tap hot" href="https://tampan.pro/" aria-label="Hot"></a>
+<a class="tap promo" href="https://tampan.pro/" aria-label="Promo"></a>
+<a class="tap contact" href="https://tampan.pro/" aria-label="Kontak"></a>
+<a class="tap login" href="https://tampan.pro/" aria-label="Masuk"></a>
+<a class="tap register" href="https://tampan.pro/" aria-label="Daftar"></a>
+<a class="tap hero-register" href="https://tampan.pro/" aria-label="Daftar sekarang"></a>
+<a class="tap hero-collection" href="https://tampan.pro/" aria-label="Lihat koleksi"></a>
+<a class="tap prev" href="https://tampan.pro/" aria-label="Sebelumnya"></a>
+<a class="tap next" href="https://tampan.pro/" aria-label="Berikutnya"></a>
+<a class="tap game1" href="https://tampan.pro/" aria-label="Game 1"></a>
+<a class="tap game2" href="https://tampan.pro/" aria-label="Game 2"></a>
+<a class="tap game3" href="https://tampan.pro/" aria-label="Game 3"></a>
+<a class="tap game4" href="https://tampan.pro/" aria-label="Game 4"></a>
+<a class="tap game5" href="https://tampan.pro/" aria-label="Game 5"></a>
+<a class="tap game6" href="https://tampan.pro/" aria-label="Game 6"></a>
+<a class="tap event" href="https://tampan.pro/" aria-label="Event Merdeka"></a>
+<a class="tap cashback" href="https://tampan.pro/" aria-label="Cashback Harian"></a>
+<a class="tap referral" href="https://tampan.pro/" aria-label="Referral Bonus"></a>
+<a class="tap social1" href="https://tampan.pro/" aria-label="Instagram"></a>
+<a class="tap social2" href="https://tampan.pro/" aria-label="Telegram"></a>
+<a class="tap social3" href="https://tampan.pro/" aria-label="WhatsApp"></a>
 </div>
-<script>
-document.querySelectorAll('.placeholder').forEach(el=>{
-  el.addEventListener('click',e=>{
-    if(el.getAttribute('href')==='#'){
-      e.preventDefault();
-      alert('Tombol ini sudah aktif. Tinggal pasang link tujuan.');
-    }
-  });
-});
-</script>
 </body>
 </html>
