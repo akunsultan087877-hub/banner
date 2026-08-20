@@ -15,12 +15,12 @@ html,body{margin:0;background:#030000;color:#fff;font-family:Arial,sans-serif;mi
 <script>
 (async()=>{
  try{
-  let html=await (await fetch('mobile.html?v=20260820',{cache:'no-store'})).text();
+  let html=await (await fetch('mobile.html?v=20260820b',{cache:'no-store'})).text();
   const upgrade=`
 <style>
 html,body{background:#030000!important;scroll-behavior:smooth!important}
 .page{position:relative!important;max-width:1536px!important;margin:auto!important;box-shadow:0 0 70px rgba(255,24,0,.28)!important}
-.hero{filter:brightness(1.13) contrast(1.09) saturate(1.18) sharpen(1)!important;image-rendering:auto!important}
+.hero{filter:brightness(1.13) contrast(1.09) saturate(1.18)!important;image-rendering:auto!important}
 .games-window{filter:brightness(1.08) saturate(1.1)!important}
 .game-card{pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;-webkit-tap-highlight-color:rgba(255,80,30,.2)!important;transition:transform .15s ease,filter .15s ease!important}
 .game-card:active{transform:scale(.96)!important;filter:brightness(1.18)!important}
