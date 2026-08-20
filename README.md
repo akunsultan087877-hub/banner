@@ -1,14 +1,4 @@
-# RTP GAME STORE — GitHub Pages
+# RTP GAME STORE - FOTO BENER
 
-File utama: `index.html`.
-
-- Koleksi game bisa digeser dengan mouse/touch/trackpad.
-- Tombol panah kiri/kanan aktif.
-- Semua kartu game bisa diklik.
-- Teks “🇮🇩 Spesial 17 Agustus • Efek kembang api aktif” sudah dihapus.
-
-## Upload ke GitHub
-Ekstrak ZIP, lalu upload `index.html` dan folder `assets` ke repository GitHub Pages.
-
-## Mengganti link kartu
-Cari `https://tampan.pro/` di `index.html`, lalu ganti sesuai link tujuan masing-masing kartu.
+Upload **index.html dan folder assets** ke root repository GitHub.
+Jangan upload index.html saja. Semua foto game ada di folder assets.
