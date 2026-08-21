@@ -45,26 +45,40 @@ body{
     pointer-events:none;
 }
 
-/* ===== GIF ===== */
+
+/* =========================
+   GIF
+========================= */
 
 .gif-slider{
     position:absolute;
     z-index:15;
 
+    /* POSISI GIF */
     left:10.5%;
     top:9.8%;
 
     transform:translateX(-50%);
 
+    /* UKURAN GIF */
     width:16%;
     height:64px;
 
     pointer-events:none;
-    overflow:visible;
+
+    /* LENGKUNG */
+    border-radius:22px;
+    overflow:hidden;
 
     display:flex;
     align-items:center;
     justify-content:center;
+
+    /* TANPA TEPI */
+    border:none;
+    outline:none;
+    box-shadow:none;
+    background:transparent;
 }
 
 .hero-gif{
@@ -77,13 +91,14 @@ body{
 
     display:block;
 
-    width:auto;
-    height:auto;
+    width:100%;
+    height:100%;
 
-    max-width:100%;
-    max-height:100%;
+    /* isi memenuhi kotak */
+    object-fit:cover;
 
-    object-fit:contain;
+    /* lengkung mengikuti kotak */
+    border-radius:22px;
 
     opacity:0;
     visibility:hidden;
@@ -91,8 +106,8 @@ body{
     transition:opacity .55s ease;
 
     filter:none;
-    border:0;
-    outline:0;
+    border:none;
+    outline:none;
     box-shadow:none;
     background:transparent;
 }
@@ -102,21 +117,34 @@ body{
     visibility:visible;
 }
 
-/* ===== MOBILE ===== */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px){
 
     .gif-slider{
+
+        /* POSISI GIF DI HP */
         left:51.5%;
         top:39.8%;
 
         width:20%;
         height:36px;
+
+        border-radius:14px;
     }
 
+    .hero-gif{
+        border-radius:14px;
+    }
 }
 
-/* ===== AREA CLICK ===== */
+
+/* =========================
+   AREA CLICK
+========================= */
 
 .tap{
     position:absolute;
@@ -159,7 +187,10 @@ body{
     opacity:1;
 }
 
-/* ===== POSISI TOMBOL ===== */
+
+/* =========================
+   POSISI TOMBOL
+========================= */
 
 .home{
     left:16.145%;
@@ -355,7 +386,9 @@ id="fireworks">
 </canvas>
 
 
-<!-- ===== GIF ===== -->
+<!-- =========================
+     3 GIF BERGANTIAN
+========================= -->
 
 <div class="gif-slider">
 
@@ -380,7 +413,9 @@ alt="Premium Animation 3"
 </div>
 
 
-<!-- ===== TOMBOL ===== -->
+<!-- =========================
+     TOMBOL
+========================= -->
 
 <a class="tap home" href="https://tampan.pro/"></a>
 
@@ -453,6 +488,10 @@ let S=1;
 let d=[];
 
 
+/* =========================
+   RESIZE
+========================= */
+
 function resize(){
 
     W=stage.clientWidth;
@@ -476,6 +515,10 @@ function resize(){
     make();
 }
 
+
+/* =========================
+   PARTIKEL MERAH
+========================= */
 
 function make(){
 
@@ -519,6 +562,10 @@ addEventListener(
 resize();
 
 
+/* =========================
+   ANIMASI PARTIKEL
+========================= */
+
 function frame(t){
 
     ctx.clearRect(
@@ -554,16 +601,12 @@ function frame(t){
 
 
         if(p.x<-8){
-
             p.x=W+8;
-
         }
 
 
         if(p.x>W+8){
-
             p.x=-8;
-
         }
 
 
@@ -652,8 +695,9 @@ requestAnimationFrame(
 );
 
 
-
-/* ===== GIF BERGANTIAN ===== */
+/* =========================
+   GIF BERGANTIAN
+========================= */
 
 const gifs=[
     ...document.querySelectorAll(
@@ -668,9 +712,7 @@ setInterval(()=>{
 
     gifs[gi]
     .classList
-    .remove(
-        'active'
-    );
+    .remove('active');
 
 
     gi=
@@ -681,9 +723,7 @@ setInterval(()=>{
 
     gifs[gi]
     .classList
-    .add(
-        'active'
-    );
+    .add('active');
 
 },4000);
 
